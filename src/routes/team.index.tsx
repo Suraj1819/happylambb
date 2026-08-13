@@ -4,7 +4,8 @@ import { useState } from "react";
 import { Reveal } from "@/components/site/Reveal";
 import { TEAM, INTERNS } from "@/data/site";
 
-// 🟢 FIXED PATHS: Image assets exactly as per your screenshot
+// Main Team
+
 import teamGroup from "@/assets/team.jpeg";
 import m1 from "@/assets/Dilip Cofounder.jpeg";
 import m2 from "@/assets/Executive Director.jpeg";
@@ -14,11 +15,11 @@ import m5 from "@/assets/Head Editor.jpeg";
 import m6 from "@/assets/Social Media.jpeg";
 import m7 from "@/assets/Assistant.jpeg";
 
-// 🟢 FIXED: Intern images now fallback to Team images, since 'interns' folder is MISSING.
-// If you create the 'interns' folder later, you can change these paths back.
-import intern1 from "@/assets/Social Media.jpeg";
-import intern2 from "@/assets/Assistant.jpeg";
-import intern3 from "@/assets/team-1.jpg"; 
+// Interns 
+
+import intern1 from "@/assets/interns/Editor.jpeg";
+import intern2 from "@/assets/interns/Client Relation Associate.jpeg";
+import intern3 from "@/assets/interns/Creative Media Associate.jpeg"; 
 
 export const Route = createFileRoute("/team/")({
   component: Team,

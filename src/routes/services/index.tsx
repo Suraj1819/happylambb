@@ -47,17 +47,16 @@ function ServicesIndex() {
             
             {/* Bold Heading + Italic Subtitle */}
             <h1 className="text-[clamp(3rem,7.5vw,5.5rem)] leading-[0.95] tracking-tight font-medium text-foreground dark:text-white">
-              Production services <br />
+              Creative production <br />
               <span className="italic font-normal text-muted-foreground dark:text-zinc-400">
-                for brands that mean business.
+                solutions built to elevate your brand.
               </span>
             </h1>
             
             {/* Professional Paragraph */}
             <p className="mt-6 max-w-2xl text-lg text-muted-foreground/90 dark:text-zinc-400 leading-relaxed tracking-wide font-light">
-              Our founder believed that mid-market brands deserve global creative standards — 
-              not work that looks like it was made on a spreadsheet. Every service listed below 
-              is strategized, produced, and finished in-house. No middlemen, no handoffs, no accountability gaps.
+              Happy Lamb Production partners with leading brands across food & beverage, health & lifestyle, sports, technology, pharmaceuticals, and leisure. We help brands tell their stories through a unique blend of creativity, technology, innovation, and passion—creating impactful content that connects, inspires, and delivers results.
+
             </p>
             
             <div className="mt-8 flex flex-wrap gap-6">

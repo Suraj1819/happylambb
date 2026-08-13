@@ -77,13 +77,13 @@ const LOGO_WALL_BRANDS = ALL_BRANDS;
 
 /* 🔥 FIXED ICONS */
 const WHY_US = [
-  { icon: Video, title: "Cinema-grade production", copy: "RED & ARRI systems, controlled lighting, director-led units." },
-  { icon: Zap, title: "Fast turnaround", copy: "Locked timelines. Broadcast masters delivered on schedule." },
-  { icon: Users, title: "Professional crew", copy: "Vetted talent across Mumbai, Patna and pan-India." },
-  { icon: Film, title: "Creative storytelling", copy: "Strategy-first films built for recall and response." },
-  { icon: Drone, title: "Drone cinematography", copy: "Licensed aerial units for real estate, plants and events." },
-  { icon: Brain, title: "AI-assisted workflows", copy: "Faster edits, variants and multi-format delivery." },
-  { icon: Layers, title: "End-to-end production", copy: "From brief to final master — one accountable team." },
+  { icon: Video, title: "Brand Strategy & Creative", copy: "We transform ideas into compelling campaigns that build brand value and audience engagement." },
+  { icon: Zap, title: "End-to-End Production", copy: "From concept development to final delivery, we manage every stage of the production process." },
+  { icon: Users, title: "Pan-India Execution", copy: "Professional production services, crew, and logistics available across India." },
+  { icon: Film, title: "Corporate & Commercial Films", copy: "High-quality corporate videos, ad films, testimonials, and branded content designed for impact." },
+  { icon: Drone, title: "Photography & Product Shoots", copy: "Catalogue, product, furniture, and brand photography crafted to showcase your business at its best." },
+  { icon: Brain, title: "Digital Marketing Solutions", copy: "Social media marketing, digital advertising, and content strategies that drive measurable growth." },
+  { icon: Layers, title: "Government Shooting Permissions", copy: "Complete assistance with permits, approvals, and production coordination for hassle-free shoots." },
   { icon: MonitorPlay, title: "Multi-platform content", copy: "TV, OTT, vertical and paid-ready assets from one shoot." },
 ];
 
@@ -113,8 +113,7 @@ function Clients() {
             </h1>
             
             <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground leading-relaxed">
-              We help brands tell powerful stories through commercials, corporate films,
-              product shoots, digital campaigns, and cinematic content. Crafted with precision.
+              We collaborate with ambitious brands across industries, delivering creative solutions that elevate their presence and create lasting impact.
             </p>
           </Reveal>
 
@@ -193,8 +192,8 @@ function Clients() {
               <div className="h-px w-6 bg-border"></div>
             </div>
             <h2 className="text-4xl md:text-5xl font-medium tracking-tight">
-              Brands that <br />
-              <span className="italic text-muted-foreground/60">keep coming back.</span>
+              Brands we've <br />
+              <span className="italic text-muted-foreground/60">proudly partnered with.</span>
             </h2>
           </Reveal>
 
@@ -224,8 +223,8 @@ function Clients() {
                 <p className="text-xs tracking-[0.2em] text-muted-foreground uppercase italic">Success Stories</p>
               </div>
               <h2 className="text-4xl md:text-5xl font-medium tracking-tight">
-                Results that <br />
-                <span className="italic text-muted-foreground/60">speak.</span>
+                Results <br />
+                <span className="italic text-muted-foreground/60">you can trust.</span>
               </h2>
             </div>
             <Link to="/work" className="inline-flex items-center gap-2 text-sm font-medium hover:gap-4 transition-all duration-300">
@@ -356,7 +355,7 @@ function Clients() {
             </div>
             <h2 className="text-4xl md:text-5xl font-medium tracking-tight mb-4">
               Numbers that <br />
-              <span className="italic text-muted-foreground/60">build trust.</span>
+              <span className="italic text-muted-foreground/60">reflect our commitment.</span>
             </h2>
           </Reveal>
 

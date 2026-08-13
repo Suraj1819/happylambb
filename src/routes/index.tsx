@@ -69,12 +69,17 @@ function StudioCarousel() {
     },
     { 
       type: 'image', 
-      src: 'https://images.unsplash.com/photo-1533558701576-2c35cd7cb1ef?q=80&w=2070&auto=format&fit=crop', 
+      src: 'https://plus.unsplash.com/premium_photo-1682125311959-a000535c0b19?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8bW92aWUlMjBwb3N0ZXJ8ZW58MHx8MHx8fDA%3D', 
       alt: 'Studio 3 - Post Production' 
     },
     { 
       type: 'image', 
-      src: 'https://images.unsplash.com/photo-1512418490979-92798cec1380?q=80&w=2070&auto=format&fit=crop', 
+      src: 'https://images.unsplash.com/photo-1778372670061-e84b57764aec?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzZ8fGZpbG0lMjBwb3N0ZXJ8ZW58MHx8MHx8fDA%3D', 
+      alt: 'Studio 4 - Creative Space' 
+    },
+    { 
+      type: 'image', 
+      src: 'https://images.unsplash.com/photo-1641549058491-8a3442385da0?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fG1vdmllJTIwcG9zdGVyfGVufDB8fDB8fHww', 
       alt: 'Studio 4 - Creative Space' 
     },
   ];
@@ -128,7 +133,7 @@ function Index() {
   const shown = cat === "All" ? STUDIO_VIDEOS : STUDIO_VIDEOS.filter((v) => v.category === cat);
 
   const featuredMain = STUDIO_VIDEOS[0];
-  const featuredGrid = STUDIO_VIDEOS.slice(1, 5);
+  const featuredGrid = STUDIO_VIDEOS.slice(1, 13);
   const libraryVideos = shown.slice(0, 6);
 
   // Why Choose Us data
@@ -181,7 +186,7 @@ function Index() {
               
               <h1 className="text-[clamp(3rem,7.5vw,5.5rem)] leading-[0.95] tracking-tight font-medium text-foreground dark:text-white max-w-4xl">
                 We build stories <br />
-                <span className="italic font-normal text-muted-foreground dark:text-zinc-400">that move.</span>
+                <span className="italic font-normal text-muted-foreground dark:text-zinc-400">that inspires.</span>
               </h1>
               
               <p className="mt-6 max-w-xl text-lg text-muted-foreground dark:text-zinc-400 leading-relaxed">
@@ -329,7 +334,7 @@ function Index() {
             </div>
             <h2 className="text-4xl md:text-5xl font-medium tracking-tight text-foreground dark:text-white">
               We don't just make videos.<br />
-              <span className="italic font-normal text-muted-foreground/60 dark:text-zinc-400">We create results.</span>
+              <span className="italic font-normal text-muted-foreground/60 dark:text-zinc-400">We make them unforgettable.</span>
             </h2>
           </Reveal>
 

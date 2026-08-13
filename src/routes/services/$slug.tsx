@@ -16,7 +16,7 @@ import {
   Camera,
   Sparkles,
   ChevronDown,
-  ChevronUp, // 🟢 ADDED
+  ChevronUp,
   Eye,
   Send,
   MessageCircle,
@@ -40,7 +40,7 @@ import {
 import { useState, useRef, useEffect } from "react";
 import { Reveal } from "@/components/site/Reveal";
 import { VideoPlayer } from "@/components/site/VideoPlayer";
-import { PROJECTS, SERVICES, type Service, getServiceFolderImages } from "@/data/site"; 
+import { PROJECTS, SERVICES, type Service, getServiceFolderImages, getProjectFolderImages } from "@/data/site"; // 🟢 Added getProjectFolderImages
 
 export const Route = createFileRoute("/services/$slug")({
   loader: ({ params }) => {
@@ -671,6 +671,7 @@ function ServicePage() {
         </section>
       )}
 
+      {/* 🟢 FIXED CASE STUDIES SECTION (Now fetches from each project's folder) */}
       <section className="border-y border-border/30 dark:border-zinc-800 bg-surface/50 dark:bg-zinc-900/50 py-24">
         <div className="mx-auto max-w-[1400px] px-6 sm:px-10">
           <Reveal className="text-center max-w-3xl mx-auto">
@@ -686,36 +687,42 @@ function ServicePage() {
           </Reveal>
           
           <div className="mt-12 grid gap-6 sm:grid-cols-2">
-            {cases.map((p, i) => (
-              <Reveal key={p.slug} delay={i * 0.06}>
-                <Link 
-                  key={p.slug} 
-                  to="/work/$slug" 
-                  params={{ slug: p.slug }} 
-                  className="group block overflow-hidden rounded-xl border border-border/40 dark:border-zinc-800 bg-background dark:bg-zinc-950 transition-all hover:border-border/60 dark:hover:border-zinc-600"
-                >
-                  <div className="relative overflow-hidden aspect-[4/3]">
-                    <img 
-                      src={p.image} 
-                      alt={p.title} 
-                      loading="lazy" 
-                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 grayscale-[10%] group-hover:grayscale-0" 
-                    />
-                  </div>
-                  <div className="p-6">
-                    <div className="flex items-center gap-2">
-                      <span className="text-xs tracking-wider text-foreground/60 uppercase dark:text-zinc-400">{p.client}</span>
-                      <span className="h-1 w-1 rounded-full bg-muted-foreground/30 dark:bg-zinc-600" />
-                      <span className="text-xs text-muted-foreground dark:text-zinc-500">{p.year}</span>
+            {cases.map((p, i) => {
+              // 🟢 FETCH THUMBNAIL FROM PROJECT'S FOLDER
+              const projectFolderImages = getProjectFolderImages(p.slug);
+              const thumbnailSrc = projectFolderImages.length > 0 ? projectFolderImages[0] : p.image;
+
+              return (
+                <Reveal key={p.slug} delay={i * 0.06}>
+                  <Link 
+                    key={p.slug} 
+                    to="/work/$slug" 
+                    params={{ slug: p.slug }} 
+                    className="group block overflow-hidden rounded-xl border border-border/40 dark:border-zinc-800 bg-background dark:bg-zinc-950 transition-all hover:border-border/60 dark:hover:border-zinc-600"
+                  >
+                    <div className="relative overflow-hidden aspect-[4/3]">
+                      <img 
+                        src={thumbnailSrc} // 🟢 Folder image is used here now!
+                        alt={p.title} 
+                        loading="lazy" 
+                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 grayscale-[10%] group-hover:grayscale-0" 
+                      />
                     </div>
-                    <h3 className="mt-2 font-medium text-lg tracking-tight text-foreground dark:text-white">{p.title}</h3>
-                    <span className="mt-4 inline-flex items-center gap-2 text-xs font-medium text-foreground/80 transition-all group-hover:gap-3">
-                      Read Case Study <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
-                    </span>
-                  </div>
-                </Link>
-              </Reveal>
-            ))}
+                    <div className="p-6">
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs tracking-wider text-foreground/60 uppercase dark:text-zinc-400">{p.client}</span>
+                        <span className="h-1 w-1 rounded-full bg-muted-foreground/30 dark:bg-zinc-600" />
+                        <span className="text-xs text-muted-foreground dark:text-zinc-500">{p.year}</span>
+                      </div>
+                      <h3 className="mt-2 font-medium text-lg tracking-tight text-foreground dark:text-white">{p.title}</h3>
+                      <span className="mt-4 inline-flex items-center gap-2 text-xs font-medium text-foreground/80 transition-all group-hover:gap-3">
+                        Read Case Study <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                      </span>
+                    </div>
+                  </Link>
+                </Reveal>
+              );
+            })}
           </div>
         </div>
       </section>

@@ -6,10 +6,10 @@ import catalogueImg from "@/assets/work-catalogue.jpg";
 
 export const COMPANY = {
   name: "HappyLamb Production",
-  tagline: "Premium Advertising • Production • Photography • Branding",
+  tagline: "Advertising • Production • Photography • Films",
   phone: "+91 6207462473",
   whatsapp: "916207462473",
-  email: "hello@happylambproduction.com",
+  email: "ankit@happylamp.co.in",
   address: "Studio 04, Creative Quarter, New Delhi, India",
   
   youtube: "https://youtube.com/@happylambproduction",
@@ -20,7 +20,7 @@ export const COMPANY = {
 };
 
 // ============================================
-// 🟢 MAGIC FUNCTION: Auto Import Folder Photos (For Services)
+// Auto Import Folder Photos (For Services)
 // ============================================
 export function getServiceFolderImages(slug: string): string[] {
   const modules = import.meta.glob<{ default: string }>('/src/services/*/*.{jpg,jpeg,png,webp,gif}', {
@@ -33,7 +33,7 @@ export function getServiceFolderImages(slug: string): string[] {
 }
 
 // ============================================
-// 🟢 MAGIC FUNCTION: Auto Import Folder Photos (For Work/Projects)
+// Auto Import Folder Photos (For Work/Projects)
 // ============================================
 export function getProjectFolderImages(slug: string): string[] {
   const modules = import.meta.glob<{ default: string }>('/src/work/*/*.{jpg,jpeg,png,webp,gif}', {
@@ -45,9 +45,8 @@ export function getProjectFolderImages(slug: string): string[] {
   return keys.map(key => modules[key]);
 }
 
-// ============================================
-// 🟢 NEW FUNCTION: Cover Image for Services Index Page
-// ============================================
+// Cover Image for Services Index Page
+
 export function getServiceCoverImage(slug: string, fallback: string): string {
   const modules = import.meta.glob<{ default: string }>('/src/services/*/*.{jpg,jpeg,png,webp,gif}', {
     eager: true,
@@ -60,9 +59,7 @@ export function getServiceCoverImage(slug: string, fallback: string): string {
   return keys.length > 0 ? modules[keys[0]] : fallback;
 }
 
-// ============================================
 // VIDEO URLs
-// ============================================
 
 export const VIDEOS = {
   commercialReel: "https://youtu.be/r3-lsRlqrEA?si=4zRp9W5l4orgdQ1y",
@@ -592,7 +589,7 @@ export type Project = {
   approach: string;
   results: { label: string; value: string }[];
   feedback: { quote: string; author: string };
-  gallery: string[]; // 🟢 Ab gallery khali hai, folder se aayega
+  gallery: string[];
 };
 
 export const PROJECTS: Project[] = [
@@ -619,7 +616,7 @@ export const PROJECTS: Project[] = [
       { label: "Cost per view", value: "-27%" },
     ],
     feedback: { quote: "They turned a packshot brief into a brand moment. The film still carries our entire campaign.", author: "Head of Marketing, JCB" },
-    gallery: [], // 🟢 Khali, folder se aayega
+    gallery: [],
   },
   {
     slug: "novo-living-catalogue",

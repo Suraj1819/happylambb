@@ -247,8 +247,8 @@ function About() {
               </h1>
               
               <p className="mt-8 max-w-xl text-base sm:text-lg text-muted-foreground leading-relaxed">
-                HappyLamb is a full-service advertising, film production and branding studio based in India. 
-                We conceive the idea, produce it to broadcast standards, finish it in-house, and deploy it with measurable intent.
+                We are mumbai based company, we specialize in collaborating with new and not so new companies across many industries to amplify thier marketing performance.
+                Happy lamb production works with feel good brands including food and drink, health and lifestyle, sports and technology, pharmaceutical and leisure. we help brands to tell their stories in the most creative way using mix of creativity , technology, ideas and passion.
               </p>
             </Reveal>
 
@@ -305,8 +305,8 @@ function About() {
             {/* Right: Quote */}
             <Reveal delay={0.1} className="lg:col-span-8">
               <blockquote className="text-2xl sm:text-3xl md:text-4xl leading-tight font-light text-ink-foreground/90">
-                "We started HappyLamb because mid-market Indian brands were paying for advertising that looked like it was made on a spreadsheet. 
-                <span className="font-bold text-white italic"> The strategy was sound, but the craft was missing.</span> We built a studio where efficiency and craft aren't opposites."
+                "Now a days entrepreneurs coming with new Idea of product and we Make it look better with stunning packaging .we design your product we give a feeling to it that customer relate them self to buy it ..not only this ,The age of the typical brand-consumer relationship is over. 
+                <span className="font-bold text-white italic">  In its place is an audience of human beings looking for real relationships with human-centered.</span> It's no longer sufficient to simply make the sale and move on. Showing you truly understand the human behind the purchase, their hopes and fears, will forge a relationship that endures."
               </blockquote>
               <div className="mt-8 flex items-center gap-6">
                 <div className="w-px h-8 bg-ink-foreground/20"></div>
