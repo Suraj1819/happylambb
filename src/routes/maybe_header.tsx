@@ -1,8 +1,16 @@
+import { createFileRoute } from '@tanstack/react-router'
+
+export const Route = createFileRoute('/maybe_header')({
+  component: RouteComponent,
+})
+
+function RouteComponent() {
+  return <div>Hello "/maybe_header"!</div>
+}
 import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
-// ✅ FIX: Sahi file name
 import logo from "@/assets/brands/hello-modified.png";
 
 const NAV = [
@@ -42,34 +50,34 @@ export function Header() {
             : "bg-background/60 backdrop-blur-md dark:bg-zinc-950/60"
         }`}
       >
-        <div className="mx-auto flex h-16 sm:h-20 max-w-[1400px] items-center justify-between px-4 sm:px-6 lg:px-10">
-          {/* Logo - Responsive */}
+        <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between px-6 sm:h-[4.5rem] sm:px-10">
+          {/* Logo */}
           <Link
             to="/"
-            className="flex items-center gap-2 sm:gap-3 lg:gap-4 group"
+            className="flex items-center gap-3 group"
             onClick={() => setOpen(false)}
           >
-            <div className="relative h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12">
+            <div className="relative h-9 w-9">
               <img
                 src={logo}
                 alt="HappyLamb Production"
-                width={48}
-                height={48}
-                className="h-full w-full bg-transparent object-contain mix-blend-multiply dark:mix-blend-screen transition-transform duration-300 group-hover:scale-105"
+                width={36}
+                height={36}
+                className="h-9 w-9 bg-transparent object-contain mix-blend-multiply dark:mix-blend-screen transition-transform duration-300 group-hover:scale-105"
               />
             </div>
             <div className="leading-none">
-              <span className="block font-bold text-lg sm:text-xl lg:text-2xl xl:text-3xl tracking-tight text-foreground dark:text-white">
+              <span className="block font-medium text-lg tracking-tight text-foreground sm:text-xl dark:text-white">
                 HappyLamb
               </span>
-              <span className="block text-[0.5rem] sm:text-[0.55rem] lg:text-[0.65rem] tracking-[0.35em] text-muted-foreground dark:text-zinc-400 uppercase mt-0.5">
+              <span className="block text-[0.55rem] tracking-[0.35em] text-muted-foreground dark:text-zinc-400 uppercase mt-0.5">
                 Production
               </span>
             </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
+          <nav className="hidden items-center gap-1 lg:flex">
             {NAV.map((item) => (
               <Link
                 key={item.to}
@@ -78,8 +86,8 @@ export function Header() {
                 activeProps={{ 
                   className: "text-foreground dark:text-white after:w-4/5 after:bg-foreground dark:after:bg-white" 
                 }}
-                className="relative px-3 xl:px-5 py-2 xl:py-2.5 text-[0.65rem] xl:text-[0.8rem] tracking-[0.15em] uppercase text-muted-foreground dark:text-zinc-400 transition-all duration-300 hover:text-foreground dark:hover:text-white
-                  after:absolute after:bottom-1 after:left-1/2 after:h-[2px] after:w-0 after:-translate-x-1/2 after:bg-foreground dark:after:bg-white after:transition-all after:duration-300 after:ease-out hover:after:w-4/5"
+                className="relative px-4 py-2 text-[0.7rem] tracking-[0.15em] uppercase text-muted-foreground dark:text-zinc-400 transition-all duration-300 hover:text-foreground dark:hover:text-white
+                  after:absolute after:bottom-1 after:left-1/2 after:h-[1px] after:w-0 after:-translate-x-1/2 after:bg-foreground dark:after:bg-white after:transition-all after:duration-300 after:ease-out hover:after:w-4/5"
               >
                 {item.label}
               </Link>
@@ -87,10 +95,10 @@ export function Header() {
           </nav>
 
           {/* CTA + Hamburger */}
-          <div className="flex items-center gap-2 sm:gap-3 lg:gap-4">
+          <div className="flex items-center gap-3">
             <Link
               to="/contact"
-              className="hidden sm:inline-flex rounded-full bg-ink px-4 sm:px-6 lg:px-8 py-2 sm:py-2.5 lg:py-3 text-[0.6rem] sm:text-[0.7rem] lg:text-[0.8rem] tracking-[0.18em] text-ink-foreground dark:bg-white dark:text-zinc-950 uppercase transition-all duration-300 hover:bg-ink/80 hover:text-ink-foreground dark:hover:bg-zinc-200"
+              className="hidden rounded-full bg-ink px-6 py-2.5 text-[0.7rem] tracking-[0.18em] text-ink-foreground dark:bg-white dark:text-zinc-950 uppercase transition-all duration-300 hover:bg-ink/80 hover:text-ink-foreground dark:hover:bg-zinc-200 sm:inline-flex"
             >
               Hire Us
             </Link>
@@ -99,20 +107,20 @@ export function Header() {
               type="button"
               aria-label={open ? "Close menu" : "Open menu"}
               onClick={() => setOpen((v) => !v)}
-              className="grid h-9 w-9 sm:h-10 sm:w-10 lg:h-11 lg:w-11 place-items-center rounded-full border border-border/60 dark:border-zinc-700 text-foreground/60 dark:text-zinc-400 transition-all duration-200 hover:border-foreground/30 dark:hover:border-zinc-500 hover:text-foreground dark:hover:text-white lg:hidden"
+              className="grid h-10 w-10 place-items-center rounded-full border border-border/60 dark:border-zinc-700 text-foreground/60 dark:text-zinc-400 transition-all duration-200 hover:border-foreground/30 dark:hover:border-zinc-500 hover:text-foreground dark:hover:text-white lg:hidden"
             >
-              {open ? <X className="h-4 w-4 sm:h-4.5 sm:w-4.5 lg:h-5 lg:w-5" /> : <Menu className="h-4 w-4 sm:h-4.5 sm:w-4.5 lg:h-5 lg:w-5" />}
+              {open ? <X className="h-4.5 w-4.5" /> : <Menu className="h-4.5 w-4.5" />}
             </button>
           </div>
         </div>
       </header>
 
-      {/* Mobile Menu - Responsive */}
+      {/* Mobile Menu */}
       {open && (
         <div className="fixed inset-0 z-40 flex flex-col bg-background/98 backdrop-blur-xl dark:bg-zinc-950/98 lg:hidden">
-          <div className="h-16 sm:h-20 shrink-0" />
+          <div className="h-16 shrink-0 sm:h-[4.5rem]" />
 
-          <nav className="flex flex-1 flex-col items-center justify-center gap-1.5 sm:gap-2 px-4 sm:px-6">
+          <nav className="flex flex-1 flex-col items-center justify-center gap-1.5 px-6">
             {NAV.map((item, i) => (
               <Link
                 key={item.to}
@@ -121,7 +129,7 @@ export function Header() {
                 activeProps={{ 
                   className: "border-foreground/70 text-foreground dark:border-white dark:text-white" 
                 }}
-                className="w-full max-w-xs rounded-xl border border-border/30 dark:border-zinc-700 py-3.5 sm:py-4 lg:py-5 text-center text-[0.75rem] sm:text-[0.8rem] lg:text-[0.9rem] tracking-[0.2em] uppercase text-foreground/70 dark:text-zinc-400 transition-all duration-200 hover:border-border/60 dark:hover:border-zinc-500 hover:bg-foreground/5 dark:hover:bg-zinc-800 hover:text-foreground dark:hover:text-white"
+                className="w-full max-w-xs rounded-xl border border-border/30 dark:border-zinc-700 py-4 text-center text-[0.8rem] tracking-[0.2em] uppercase text-foreground/70 dark:text-zinc-400 transition-all duration-200 hover:border-border/60 dark:hover:border-zinc-500 hover:bg-foreground/5 dark:hover:bg-zinc-800 hover:text-foreground dark:hover:text-white"
                 style={{
                   animation: "fadeSlideUp 0.35s ease both",
                   animationDelay: `${i * 40}ms`,
@@ -134,7 +142,7 @@ export function Header() {
             <Link
               to="/contact"
               onClick={() => setOpen(false)}
-              className="mt-4 sm:mt-5 lg:mt-6 w-full max-w-xs rounded-full bg-ink px-7 py-3.5 sm:py-4 lg:py-5 text-center text-[0.65rem] sm:text-[0.7rem] lg:text-[0.8rem] tracking-[0.18em] text-ink-foreground dark:bg-white dark:text-zinc-950 uppercase transition-all duration-300 hover:bg-ink/80 hover:text-ink-foreground dark:hover:bg-zinc-200"
+              className="mt-5 w-full max-w-xs rounded-full bg-ink px-7 py-4 text-center text-[0.7rem] tracking-[0.18em] text-ink-foreground dark:bg-white dark:text-zinc-950 uppercase transition-all duration-300 hover:bg-ink/80 hover:text-ink-foreground dark:hover:bg-zinc-200"
               style={{
                 animation: "fadeSlideUp 0.35s ease both",
                 animationDelay: `${NAV.length * 40}ms`,
@@ -144,8 +152,8 @@ export function Header() {
             </Link>
           </nav>
 
-          <div className="flex shrink-0 justify-center pb-8 sm:pb-10">
-            <p className="text-[0.5rem] sm:text-[0.55rem] tracking-[0.2em] text-muted-foreground dark:text-zinc-500 uppercase">
+          <div className="flex shrink-0 justify-center pb-10">
+            <p className="text-[0.55rem] tracking-[0.2em] text-muted-foreground dark:text-zinc-500 uppercase">
               Crafted with precision
             </p>
           </div>

@@ -1,8 +1,50 @@
-import { MessageCircle, Youtube, Facebook } from "lucide-react";
+import { MessageCircle } from "lucide-react";
 import { COMPANY } from "@/data/site";
 import { useState, useRef, useEffect } from "react";
 
-// Custom X (Twitter) Logo Component
+// ✅ Custom YouTube Logo Component
+function YouTubeIcon({ className }: { className?: string }) {
+  return (
+    <svg 
+      xmlns="http://www.w3.org/2000/svg" 
+      viewBox="0 0 24 24" 
+      className={className}
+      fill="currentColor"
+    >
+      <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+    </svg>
+  );
+}
+
+// ✅ Custom Instagram Logo Component
+function InstagramIcon({ className }: { className?: string }) {
+  return (
+    <svg 
+      xmlns="http://www.w3.org/2000/svg" 
+      viewBox="0 0 24 24" 
+      className={className}
+      fill="currentColor"
+    >
+      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
+    </svg>
+  );
+}
+
+// ✅ Custom Facebook Logo Component
+function FacebookIcon({ className }: { className?: string }) {
+  return (
+    <svg 
+      xmlns="http://www.w3.org/2000/svg" 
+      viewBox="0 0 24 24" 
+      className={className}
+      fill="currentColor"
+    >
+      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+    </svg>
+  );
+}
+
+// ✅ Custom X (Twitter) Logo Component
 function XIcon({ className }: { className?: string }) {
   return (
     <svg 
@@ -16,7 +58,7 @@ function XIcon({ className }: { className?: string }) {
   );
 }
 
-// Custom WhatsApp Logo Component
+// ✅ Custom WhatsApp Logo Component
 function WhatsAppIcon({ className }: { className?: string }) {
   return (
     <svg 
@@ -51,21 +93,31 @@ export function WhatsAppButton() {
     "Hi HappyLamb Production, I'd like a quote for a shoot.",
   )}`;
 
-  // PC / Desktop Hover Options (WhatsApp is the Main Button, so it is NOT in this list)
-  const desktopHoverLinks = [
+  // ✅ PC HOVER LINKS - All Custom Icons
+  const pcHoverLinks = [
     {
-      icon: Youtube,
+      icon: YouTubeIcon,
       href: COMPANY.youtube || "https://youtube.com",
       bg: "bg-red-100",
       iconColor: "text-[#FF0000]",
       hoverBg: "hover:bg-red-500 hover:text-white",
+      label: "YouTube"
     },
     {
-      icon: Facebook,
+      icon: InstagramIcon,
+      href: COMPANY.instagram || "https://instagram.com",
+      bg: "bg-pink-100",
+      iconColor: "text-[#E4405F]",
+      hoverBg: "hover:bg-pink-500 hover:text-white",
+      label: "Instagram"
+    },
+    {
+      icon: FacebookIcon,
       href: COMPANY.facebook || "https://facebook.com",
       bg: "bg-blue-100",
       iconColor: "text-[#1877F2]",
       hoverBg: "hover:bg-blue-600 hover:text-white",
+      label: "Facebook"
     },
     {
       icon: XIcon,
@@ -73,18 +125,51 @@ export function WhatsAppButton() {
       bg: "bg-gray-100",
       iconColor: "text-black dark:text-white",
       hoverBg: "hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black",
+      label: "Twitter"
     },
   ];
 
-  // Mobile / Tablet Click Options (WhatsApp is listed here so it opens on click)
-  const touchClickLinks = [
-    ...desktopHoverLinks,
+  // ✅ MOBILE CLICK LINKS - All Custom Icons
+  const mobileClickLinks = [
+    {
+      icon: YouTubeIcon,
+      href: COMPANY.youtube || "https://youtube.com",
+      bg: "bg-red-100",
+      iconColor: "text-[#FF0000]",
+      hoverBg: "hover:bg-red-500 hover:text-white",
+      label: "YouTube"
+    },
+    {
+      icon: InstagramIcon,
+      href: COMPANY.instagram || "https://instagram.com",
+      bg: "bg-pink-100",
+      iconColor: "text-[#E4405F]",
+      hoverBg: "hover:bg-pink-500 hover:text-white",
+      label: "Instagram"
+    },
+    {
+      icon: XIcon,
+      href: COMPANY.twitter || "https://twitter.com",
+      bg: "bg-gray-100",
+      iconColor: "text-black dark:text-white",
+      hoverBg: "hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black",
+      label: "Twitter"
+    },
+    {
+      icon: FacebookIcon,
+      href: COMPANY.facebook || "https://facebook.com",
+      bg: "bg-blue-100",
+      iconColor: "text-[#1877F2]",
+      hoverBg: "hover:bg-blue-600 hover:text-white",
+      label: "Facebook"
+    },
     {
       icon: WhatsAppIcon,
       href: whatsappHref,
       bg: "bg-green-100",
       iconColor: "text-[#25D366]",
       hoverBg: "hover:bg-[#25D366] hover:text-white",
+      label: "WhatsApp"
     },
   ];
 
@@ -104,6 +189,13 @@ export function WhatsAppButton() {
     }, 300);
   };
 
+  const handleContainerMouseLeave = () => {
+    if (isTouchDevice) return;
+    timeoutRef.current = setTimeout(() => {
+      setIsOpen(false);
+    }, 200);
+  };
+
   const handleSocialClick = (e: React.MouseEvent, href: string) => {
     e.preventDefault();
     e.stopPropagation();
@@ -120,7 +212,6 @@ export function WhatsAppButton() {
     if (isTouchDevice) {
       setIsOpen(!isOpen);
     } else {
-      // On PC, clicking the button directly opens WhatsApp
       window.open(whatsappHref, "_blank", "noopener,noreferrer");
     }
   };
@@ -135,29 +226,28 @@ export function WhatsAppButton() {
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (isTouchDevice && isOpen && containerRef.current && !containerRef.current.contains(event.target as Node)) {
+      if (isOpen && containerRef.current && !containerRef.current.contains(event.target as Node)) {
         setIsOpen(false);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [isTouchDevice, isOpen]);
+  }, [isOpen]);
 
-  const currentLinks = isTouchDevice ? touchClickLinks : desktopHoverLinks;
+  const currentLinks = isTouchDevice ? mobileClickLinks : pcHoverLinks;
 
   return (
     <div 
       ref={containerRef}
-      className="fixed right-5 bottom-5 z-50 flex flex-col items-end gap-3"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      className="fixed right-6 bottom-6 z-50 flex flex-col items-end gap-3"
+      onMouseLeave={handleContainerMouseLeave}
     >
       {/* Menu Items Container */}
       <div
-        className={`flex flex-col items-end gap-3 transition-all duration-300 ${
+        className={`flex flex-col items-end gap-3 transition-all duration-300 ease-out ${
           isOpen 
-            ? "opacity-100 translate-y-0 pointer-events-auto" 
-            : "opacity-0 translate-y-6 pointer-events-none"
+            ? "opacity-100 translate-y-0 pointer-events-auto scale-100" 
+            : "opacity-0 translate-y-8 pointer-events-none scale-95"
         }`}
       >
         {currentLinks.map((social, index) => {
@@ -169,37 +259,43 @@ export function WhatsAppButton() {
               onClick={(e) => handleSocialClick(e, social.href)}
               target="_blank"
               rel="noopener noreferrer"
-              className={`flex items-center justify-center rounded-full w-14 h-14 shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-xl ${social.bg} ${social.iconColor} ${social.hoverBg}`}
+              aria-label={social.label}
+              className={`flex items-center justify-center rounded-full w-12 h-12 shadow-md transition-all duration-300 hover:scale-110 hover:shadow-lg ${social.bg} ${social.iconColor} ${social.hoverBg} border border-white/50 dark:border-zinc-700/50 cursor-pointer`}
               style={{
-                transitionDelay: `${index * 50}ms`,
+                transitionDelay: `${index * 40}ms`,
               }}
             >
-              <IconComponent className="h-6 w-6" />
+              <IconComponent className="h-5 w-5" />
             </a>
           );
         })}
       </div>
 
-      {/* Main FAB Button */}
-      <div className="relative">
+      {/* Main FAB Button - Mobile: Gray, PC: WhatsApp Green */}
+      <div className="relative" 
+        onMouseEnter={handleMouseEnter}
+      >
         <button
           onClick={handleMainClick}
-          className={`flex items-center justify-center rounded-full p-4 text-white shadow-2xl transition-all duration-300 hover:scale-110 ${
+          className={`flex items-center justify-center rounded-full w-14 h-14 text-white shadow-xl transition-all duration-300 hover:scale-110 hover:shadow-2xl ${
+            isOpen ? "scale-95" : ""
+          } cursor-pointer ${
             isTouchDevice 
-              ? "bg-primary hover:shadow-primary/50" 
-              : "bg-[#25D366] hover:shadow-[#25D366]/50"
-          } ${isOpen ? "scale-95" : ""}`}
+              ? "bg-zinc-800 hover:bg-zinc-700 dark:bg-zinc-100 dark:hover:bg-zinc-200 dark:text-zinc-900"
+              : "bg-[#25D366] hover:bg-[#1DA851]"
+          }`}
         >
-          {/* 
-             FIX: On PC (Touch Device false), ALWAYS show WhatsApp Icon. 
-             On Mobile/Tablet (Touch Device true), Show Menu Icon. 
-          */}
           {isTouchDevice ? (
-            <MessageCircle className="h-6 w-6" />
+            <MessageCircle className="h-7 w-7" />
           ) : (
-            <WhatsAppIcon className="h-6 w-6" />
+            <WhatsAppIcon className="h-7 w-7" />
           )}
         </button>
+        
+        {/* Subtle Pulse Ring - Sirf PC */}
+        {!isTouchDevice && (
+          <div className="absolute inset-0 -z-10 animate-ping rounded-full bg-[#25D366]/30"></div>
+        )}
       </div>
     </div>
   );

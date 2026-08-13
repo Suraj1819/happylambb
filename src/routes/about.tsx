@@ -27,15 +27,15 @@ import {
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import heroStudio from "@/assets/hero-studio.jpg";
-import teamGroup from "@/assets/team-group.jpg";
+import teamGroup from "@/assets/team.jpeg";
 import m1 from "@/assets/Dilip Cofounder.jpeg"; 
 import { Reveal } from "@/components/site/Reveal";
 
-import mumbaiStudioImg from "@/assets/studio-mumbai.jpg";
-import patnaStudioImg from "@/assets/studio-patna.jpg";
+import mumbaiStudioImg from "@/assets/studio/Patna.jpg";
+import patnaStudioImg from "@/assets/studio/Mumbai.jpg";
 
 import mumbaiHeadImg from "@/assets/Dilip Cofounder.jpeg";
-import patnaHeadImg from "@/assets/Executive Director.jpeg";
+import patnaHeadImg from "@/assets/Creative Director.jpeg";
 
 export const Route = createFileRoute("/about")({
   component: About,
@@ -318,11 +318,10 @@ function About() {
       </section>
 
       {/* ═══════════════ 3. VALUES & TIMELINE ═══════════════ */}
-            {/* ═══════════════ 3. VALUES & TIMELINE ═══════════════ */}
       <section className="py-28 bg-background">
         <div className="mx-auto max-w-[1400px] px-6 sm:px-10">
           
-          {/* Values Grid (Same as before) */}
+          {/* Values Grid */}
           <Reveal className="mb-24">
             <div className="flex items-center gap-4 mb-6">
               <div className="h-px w-6 bg-border"></div>
@@ -345,7 +344,7 @@ function About() {
             </div>
           </Reveal>
 
-          {/* 🟢 REFINED HORIZONTAL TIMELINE WITH ARROW */}
+          {/* Timeline */}
           <Reveal>
             <div className="flex items-center gap-4 mb-8">
               <div className="h-px w-6 bg-border"></div>
@@ -355,14 +354,12 @@ function About() {
               How we <span className="italic font-normal text-muted-foreground/60">got here</span>.
             </h2>
             
-            {/* The Arrow Line */}
             <div className="flex items-center gap-2 mb-8 text-muted-foreground/50">
               <span className="h-px w-12 bg-border"></span>
               <ArrowRight className="h-4 w-4 animate-pulse" />
               <span className="text-[10px] tracking-widest uppercase">Progress</span>
             </div>
 
-            {/* Horizontal Timeline Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 border-b border-border/30 pb-12">
               {TIMELINE.map((t, i) => (
                 <Reveal key={t.year} delay={i * 0.05}>
@@ -433,7 +430,7 @@ function About() {
         </div>
       </section>
 
-      {/* ═══════════════ 6. STUDIOS SECTION (BADGE REMOVED) ═══════════════ */}
+      {/* ═══════════════ 6. STUDIOS SECTION ═══════════════ */}
       <section className="py-28 bg-surface/30 border-y border-border/40">
         <div className="mx-auto max-w-[1400px] px-6 sm:px-10">
           <Reveal className="text-center max-w-3xl mx-auto mb-16">
@@ -454,19 +451,16 @@ function About() {
             {STUDIOS.map((studio, i) => (
               <Reveal key={studio.city} delay={i * 0.1}>
                 <div className="group bg-background border border-border/40 rounded-2xl overflow-hidden transition-all duration-300 hover:border-border/60">
-                  {/* Studio Photo */}
                   <div className="relative h-64 overflow-hidden">
                     <img
                       src={studio.image}
                       alt={`${studio.city} Studio`}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
-                    {/* 🟢 BADGE HATA DIYA GAYA HAI */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                   </div>
 
                   <div className="p-8">
-                    {/* Studio Details */}
                     <div className="space-y-3 text-sm text-muted-foreground border-b border-border/30 pb-6">
                       <div className="flex items-start gap-3">
                         <MapPin className="h-4 w-4 shrink-0 text-foreground/60 mt-0.5" />
@@ -482,7 +476,6 @@ function About() {
                       </div>
                     </div>
 
-                    {/* Studio Head */}
                     <div className="mt-6 flex items-center gap-4">
                       <img
                         src={studio.headImage}
@@ -495,7 +488,6 @@ function About() {
                       </div>
                     </div>
 
-                    {/* Studio Head Quote */}
                     <div className="mt-4 pl-4 border-l-2 border-foreground/30">
                       <p className="text-sm italic text-muted-foreground/80 leading-relaxed">
                         "{studio.headQuote}"
@@ -514,7 +506,6 @@ function About() {
         <div className="mx-auto max-w-[1400px] px-6 sm:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             
-            {/* Left: Text & Button */}
             <Reveal className="flex flex-col">
               <div className="flex items-center gap-4 mb-4">
                 <div className="h-px w-6 bg-border"></div>
@@ -537,7 +528,6 @@ function About() {
               </Link>
             </Reveal>
 
-            {/* Right: Group Photo */}
             <Reveal delay={0.1}>
               <div className="relative overflow-hidden rounded-2xl border border-border/40 shadow-xl group">
                 <img

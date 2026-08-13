@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as ClientsRouteImport } from './routes/clients'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as Maybe_headerRouteImport } from './routes/maybe_header'
 import { Route as ServicesIndexRouteImport } from './routes/services/index'
 import { Route as ServicesSlugRouteImport } from './routes/services/$slug'
 import { Route as TeamIndexRouteImport } from './routes/team.index'
@@ -37,6 +38,11 @@ const ClientsRoute = ClientsRouteImport.update({
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const Maybe_headerRoute = Maybe_headerRouteImport.update({
+  id: '/maybe_header',
+  path: '/maybe_header',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesIndexRoute = ServicesIndexRouteImport.update({
@@ -70,6 +76,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/clients': typeof ClientsRoute
   '/contact': typeof ContactRoute
+  '/maybe_header': typeof Maybe_headerRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/work/$slug': typeof WorkSlugRoute
   '/services/': typeof ServicesIndexRoute
@@ -81,6 +88,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/clients': typeof ClientsRoute
   '/contact': typeof ContactRoute
+  '/maybe_header': typeof Maybe_headerRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/work/$slug': typeof WorkSlugRoute
   '/services': typeof ServicesIndexRoute
@@ -93,6 +101,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/clients': typeof ClientsRoute
   '/contact': typeof ContactRoute
+  '/maybe_header': typeof Maybe_headerRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/work/$slug': typeof WorkSlugRoute
   '/services/': typeof ServicesIndexRoute
@@ -106,6 +115,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/clients'
     | '/contact'
+    | '/maybe_header'
     | '/services/$slug'
     | '/work/$slug'
     | '/services/'
@@ -117,6 +127,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/clients'
     | '/contact'
+    | '/maybe_header'
     | '/services/$slug'
     | '/work/$slug'
     | '/services'
@@ -128,6 +139,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/clients'
     | '/contact'
+    | '/maybe_header'
     | '/services/$slug'
     | '/work/$slug'
     | '/services/'
@@ -140,6 +152,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   ClientsRoute: typeof ClientsRoute
   ContactRoute: typeof ContactRoute
+  Maybe_headerRoute: typeof Maybe_headerRoute
   ServicesSlugRoute: typeof ServicesSlugRoute
   WorkSlugRoute: typeof WorkSlugRoute
   ServicesIndexRoute: typeof ServicesIndexRoute
@@ -175,6 +188,13 @@ declare module '@tanstack/react-router' {
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/maybe_header': {
+      id: '/maybe_header'
+      path: '/maybe_header'
+      fullPath: '/maybe_header'
+      preLoaderRoute: typeof Maybe_headerRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services/': {
@@ -220,6 +240,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   ClientsRoute: ClientsRoute,
   ContactRoute: ContactRoute,
+  Maybe_headerRoute: Maybe_headerRoute,
   ServicesSlugRoute: ServicesSlugRoute,
   WorkSlugRoute: WorkSlugRoute,
   ServicesIndexRoute: ServicesIndexRoute,

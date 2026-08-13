@@ -20,6 +20,8 @@ import {
   X,
   Video,
   Youtube,
+  SkipBack,
+  SkipForward,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -73,7 +75,6 @@ function ytThumb(id: string, q: "maxresdefault" | "hqdefault" = "maxresdefault")
   return `https://i.ytimg.com/vi/${id}/${q}.jpg`;
 }
 
-// ✅ FIX: window.location.origin ko safe kiya
 function ytModalEmbed(id: string) {
   const p = new URLSearchParams({
     autoplay: "1",
@@ -81,16 +82,15 @@ function ytModalEmbed(id: string) {
     modestbranding: "1",
     playsinline: "1",
     fs: "1",
-    origin: typeof window !== "undefined" ? window.location.origin : "", // ✅ Important fix
+    origin: typeof window !== "undefined" ? window.location.origin : "",
   });
   return `https://www.youtube-nocookie.com/embed/${id}?${p}`;
 }
 
-// ✅ FIX: youtube-nocookie use kiya taaki "Sign in" error na aaye
 function ytHoverEmbed(id: string) {
   const p = new URLSearchParams({
     autoplay: "1",
-    mute: "1",
+    mute: "0",
     controls: "0",
     disablekb: "1",
     fs: "0",
@@ -143,19 +143,23 @@ export function VideoPlayer({
   const previewRef = useRef<HTMLVideoElement>(null);
   const modalVideoRef = useRef<HTMLVideoElement>(null);
   const modalShellRef = useRef<HTMLDivElement>(null);
+  const progressRef = useRef<HTMLDivElement>(null);
 
   const [hovered, setHovered] = useState(false);
   const [open, setOpen] = useState(false);
   const [thumb, setThumb] = useState<string | undefined>();
   const [videoError, setVideoError] = useState(false);
 
-  const [playing, setPlaying] = useState(true);
+  const [playing, setPlaying] = useState(false);
   const [muted, setMuted] = useState(false);
   const [volume, setVolume] = useState(0.9);
   const [progress, setProgress] = useState(0);
   const [time, setTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [fs, setFs] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
+  const [showControls, setShowControls] = useState(true);
+  const [controlsTimeout, setControlsTimeout] = useState<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     if (ytId) {
@@ -166,7 +170,7 @@ export function VideoPlayer({
     }
   }, [ytId, poster, src]);
 
-  /* ── hover play ── */
+  /* ── hover play with audio ── */
   const onEnter = async () => {
     setHovered(true);
     if (isYT) return;
@@ -194,8 +198,10 @@ export function VideoPlayer({
     }
   };
 
-  const openModal = (e?: MouseEvent) => {
-    e?.stopPropagation();
+  const openModal = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
     const v = previewRef.current;
     if (v) {
       v.pause();
@@ -206,6 +212,9 @@ export function VideoPlayer({
     setOpen(true);
     setPlaying(true);
     setMuted(false);
+    setProgress(0);
+    setTime(0);
+    setShowControls(true);
   };
 
   const closeModal = useCallback(() => {
@@ -216,19 +225,40 @@ export function VideoPlayer({
       v.pause();
       v.currentTime = 0;
     }
+    document.body.style.overflow = "";
   }, []);
+
+  useEffect(() => {
+    if (!open) return;
+    const timer = setTimeout(() => {
+      setShowControls(false);
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, [open, showControls]);
+
+  const handleMouseMove = () => {
+    setShowControls(true);
+    if (controlsTimeout) clearTimeout(controlsTimeout);
+    const timer = setTimeout(() => {
+      setShowControls(false);
+    }, 3000);
+    setControlsTimeout(timer);
+  };
 
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") closeModal();
+      if (e.key === " " || e.key === "Space") {
+        e.preventDefault();
+        togglePlay();
+      }
     };
     document.addEventListener("keydown", onKey);
-    const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     return () => {
       document.removeEventListener("keydown", onKey);
-      document.body.style.overflow = prev;
+      document.body.style.overflow = "";
     };
   }, [open, closeModal]);
 
@@ -236,20 +266,40 @@ export function VideoPlayer({
     if (!open || isYT) return;
     const el = modalVideoRef.current;
     if (!el) return;
+    
     const onTime = () => {
       if (!el.duration) return;
       setDuration(el.duration);
       setTime(el.currentTime);
-      setProgress((el.currentTime / el.duration) * 100);
+      if (!isDragging) {
+        setProgress((el.currentTime / el.duration) * 100);
+      }
     };
+    
+    const onPlay = () => setPlaying(true);
+    const onPause = () => setPlaying(false);
+    const onEnded = () => {
+      setPlaying(false);
+      setProgress(0);
+      setTime(0);
+    };
+    
     el.addEventListener("timeupdate", onTime);
     el.addEventListener("loadedmetadata", onTime);
+    el.addEventListener("play", onPlay);
+    el.addEventListener("pause", onPause);
+    el.addEventListener("ended", onEnded);
+    
     el.volume = volume;
     el.muted = false;
-    el.play().then(() => setPlaying(true)).catch(() => {});
+    el.play().catch(() => {});
+    
     return () => {
       el.removeEventListener("timeupdate", onTime);
       el.removeEventListener("loadedmetadata", onTime);
+      el.removeEventListener("play", onPlay);
+      el.removeEventListener("pause", onPause);
+      el.removeEventListener("ended", onEnded);
     };
   }, [open, isYT, volume]);
 
@@ -259,6 +309,16 @@ export function VideoPlayer({
     const r = e.currentTarget.getBoundingClientRect();
     const pct = Math.min(1, Math.max(0, (e.clientX - r.left) / r.width));
     el.currentTime = pct * el.duration;
+    setProgress(pct * 100);
+  };
+
+  const handleProgressMouseDown = () => {
+    setIsDragging(true);
+  };
+
+  const handleProgressMouseUp = (e: MouseEvent<HTMLDivElement>) => {
+    setIsDragging(false);
+    seek(e);
   };
 
   const togglePlay = () => {
@@ -280,13 +340,26 @@ export function VideoPlayer({
     setMuted(el.muted);
   };
 
-  const onVolume = (v: number) => {
+  const onVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const v = Number(e.target.value);
     setVolume(v);
     const el = modalVideoRef.current;
     if (!el) return;
     el.volume = v;
     el.muted = v === 0;
     setMuted(v === 0);
+  };
+
+  const skipForward = () => {
+    const el = modalVideoRef.current;
+    if (!el) return;
+    el.currentTime = Math.min(el.currentTime + 10, el.duration);
+  };
+
+  const skipBackward = () => {
+    const el = modalVideoRef.current;
+    if (!el) return;
+    el.currentTime = Math.max(el.currentTime - 10, 0);
   };
 
   const toggleFs = async () => {
@@ -313,7 +386,6 @@ export function VideoPlayer({
 
   const ratio = aspect.includes("/") ? aspect.replace(":", "/") : aspect;
 
-  // Watch on YouTube link
   const watchOnYouTube = useMemo(() => {
     if (ytId) {
       return `https://www.youtube.com/watch?v=${ytId}`;
@@ -328,23 +400,25 @@ export function VideoPlayer({
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.2 }}
-      className="fixed inset-0 z-[200] flex items-center justify-center bg-black/90 p-3 sm:p-6"
+      transition={{ duration: 0.3 }}
+      className="fixed inset-0 z-[200] flex items-center justify-center bg-black/95 p-2 sm:p-4"
       onClick={closeModal}
     >
       <motion.div
         ref={modalShellRef}
-        initial={{ opacity: 0, scale: 0.96, y: 12 }}
+        initial={{ opacity: 0, scale: 0.95, y: 30 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.96 }}
-        transition={{ duration: 0.22 }}
-        className="relative flex w-full max-w-5xl flex-col overflow-hidden rounded-2xl bg-zinc-950 shadow-2xl"
+        exit={{ opacity: 0, scale: 0.95, y: 30 }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
+        className="relative flex w-full max-w-5xl flex-col overflow-hidden rounded-xl bg-zinc-900 shadow-2xl"
         onClick={(e) => e.stopPropagation()}
+        onMouseMove={handleMouseMove}
       >
-        <div className="flex items-center justify-between gap-3 border-b border-white/10 px-4 py-3 sm:px-5">
+        {/* Header */}
+        <div className={`flex items-center justify-between gap-3 border-b border-white/10 px-4 py-3 sm:px-5 transition-opacity duration-300 ${showControls ? 'opacity-100' : 'opacity-0'}`}>
           <div className="min-w-0">
             {title && (
-              <p className="truncate font-display text-sm tracking-wide text-white sm:text-base">
+              <p className="truncate font-medium text-sm tracking-wide text-white sm:text-base">
                 {title}
               </p>
             )}
@@ -364,13 +438,13 @@ export function VideoPlayer({
           </button>
         </div>
 
+        {/* Video Container */}
         <div className="relative w-full bg-black" style={{ aspectRatio: "16 / 9" }}>
           {isYT && ytId ? (
             <iframe
               src={ytModalEmbed(ytId)}
               title={title ?? "Video"}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
-              allowFullScreen
               className="absolute inset-0 h-full w-full border-0"
             />
           ) : (
@@ -379,50 +453,102 @@ export function VideoPlayer({
                 ref={modalVideoRef}
                 src={src}
                 playsInline
-                className="absolute inset-0 h-full w-full object-cover"
+                className="absolute inset-0 h-full w-full object-contain"
                 onClick={togglePlay}
                 onError={() => setVideoError(true)}
               />
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/95 via-black/50 to-transparent px-3 pt-14 pb-3 sm:px-4">
-                <div className="mb-2 flex items-center gap-2">
-                  <span className="w-9 text-right font-mono text-[11px] text-white/80">
+              
+              {/* Centered Play/Pause Button */}
+              <button
+                type="button"
+                onClick={togglePlay}
+                className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${playing ? 'opacity-0 hover:opacity-100' : 'opacity-100'}`}
+              >
+                <span className="grid h-16 w-16 place-items-center rounded-full bg-white/20 text-white backdrop-blur-md transition-transform hover:scale-110">
+                  {playing ? (
+                    <Pause className="h-8 w-8" />
+                  ) : (
+                    <Play className="h-8 w-8 fill-current pl-0.5" />
+                  )}
+                </span>
+              </button>
+
+              {/* Video Error Overlay */}
+              {videoError && (
+                <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/80">
+                  <Video className="h-12 w-12 text-white/40" />
+                  <p className="mt-2 text-sm text-white/60">Video unavailable</p>
+                </div>
+              )}
+
+              {/* Controls */}
+              <div className={`absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent px-3 pt-12 pb-3 sm:px-4 transition-opacity duration-300 ${showControls ? 'opacity-100' : 'opacity-0'}`}>
+                {/* Progress Bar */}
+                <div className="mb-3 flex items-center gap-3">
+                  <span className="font-mono text-xs text-white/80 sm:text-sm">
                     {fmt(time)}
                   </span>
                   <div
-                    className="relative h-1.5 flex-1 cursor-pointer rounded-full bg-white/20"
-                    onClick={seek}
+                    ref={progressRef}
+                    className="relative h-1.5 flex-1 cursor-pointer rounded-full bg-white/20 transition hover:h-2"
+                    onMouseDown={handleProgressMouseDown}
+                    onMouseUp={handleProgressMouseUp}
+                    onMouseLeave={() => setIsDragging(false)}
                   >
                     <div
-                      className="absolute inset-y-0 left-0 rounded-full bg-red-500"
+                      className="absolute inset-y-0 left-0 rounded-full bg-white transition-all"
                       style={{ width: `${progress}%` }}
                     />
+                    <div
+                      className="absolute top-1/2 h-3 w-3 -translate-y-1/2 rounded-full bg-white shadow-lg transition-all"
+                      style={{ 
+                        left: `calc(${progress}% - 6px)`,
+                        opacity: isDragging || hovered ? 1 : 0,
+                      }}
+                    />
                   </div>
-                  <span className="w-9 font-mono text-[11px] text-white/80">
+                  <span className="font-mono text-xs text-white/80 sm:text-sm">
                     {fmt(duration)}
                   </span>
                 </div>
+
+                {/* Controls Row */}
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-0.5">
+                  <div className="flex items-center gap-1">
+                    <button
+                      type="button"
+                      onClick={skipBackward}
+                      className="grid h-8 w-8 place-items-center rounded-full text-white/80 transition hover:bg-white/15 hover:text-white"
+                    >
+                      <SkipBack className="h-4 w-4" />
+                    </button>
                     <button
                       type="button"
                       onClick={togglePlay}
-                      className="grid h-9 w-9 place-items-center rounded-full text-white hover:bg-white/15"
+                      className="grid h-10 w-10 place-items-center rounded-full bg-white text-black transition hover:bg-white/90"
                     >
                       {playing ? (
-                        <Pause className="h-5 w-5" />
+                        <Pause className="h-5 w-5 fill-current" />
                       ) : (
-                        <Play className="h-5 w-5 fill-current" />
+                        <Play className="h-5 w-5 fill-current pl-0.5" />
                       )}
                     </button>
                     <button
                       type="button"
+                      onClick={skipForward}
+                      className="grid h-8 w-8 place-items-center rounded-full text-white/80 transition hover:bg-white/15 hover:text-white"
+                    >
+                      <SkipForward className="h-4 w-4" />
+                    </button>
+                    <button
+                      type="button"
                       onClick={toggleMute}
-                      className="grid h-9 w-9 place-items-center rounded-full text-white hover:bg-white/15"
+                      className="grid h-8 w-8 place-items-center rounded-full text-white/80 transition hover:bg-white/15 hover:text-white"
                     >
                       {muted || volume === 0 ? (
-                        <VolumeX className="h-5 w-5" />
+                        <VolumeX className="h-4 w-4" />
                       ) : (
-                        <Volume2 className="h-5 w-5" />
+                        <Volume2 className="h-4 w-4" />
                       )}
                     </button>
                     <input
@@ -431,19 +557,19 @@ export function VideoPlayer({
                       max={1}
                       step={0.05}
                       value={muted ? 0 : volume}
-                      onChange={(e) => onVolume(Number(e.target.value))}
-                      className="h-1 w-20 cursor-pointer accent-red-500 sm:w-28"
+                      onChange={onVolumeChange}
+                      className="h-1 w-16 cursor-pointer accent-white sm:w-24"
                     />
                   </div>
                   <button
                     type="button"
                     onClick={toggleFs}
-                    className="grid h-9 w-9 place-items-center rounded-full text-white hover:bg-white/15"
+                    className="grid h-8 w-8 place-items-center rounded-full text-white/80 transition hover:bg-white/15 hover:text-white"
                   >
                     {fs ? (
-                      <Minimize2 className="h-5 w-5" />
+                      <Minimize2 className="h-4 w-4" />
                     ) : (
-                      <Maximize2 className="h-5 w-5" />
+                      <Maximize2 className="h-4 w-4" />
                     )}
                   </button>
                 </div>
@@ -460,21 +586,20 @@ export function VideoPlayer({
     <>
       <div
         className={cn(
-          "group relative w-full cursor-pointer overflow-hidden rounded-[1.5rem] border border-border bg-black shadow-soft",
+          "group relative w-full overflow-hidden rounded-2xl border border-border/40 bg-black shadow-sm transition-all hover:shadow-xl",
           className
         )}
         style={{ aspectRatio: ratio }}
         onMouseEnter={onEnter}
         onMouseLeave={onLeave}
-        onClick={openModal}
       >
         {/* Thumbnail */}
         <img
           src={thumb}
           alt={title ?? ""}
           className={cn(
-            "absolute inset-0 h-full w-full object-cover object-center transition-transform duration-500 ease-out",
-            hovered && "scale-[1.02]"
+            "absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out",
+            hovered && "scale-105"
           )}
           loading="lazy"
           onError={() => {
@@ -482,7 +607,7 @@ export function VideoPlayer({
           }}
         />
 
-        {/* MP4 hover preview */}
+        {/* MP4 hover preview with audio */}
         {!isYT && (
           <video
             ref={previewRef}
@@ -491,40 +616,40 @@ export function VideoPlayer({
             playsInline
             preload="metadata"
             className={cn(
-              "absolute inset-0 h-full w-full object-cover object-center transition-opacity duration-300",
+              "absolute inset-0 h-full w-full object-cover transition-opacity duration-500",
               hovered ? "opacity-100" : "opacity-0"
             )}
             onError={() => setVideoError(true)}
           />
         )}
 
-        {/* YouTube hover preview - Fixed with youtube-nocookie */}
+        {/* YouTube hover preview with audio */}
         {isYT && ytId && hovered && (
           <iframe
             src={ytHoverEmbed(ytId)}
             title="preview"
             allow="autoplay; encrypted-media"
             className="pointer-events-none absolute inset-0 h-full w-full border-0"
-            style={{
-              transform: "scale(1.02)",
-            }}
+            style={{ transform: "scale(1.02)" }}
           />
         )}
 
         {/* gradient */}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
 
-        {/* play button */}
-        <div
+        {/* Play Button - Only this opens modal */}
+        <button
+          type="button"
+          onClick={openModal}
           className={cn(
-            "pointer-events-none absolute inset-0 z-10 flex items-center justify-center transition-opacity duration-300",
+            "absolute inset-0 flex items-center justify-center transition-opacity duration-500 cursor-pointer",
             hovered ? "opacity-0" : "opacity-100"
           )}
         >
-          <span className="grid h-14 w-14 place-items-center rounded-full border border-white/30 bg-white/20 text-white shadow-lg backdrop-blur-md sm:h-16 sm:w-16">
+          <span className="grid h-14 w-14 place-items-center rounded-full border border-white/30 bg-white/20 text-white shadow-lg backdrop-blur-md transition-transform hover:scale-110 sm:h-16 sm:w-16">
             <Play className="h-6 w-6 fill-current pl-0.5 sm:h-7 sm:w-7" />
           </span>
-        </div>
+        </button>
 
         {/* Watch on YouTube button */}
         {isYT && ytId && hovered && (
@@ -540,17 +665,8 @@ export function VideoPlayer({
           </a>
         )}
 
-        {/* Video unavailable overlay */}
-        {videoError && !isYT && (
-          <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/80 z-10">
-            <Video className="h-12 w-12 text-white/40" />
-            <p className="mt-2 text-sm text-white/60">Video unavailable</p>
-            <p className="text-xs text-white/30 mt-1">The video couldn't be loaded</p>
-          </div>
-        )}
-
         {/* meta */}
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 p-4 sm:p-5">
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 p-4 sm:p-5">
           {category && (
             <p className="mb-1 font-heading text-[0.6rem] tracking-[0.2em] text-white/70 uppercase">
               {category}

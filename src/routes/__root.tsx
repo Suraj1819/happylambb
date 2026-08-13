@@ -97,9 +97,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: appCss,
       },
-      // ✅ FIX: mask-icon use kiya taaki favicon.png Circle dikhe
+      // Favicon
+
       { rel: "mask-icon", href: "/favicon.png", color: "#000000" },
-      { rel: "icon", href: "/favicon.png", type: "image/png" },
+      { rel: "icon", href: "/web-app-manifest-512x512.png", type: "image/png" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
@@ -122,8 +123,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
             addressLocality: "Mumbai",
             addressCountry: "IN",
           },
-          telephone: "+91 98765 43210",
-          email: "hello@happylambproduction.com",
+          telephone: "+91 9819778491",
+          email: "info@happylamb.in",
         }),
       },
     ],

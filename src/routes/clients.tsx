@@ -19,7 +19,7 @@ import {
 } from "lucide-react";
 import { Reveal } from "@/components/site/Reveal";
 import { Counter } from "@/components/site/Counter";
-import { INDUSTRIES, PROJECTS, TESTIMONIALS } from "@/data/site";
+import { INDUSTRIES, PROJECTS, TESTIMONIALS, getProjectFolderImages } from "@/data/site";
 
 /* ─── import brand logos ─── */
 import aureaLogo from "@/assets/brands/hello.png";
@@ -233,55 +233,61 @@ function Clients() {
           </Reveal>
 
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {PROJECTS.slice(0, 3).map((p, i) => (
-              <Reveal key={`project-${p.slug}`} delay={i * 0.04}>
-                <Link
-                  to="/work/$slug"
-                  params={{ slug: p.slug }}
-                  className="group block"
-                  onMouseEnter={() => {}}
-                  onMouseLeave={() => {}}
-                >
-                  {/* 🟢 CARD - MATCHES WORK PAGE STYLE */}
-                  <div className="overflow-hidden rounded-2xl border border-border/40 bg-background transition-colors hover:border-border/60">
-                    
-                    {/* Image + Video Container */}
-                    <div className="relative aspect-[4/3] overflow-hidden bg-muted/20">
-                      <img
-                        src={p.image}
-                        alt={p.title}
-                        loading="lazy"
-                        className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                      />
-                    </div>
+            {PROJECTS.slice(0, 3).map((p, i) => {
+              // ✅ Get folder images
+              const folderImages = getProjectFolderImages(p.slug);
+              const thumbnailSrc = folderImages.length > 0 ? folderImages[0] : p.image;
 
-                    {/* Text content inside card - CLEAN NON-ITALIC GRAY */}
-                    <div className="px-5 pt-5 pb-5">
-                      <h3 className="font-medium text-base tracking-tight text-foreground">
-                        {p.title}
-                      </h3>
-                      {/* 🟢 CLEAN: Matches Work page (Normal font, no italic) */}
-                      <p className="mt-1.5 text-[13px] font-normal text-muted-foreground leading-relaxed line-clamp-2">
-                        {p.client} · {p.category}
-                      </p>
-                      {p.results[0] && (
-                        <p className="mt-2 text-sm text-muted-foreground">
-                          <span className="font-medium text-foreground">{p.results[0].value}</span>{" "}
-                          {p.results[0].label.toLowerCase()}
+              return (
+                <Reveal key={`project-${p.slug}`} delay={i * 0.04}>
+                  <Link
+                    to="/work/$slug"
+                    params={{ slug: p.slug }}
+                    className="group block"
+                    onMouseEnter={() => {}}
+                    onMouseLeave={() => {}}
+                  >
+                    {/* 🟢 CARD - MATCHES WORK PAGE STYLE */}
+                    <div className="overflow-hidden rounded-2xl border border-border/40 bg-background transition-colors hover:border-border/60">
+                      
+                      {/* Image + Video Container */}
+                      <div className="relative aspect-[4/3] overflow-hidden bg-muted/20">
+                        <img
+                          src={thumbnailSrc}
+                          alt={p.title}
+                          loading="lazy"
+                          className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 grayscale-[10%] group-hover:grayscale-0"
+                        />
+                      </div>
+
+                      {/* Text content inside card - CLEAN NON-ITALIC GRAY */}
+                      <div className="px-5 pt-5 pb-5">
+                        <h3 className="font-medium text-base tracking-tight text-foreground">
+                          {p.title}
+                        </h3>
+                        {/* 🟢 CLEAN: Matches Work page (Normal font, no italic) */}
+                        <p className="mt-1.5 text-[13px] font-normal text-muted-foreground leading-relaxed line-clamp-2">
+                          {p.client} · {p.category}
                         </p>
-                      )}
+                        {p.results[0] && (
+                          <p className="mt-2 text-sm text-muted-foreground">
+                            <span className="font-medium text-foreground">{p.results[0].value}</span>{" "}
+                            {p.results[0].label.toLowerCase()}
+                          </p>
+                        )}
 
-                      <div className="mt-5 flex items-center justify-between border-t border-border/40 pt-4">
-                        <span className="text-[11px] font-medium tracking-[0.15em] text-muted-foreground uppercase">
-                          View Details
-                        </span>
-                        <ArrowRight className="h-4 w-4 text-muted-foreground transition-transform group-hover:translate-x-1" />
+                        <div className="mt-5 flex items-center justify-between border-t border-border/40 pt-4">
+                          <span className="text-[11px] font-medium tracking-[0.15em] text-muted-foreground uppercase">
+                            View Details
+                          </span>
+                          <ArrowRight className="h-4 w-4 text-muted-foreground transition-transform group-hover:translate-x-1" />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </Link>
-              </Reveal>
-            ))}
+                  </Link>
+                </Reveal>
+              );
+            })}
           </div>
         </div>
       </section>
