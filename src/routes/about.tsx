@@ -32,8 +32,8 @@ import m1 from "@/assets/Dilip Cofounder.jpeg";
 import { Reveal } from "@/components/site/Reveal";
 
 // ✅ FIX: Lowercase images for Vercel
-import mumbaiStudioImg from "@/assets/studio/mumbai.jpg";
-import patnaStudioImg from "@/assets/studio/patna.jpg";
+import mumbaiStudioImg from "@/assets/mumbai-studio.jpg";
+import patnaStudioImg from "@/assets/patna-studio.jpg";
 
 import mumbaiHeadImg from "@/assets/Dilip Cofounder.jpeg";
 import patnaHeadImg from "@/assets/Creative Director.jpeg";
