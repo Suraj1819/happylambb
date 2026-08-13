@@ -31,8 +31,8 @@ import teamGroup from "@/assets/team.jpeg";
 import m1 from "@/assets/Dilip Cofounder.jpeg"; 
 import { Reveal } from "@/components/site/Reveal";
 
-import mumbaiStudioImg from "@/assets/studio/Patna.jpg";
-import patnaStudioImg from "@/assets/studio/Mumbai.jpg";
+import mumbaiStudioImg from "@/assets/studio/Mumbai.jpg";
+import patnaStudioImg from "@/assets/studio/Patna.jpg";
 
 import mumbaiHeadImg from "@/assets/Dilip Cofounder.jpeg";
 import patnaHeadImg from "@/assets/Creative Director.jpeg";
