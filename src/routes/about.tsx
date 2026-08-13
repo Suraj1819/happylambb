@@ -31,6 +31,7 @@ import teamGroup from "@/assets/team.jpeg";
 import m1 from "@/assets/Dilip Cofounder.jpeg"; 
 import { Reveal } from "@/components/site/Reveal";
 
+// ✅ FIX: Lowercase images for Vercel
 import mumbaiStudioImg from "@/assets/studio/mumbai.jpg";
 import patnaStudioImg from "@/assets/studio/patna.jpg";
 
@@ -227,7 +228,7 @@ function StudioCarousel() {
 function About() {
   return (
     <>
-      {/* ═══════════════ 1. HERO SECTION (NO ORANGE) ═══════════════ */}
+      {/* ═══════════════ 1. HERO SECTION ═══════════════ */}
       <section className="relative overflow-hidden min-h-[60vh] flex items-center pt-28 pb-16 bg-background border-b border-border/40">
         <div className="mx-auto max-w-[1400px] px-6 sm:px-10 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -270,7 +271,7 @@ function About() {
         </div>
       </section>
 
-      {/* ═══════════════ 2. FOUNDER NOTE (NO ORANGE) ═══════════════ */}
+      {/* ═══════════════ 2. FOUNDER NOTE ═══════════════ */}
       <section className="bg-ink py-28 text-ink-foreground relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-foreground/5 rounded-full blur-[120px] pointer-events-none"></div>
         
@@ -279,7 +280,6 @@ function About() {
             
             {/* Left: Founder Profile */}
             <Reveal className="lg:col-span-4 flex flex-col">
-              {/* Gray Line + Label */}
               <div className="relative pl-6 border-l-2 border-ink-foreground/30 mb-4">
                 <div className="flex items-center gap-2">
                   <Users className="h-5 w-5 text-ink-foreground/50" />
