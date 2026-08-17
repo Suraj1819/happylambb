@@ -23,6 +23,7 @@ import {
   MapPin,
   Phone,
   Mail,
+  FileText,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
@@ -37,6 +38,9 @@ import patnaStudioImg from "@/assets/patna-studio.jpg";
 
 import mumbaiHeadImg from "@/assets/Dilip Cofounder.jpeg";
 import patnaHeadImg from "@/assets/Creative Director.jpeg";
+
+// ✅ GSTIN
+const GSTIN = "27AAGCH9980B1ZC";
 
 export const Route = createFileRoute("/about")({
   component: About,
@@ -473,6 +477,14 @@ function About() {
                       <div className="flex items-center gap-3">
                         <Mail className="h-4 w-4 shrink-0 text-foreground/60" />
                         <span>{studio.email}</span>
+                      </div>
+                      {/* ✅ GSTIN - Added Here */}
+                      <div className="flex items-center gap-3 pt-1 border-t border-border/30 mt-2">
+                        <FileText className="h-4 w-4 shrink-0 text-foreground/60" />
+                        <span className="text-xs text-muted-foreground dark:text-zinc-400">GSTIN:</span>
+                        <span className="font-mono text-xs font-bold text-foreground dark:text-white tracking-wider">
+                          {GSTIN}
+                        </span>
                       </div>
                     </div>
 
