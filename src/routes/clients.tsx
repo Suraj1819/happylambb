@@ -33,7 +33,7 @@ import jcbLogo from "@/assets/brands/Jcb.jpeg";
 import icici from "@/assets/brands/icici.jpg";
 import bajaj from "@/assets/brands/bajaj.png";
 import tatamotors from "@/assets/brands/tatamotors.jpg";
-import upstox from "@/assets/brands/upstox.jpg";
+import upstox from "@/assets/brands/upstox.jpeg";
 
 export const Route = createFileRoute("/clients")({
   component: Clients,

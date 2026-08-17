@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Mail, MapPin, Phone, ExternalLink } from "lucide-react";
+import { Mail, MapPin, Phone, ExternalLink, FileText } from "lucide-react";
 import logo from "@/assets/brands/hello.png";
 import { SERVICES } from "@/data/site";
 
@@ -61,6 +61,9 @@ function XIcon({ className }: { className?: string }) {
   );
 }
 
+/* ─── GSTIN ─── */
+const GSTIN = "27AAGCH9980B1ZC";
+
 /* ─── branch data ─── */
 
 const MUMBAI_STUDIO = {
@@ -69,7 +72,7 @@ const MUMBAI_STUDIO = {
   mapsUrl: "https://www.google.com/maps/search/?api=1&query=Happy+Lamb+Production+Goregoan+East+Mumbai",
   phone: "+91 9820778491",
   phoneRaw: "919819778430",
-  email: "info@happylamb.in",
+  email: "dilip@happylamb.co.in",
 };
 
 const PATNA_STUDIO = {
@@ -179,7 +182,7 @@ export function Footer() {
               Advertising, production and branding studio. Cinema-grade craft with AI-accelerated workflows.
             </p>
 
-            {/* ✅ Social Icons - Hover par Default Foreground Color */}
+            {/* ✅ Social Icons */}
             <div className="mt-7 flex gap-2">
               {SOCIALS.map((s) => {
                 const Icon = s.icon;
@@ -196,6 +199,15 @@ export function Footer() {
                   </a>
                 );
               })}
+            </div>
+
+            {/* ✅ GSTIN - Below Social Icons */}
+            <div className="mt-4 flex items-center gap-2 rounded-lg border border-gray-200 dark:border-zinc-700 px-3 py-2 w-fit">
+              <FileText className="h-4 w-4 text-gray-500 dark:text-zinc-400" />
+              <span className="text-xs text-gray-500 dark:text-zinc-400">GSTIN:</span>
+              <span className="font-mono text-xs font-bold text-black dark:text-white tracking-wider">
+                {GSTIN}
+              </span>
             </div>
           </div>
 

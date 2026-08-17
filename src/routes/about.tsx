@@ -147,7 +147,7 @@ const STUDIOS = [
     city: "Mumbai",
     address: "Happy Lamb Production OPC PVT.LTD, 505, 5th Floor, Bhoomi Building, Sanjay Nagar Co.Op. Society, Cama Estate, Behind Future Studio, Goregoan (E.), Mumbai - 400063",
     phone: "+91 9820778491",
-    email: "info@happylamb.in",
+    email: "dilip@happylamb.co.in",
     image: mumbaiStudioImg,
     headName: "Dilip Gupta",
     headRole: "Founder & CEO",

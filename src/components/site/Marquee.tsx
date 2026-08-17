@@ -10,7 +10,7 @@ import hailstoneLogo from "@/assets/brands/Hailstone.jpeg";
 import jcbLogo from "@/assets/brands/Jcb.jpeg";
 import iciciLogo from "@/assets/brands/icici.jpg";
 import tatamotors from "@/assets/brands/tatamotors.jpg";
-import upstox from "@/assets/brands/upstox.jpg";
+import upstox from "@/assets/brands/upstox.jpeg";
 
 
 /* 🟢 FIX: clients.tsx wala ALL_BRANDS array yahan copy kiya */
