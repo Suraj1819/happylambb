@@ -21,8 +21,7 @@ export const Route = createFileRoute("/services/")({
       },
       {
         property: "og:description",
-        content:
-          "Strategy to delivery — every production speciality handled by our in-house team.",
+        content: "Strategy to delivery — every production speciality handled by our in-house team.",
       },
       { property: "og:url", content: "/services" },
     ],
@@ -44,7 +43,7 @@ function ServicesIndex() {
                 Our Services
               </p>
             </div>
-            
+
             {/* Bold Heading + Italic Subtitle */}
             <h1 className="text-[clamp(3rem,7.5vw,5.5rem)] leading-[0.95] tracking-tight font-medium text-foreground dark:text-white">
               Creative production <br />
@@ -52,13 +51,15 @@ function ServicesIndex() {
                 solutions built to elevate your brand.
               </span>
             </h1>
-            
+
             {/* Professional Paragraph */}
             <p className="mt-6 max-w-2xl text-lg text-muted-foreground/90 dark:text-zinc-400 leading-relaxed tracking-wide font-light">
-              Happy Lamb Production partners with leading brands across food & beverage, health & lifestyle, sports, technology, pharmaceuticals, and leisure. We help brands tell their stories through a unique blend of creativity, technology, innovation, and passion—creating impactful content that connects, inspires, and delivers results.
-
+              Happy Lamb Production partners with leading brands across food & beverage, health &
+              lifestyle, sports, technology, pharmaceuticals, and leisure. We help brands tell their
+              stories through a unique blend of creativity, technology, innovation, and
+              passion—creating impactful content that connects, inspires, and delivers results.
             </p>
-            
+
             <div className="mt-8 flex flex-wrap gap-6">
               <Link
                 to="/contact"
@@ -85,7 +86,7 @@ function ServicesIndex() {
                   {/* 🟢 Image: Folder se pehli photo uthayega */}
                   <div className="relative aspect-[4/3] overflow-hidden rounded-t-2xl">
                     <img
-                      src={getServiceCoverImage(s.slug, s.image)} 
+                      src={getServiceCoverImage(s.slug, s.image)}
                       alt={s.title}
                       loading="lazy"
                       className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 grayscale-[10%] group-hover:grayscale-0"
@@ -99,12 +100,12 @@ function ServicesIndex() {
                     <h2 className="font-normal text-xl tracking-tight text-foreground/90 dark:text-zinc-200 group-hover:text-foreground dark:group-hover:text-white transition-colors">
                       {s.title}
                     </h2>
-                    
+
                     {/* Description */}
                     <p className="mt-3 flex-1 text-sm text-muted-foreground/80 dark:text-zinc-400 leading-relaxed tracking-wide font-light">
                       {s.short}
                     </p>
-                    
+
                     {/* Flat Footer */}
                     <div className="mt-6 flex items-center justify-between border-t border-border/30 dark:border-zinc-800 pt-5">
                       <span className="text-[10px] font-medium tracking-[0.2em] text-muted-foreground/60 dark:text-zinc-500 uppercase group-hover:text-foreground/80 dark:group-hover:text-zinc-300 transition-colors">
@@ -123,18 +124,16 @@ function ServicesIndex() {
       {/* ═══════════════ 3. BOTTOM CTA (NO ORANGE - DARK THEME) ═══════════════ */}
       <section className="bg-ink py-28 text-ink-foreground relative overflow-hidden border-t border-ink-foreground/10 dark:border-zinc-800">
         <div className="absolute inset-0 bg-gradient-to-r from-white/5 via-transparent to-white/5 dark:from-white/10 pointer-events-none"></div>
-        
+
         <div className="relative mx-auto max-w-4xl px-6 text-center">
           <Reveal>
             <h2 className="text-5xl md:text-6xl font-medium tracking-tight leading-tight text-white">
               Ready to build something <br />
-              <span className="italic font-normal text-zinc-400">
-                worth watching
-              </span>?
+              <span className="italic font-normal text-zinc-400">worth watching</span>?
             </h2>
             <p className="mx-auto mt-6 max-w-xl text-zinc-400 text-lg tracking-wide leading-relaxed font-light">
-              Not sure which service fits? Tell us what you're trying to achieve. 
-              We'll map the right production approach and give you a straight answer.
+              Not sure which service fits? Tell us what you're trying to achieve. We'll map the
+              right production approach and give you a straight answer.
             </p>
             <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6">
               {/* 🚫 ORANGE REMOVED: Black Button */}

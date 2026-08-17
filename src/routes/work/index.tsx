@@ -25,12 +25,11 @@ function WorkIndex() {
 
   const getCount = (cat: string) => {
     if (cat === "All") return PROJECTS.length;
-    return PROJECTS.filter(p => p.category === cat).length;
+    return PROJECTS.filter((p) => p.category === cat).length;
   };
 
-  const filteredProjects = activeCategory === "All" 
-    ? PROJECTS 
-    : PROJECTS.filter(p => p.category === activeCategory);
+  const filteredProjects =
+    activeCategory === "All" ? PROJECTS : PROJECTS.filter((p) => p.category === activeCategory);
 
   return (
     <>
@@ -44,19 +43,19 @@ function WorkIndex() {
                 Portfolio
               </p>
             </div>
-            
+
             <h1 className="text-[clamp(3rem,7.5vw,5.5rem)] leading-[0.95] tracking-tight font-medium text-foreground dark:text-white">
               Work we're <br />
               <span className="italic font-normal text-muted-foreground dark:text-zinc-400">
                 proud of.
               </span>
             </h1>
-            
+
             <p className="mt-6 max-w-2xl text-lg text-muted-foreground/90 dark:text-zinc-400 leading-relaxed tracking-wide font-light">
-              A curated selection of brand films, commercial spots, catalogue campaigns, 
-              and corporate stories we've crafted for clients across India.
+              A curated selection of brand films, commercial spots, catalogue campaigns, and
+              corporate stories we've crafted for clients across India.
             </p>
-            
+
             <div className="mt-8 flex flex-wrap gap-6">
               <Link
                 to="/contact"
@@ -72,7 +71,6 @@ function WorkIndex() {
       {/* ═══════════════ 2. FILTER TABS + GRID ═══════════════ */}
       <section className="bg-background dark:bg-zinc-950 py-16 sm:py-20">
         <div className="mx-auto max-w-[1400px] px-6 sm:px-10">
-          
           {/* 🟢 TABS - Tight kiye hain */}
           <div className="mb-10 border-b border-border/30 dark:border-zinc-800 pb-4 overflow-x-auto">
             <div className="flex flex-wrap items-center gap-6 sm:gap-8">
@@ -91,11 +89,13 @@ function WorkIndex() {
                     }`}
                   >
                     <span>{cat}</span>
-                    <span className={`text-[10px] font-normal transition-colors ${
-                      activeCategory === cat
-                        ? "text-foreground/60 dark:text-white/60"
-                        : "text-muted-foreground/40 dark:text-zinc-600"
-                    }`}>
+                    <span
+                      className={`text-[10px] font-normal transition-colors ${
+                        activeCategory === cat
+                          ? "text-foreground/60 dark:text-white/60"
+                          : "text-muted-foreground/40 dark:text-zinc-600"
+                      }`}
+                    >
                       ({count})
                     </span>
                   </button>
@@ -130,11 +130,11 @@ function WorkIndex() {
                       <h2 className="font-normal text-lg sm:text-xl tracking-tight text-foreground/90 dark:text-zinc-200 group-hover:text-foreground dark:group-hover:text-white transition-colors">
                         {p.title}
                       </h2>
-                      
+
                       <p className="mt-2 flex-1 text-sm text-muted-foreground/80 dark:text-zinc-400 leading-relaxed tracking-wide font-light">
                         {p.client} &middot; {p.category}
                       </p>
-                      
+
                       <div className="mt-4 flex items-center justify-between border-t border-border/30 dark:border-zinc-800 pt-4">
                         <span className="text-[10px] font-medium tracking-[0.2em] text-muted-foreground/60 dark:text-zinc-500 uppercase group-hover:text-foreground/80 dark:group-hover:text-zinc-300 transition-colors">
                           View details
@@ -161,17 +161,16 @@ function WorkIndex() {
       {/* ═══════════════ 3. BOTTOM CTA ═══════════════ */}
       <section className="bg-ink py-28 text-ink-foreground relative overflow-hidden border-t border-ink-foreground/10 dark:border-zinc-800">
         <div className="absolute inset-0 bg-gradient-to-r from-white/5 via-transparent to-white/5 dark:from-white/10 pointer-events-none"></div>
-        
+
         <div className="relative mx-auto max-w-4xl px-6 text-center">
           <Reveal>
             <h2 className="text-5xl md:text-6xl font-medium tracking-tight leading-tight text-white">
               Ready to build something <br />
-              <span className="italic font-normal text-zinc-400">
-                worth watching
-              </span>?
+              <span className="italic font-normal text-zinc-400">worth watching</span>?
             </h2>
             <p className="mx-auto mt-6 max-w-xl text-zinc-400 text-lg tracking-wide leading-relaxed font-light">
-              Not sure which project fits your brand? Let's talk. We'll show you how we turn briefs into films.
+              Not sure which project fits your brand? Let's talk. We'll show you how we turn briefs
+              into films.
             </p>
             <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6">
               <Link

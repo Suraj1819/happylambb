@@ -1,7 +1,13 @@
 import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
 import type { ReactNode } from "react";
 
-export function TiltCard({ children, className = "" }: { children: ReactNode; className?: string }) {
+export function TiltCard({
+  children,
+  className = "",
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const sx = useSpring(x, { stiffness: 180, damping: 18 });
@@ -28,7 +34,13 @@ export function TiltCard({ children, className = "" }: { children: ReactNode; cl
   );
 }
 
-export function MagneticLink({ children, className = "" }: { children: ReactNode; className?: string }) {
+export function MagneticLink({
+  children,
+  className = "",
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const sx = useSpring(x, { stiffness: 260, damping: 20 });

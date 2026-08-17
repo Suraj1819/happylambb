@@ -1,13 +1,6 @@
 // components/site/VideoPlayer.tsx
 
-import {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-  type MouseEvent,
-} from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, type MouseEvent } from "react";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "motion/react";
 import {
@@ -34,37 +27,36 @@ function isYouTubeUrl(src?: string) {
 
 function getYouTubeId(src: string): string | null {
   if (!src) return null;
-  
+
   try {
     const url = src.trim();
-    
-    if (url.includes('/embed/')) {
+
+    if (url.includes("/embed/")) {
       const match = url.match(/\/embed\/([^?&]+)/);
       return match ? match[1] : null;
     }
-    
-    if (url.includes('youtu.be/')) {
+
+    if (url.includes("youtu.be/")) {
       const match = url.match(/youtu\.be\/([^?&]+)/);
       return match ? match[1] : null;
     }
-    
-    if (url.includes('watch?v=') || (url.includes('watch?') && url.includes('v='))) {
+
+    if (url.includes("watch?v=") || (url.includes("watch?") && url.includes("v="))) {
       const match = url.match(/[?&]v=([^?&]+)/);
       return match ? match[1] : null;
     }
-    
-    if (url.includes('/shorts/')) {
+
+    if (url.includes("/shorts/")) {
       const match = url.match(/\/shorts\/([^?&]+)/);
       return match ? match[1] : null;
     }
-    
+
     if (/^[\w-]{11}$/.test(url)) {
       return url;
     }
-    
+
     const idMatch = url.match(/([\w-]{11})(?=[?&]|$)/);
     return idMatch ? idMatch[1] : null;
-    
   } catch {
     const fallbackMatch = src.match(/([\w-]{11})/);
     return fallbackMatch ? fallbackMatch[1] : null;
@@ -201,7 +193,7 @@ export function VideoPlayer({
   const openModal = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    
+
     const v = previewRef.current;
     if (v) {
       v.pause();
@@ -266,7 +258,7 @@ export function VideoPlayer({
     if (!open || isYT) return;
     const el = modalVideoRef.current;
     if (!el) return;
-    
+
     const onTime = () => {
       if (!el.duration) return;
       setDuration(el.duration);
@@ -275,7 +267,7 @@ export function VideoPlayer({
         setProgress((el.currentTime / el.duration) * 100);
       }
     };
-    
+
     const onPlay = () => setPlaying(true);
     const onPause = () => setPlaying(false);
     const onEnded = () => {
@@ -283,17 +275,17 @@ export function VideoPlayer({
       setProgress(0);
       setTime(0);
     };
-    
+
     el.addEventListener("timeupdate", onTime);
     el.addEventListener("loadedmetadata", onTime);
     el.addEventListener("play", onPlay);
     el.addEventListener("pause", onPause);
     el.addEventListener("ended", onEnded);
-    
+
     el.volume = volume;
     el.muted = false;
     el.play().catch(() => {});
-    
+
     return () => {
       el.removeEventListener("timeupdate", onTime);
       el.removeEventListener("loadedmetadata", onTime);
@@ -415,7 +407,9 @@ export function VideoPlayer({
         onMouseMove={handleMouseMove}
       >
         {/* Header */}
-        <div className={`flex items-center justify-between gap-3 border-b border-white/10 px-4 py-3 sm:px-5 transition-opacity duration-300 ${showControls ? 'opacity-100' : 'opacity-0'}`}>
+        <div
+          className={`flex items-center justify-between gap-3 border-b border-white/10 px-4 py-3 sm:px-5 transition-opacity duration-300 ${showControls ? "opacity-100" : "opacity-0"}`}
+        >
           <div className="min-w-0">
             {title && (
               <p className="truncate font-medium text-sm tracking-wide text-white sm:text-base">
@@ -457,12 +451,12 @@ export function VideoPlayer({
                 onClick={togglePlay}
                 onError={() => setVideoError(true)}
               />
-              
+
               {/* Centered Play/Pause Button */}
               <button
                 type="button"
                 onClick={togglePlay}
-                className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${playing ? 'opacity-0 hover:opacity-100' : 'opacity-100'}`}
+                className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${playing ? "opacity-0 hover:opacity-100" : "opacity-100"}`}
               >
                 <span className="grid h-16 w-16 place-items-center rounded-full bg-white/20 text-white backdrop-blur-md transition-transform hover:scale-110">
                   {playing ? (
@@ -482,12 +476,12 @@ export function VideoPlayer({
               )}
 
               {/* Controls */}
-              <div className={`absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent px-3 pt-12 pb-3 sm:px-4 transition-opacity duration-300 ${showControls ? 'opacity-100' : 'opacity-0'}`}>
+              <div
+                className={`absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent px-3 pt-12 pb-3 sm:px-4 transition-opacity duration-300 ${showControls ? "opacity-100" : "opacity-0"}`}
+              >
                 {/* Progress Bar */}
                 <div className="mb-3 flex items-center gap-3">
-                  <span className="font-mono text-xs text-white/80 sm:text-sm">
-                    {fmt(time)}
-                  </span>
+                  <span className="font-mono text-xs text-white/80 sm:text-sm">{fmt(time)}</span>
                   <div
                     ref={progressRef}
                     className="relative h-1.5 flex-1 cursor-pointer rounded-full bg-white/20 transition hover:h-2"
@@ -501,7 +495,7 @@ export function VideoPlayer({
                     />
                     <div
                       className="absolute top-1/2 h-3 w-3 -translate-y-1/2 rounded-full bg-white shadow-lg transition-all"
-                      style={{ 
+                      style={{
                         left: `calc(${progress}% - 6px)`,
                         opacity: isDragging || hovered ? 1 : 0,
                       }}
@@ -566,11 +560,7 @@ export function VideoPlayer({
                     onClick={toggleFs}
                     className="grid h-8 w-8 place-items-center rounded-full text-white/80 transition hover:bg-white/15 hover:text-white"
                   >
-                    {fs ? (
-                      <Minimize2 className="h-4 w-4" />
-                    ) : (
-                      <Maximize2 className="h-4 w-4" />
-                    )}
+                    {fs ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
                   </button>
                 </div>
               </div>
@@ -587,7 +577,7 @@ export function VideoPlayer({
       <div
         className={cn(
           "group relative w-full overflow-hidden rounded-2xl border border-border/40 bg-black shadow-sm transition-all hover:shadow-xl",
-          className
+          className,
         )}
         style={{ aspectRatio: ratio }}
         onMouseEnter={onEnter}
@@ -599,7 +589,7 @@ export function VideoPlayer({
           alt={title ?? ""}
           className={cn(
             "absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out",
-            hovered && "scale-105"
+            hovered && "scale-105",
           )}
           loading="lazy"
           onError={() => {
@@ -617,7 +607,7 @@ export function VideoPlayer({
             preload="metadata"
             className={cn(
               "absolute inset-0 h-full w-full object-cover transition-opacity duration-500",
-              hovered ? "opacity-100" : "opacity-0"
+              hovered ? "opacity-100" : "opacity-0",
             )}
             onError={() => setVideoError(true)}
           />
@@ -643,7 +633,7 @@ export function VideoPlayer({
           onClick={openModal}
           className={cn(
             "absolute inset-0 flex items-center justify-center transition-opacity duration-500 cursor-pointer",
-            hovered ? "opacity-0" : "opacity-100"
+            hovered ? "opacity-0" : "opacity-100",
           )}
         >
           <span className="grid h-14 w-14 place-items-center rounded-full border border-white/30 bg-white/20 text-white shadow-lg backdrop-blur-md transition-transform hover:scale-110 sm:h-16 sm:w-16">
@@ -654,7 +644,7 @@ export function VideoPlayer({
         {/* Watch on YouTube button */}
         {isYT && ytId && hovered && (
           <a
-            href={watchOnYouTube || '#'}
+            href={watchOnYouTube || "#"}
             target="_blank"
             rel="noopener noreferrer"
             onClick={(e) => e.stopPropagation()}
@@ -686,10 +676,7 @@ export function VideoPlayer({
       </div>
 
       {typeof document !== "undefined" &&
-        createPortal(
-          <AnimatePresence>{open ? modal : null}</AnimatePresence>,
-          document.body
-        )}
+        createPortal(<AnimatePresence>{open ? modal : null}</AnimatePresence>, document.body)}
     </>
   );
 }

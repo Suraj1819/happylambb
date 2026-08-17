@@ -1,11 +1,11 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute('/maybe_header')({
+export const Route = createFileRoute("/maybe_header")({
   component: RouteComponent,
-})
+});
 
 function RouteComponent() {
-  return <div>Hello "/maybe_header"!</div>
+  return <div>Hello "/maybe_header"!</div>;
 }
 import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
@@ -52,11 +52,7 @@ export function Header() {
       >
         <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between px-6 sm:h-[4.5rem] sm:px-10">
           {/* Logo */}
-          <Link
-            to="/"
-            className="flex items-center gap-3 group"
-            onClick={() => setOpen(false)}
-          >
+          <Link to="/" className="flex items-center gap-3 group" onClick={() => setOpen(false)}>
             <div className="relative h-9 w-9">
               <img
                 src={logo}
@@ -83,8 +79,9 @@ export function Header() {
                 key={item.to}
                 to={item.to}
                 activeOptions={{ exact: item.to === "/" }}
-                activeProps={{ 
-                  className: "text-foreground dark:text-white after:w-4/5 after:bg-foreground dark:after:bg-white" 
+                activeProps={{
+                  className:
+                    "text-foreground dark:text-white after:w-4/5 after:bg-foreground dark:after:bg-white",
                 }}
                 className="relative px-4 py-2 text-[0.7rem] tracking-[0.15em] uppercase text-muted-foreground dark:text-zinc-400 transition-all duration-300 hover:text-foreground dark:hover:text-white
                   after:absolute after:bottom-1 after:left-1/2 after:h-[1px] after:w-0 after:-translate-x-1/2 after:bg-foreground dark:after:bg-white after:transition-all after:duration-300 after:ease-out hover:after:w-4/5"
@@ -126,8 +123,9 @@ export function Header() {
                 key={item.to}
                 to={item.to}
                 onClick={() => setOpen(false)}
-                activeProps={{ 
-                  className: "border-foreground/70 text-foreground dark:border-white dark:text-white" 
+                activeProps={{
+                  className:
+                    "border-foreground/70 text-foreground dark:border-white dark:text-white",
                 }}
                 className="w-full max-w-xs rounded-xl border border-border/30 dark:border-zinc-700 py-4 text-center text-[0.8rem] tracking-[0.2em] uppercase text-foreground/70 dark:text-zinc-400 transition-all duration-200 hover:border-border/60 dark:hover:border-zinc-500 hover:bg-foreground/5 dark:hover:bg-zinc-800 hover:text-foreground dark:hover:text-white"
                 style={{

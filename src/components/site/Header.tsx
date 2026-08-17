@@ -122,8 +122,9 @@ export function Header() {
                 key={item.to}
                 to={item.to}
                 activeOptions={{ exact: item.to === "/" }}
-                activeProps={{ 
-                  className: "text-foreground dark:text-white after:w-4/5 after:bg-foreground dark:after:bg-white" 
+                activeProps={{
+                  className:
+                    "text-foreground dark:text-white after:w-4/5 after:bg-foreground dark:after:bg-white",
                 }}
                 className="relative px-3 xl:px-5 py-2 xl:py-2.5 text-[0.65rem] xl:text-[0.8rem] tracking-[0.15em] uppercase text-muted-foreground dark:text-zinc-400 transition-all duration-300 hover:text-foreground dark:hover:text-white
                   after:absolute after:bottom-1 after:left-1/2 after:h-[2px] after:w-0 after:-translate-x-1/2 after:bg-foreground dark:after:bg-white after:transition-all after:duration-300 after:ease-out hover:after:w-4/5"
@@ -145,9 +146,10 @@ export function Header() {
               <button
                 onClick={handleGSTClick}
                 className={`hidden sm:flex items-center gap-1.5 px-3 py-2 rounded-full border transition-all duration-200 text-xs font-medium cursor-pointer
-                  ${isGSTClicked || showGST 
-                    ? 'border-black bg-black text-white dark:border-white dark:bg-white dark:text-black' 
-                    : 'border-gray-300 text-gray-600 hover:border-black hover:text-black dark:border-zinc-600 dark:text-zinc-400 dark:hover:border-white dark:hover:text-white'
+                  ${
+                    isGSTClicked || showGST
+                      ? "border-black bg-black text-white dark:border-white dark:bg-white dark:text-black"
+                      : "border-gray-300 text-gray-600 hover:border-black hover:text-black dark:border-zinc-600 dark:text-zinc-400 dark:hover:border-white dark:hover:text-white"
                   }`}
               >
                 <FileText className="h-3.5 w-3.5" />
@@ -156,14 +158,16 @@ export function Header() {
 
               {/* ✅ GSTIN Tooltip - Instant */}
               {(showGST || isGSTClicked) && (
-                <div 
+                <div
                   className={`absolute right-0 top-full mt-2 min-w-[220px] rounded-lg border bg-white p-4 shadow-xl dark:border-zinc-700 dark:bg-zinc-900
-                    ${isGSTClicked ? 'border-black dark:border-white' : 'border-gray-200'}`}
+                    ${isGSTClicked ? "border-black dark:border-white" : "border-gray-200"}`}
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <FileText className="h-4 w-4 text-black dark:text-white" />
-                      <span className="text-xs font-medium text-gray-500 dark:text-zinc-400">GSTIN</span>
+                      <span className="text-xs font-medium text-gray-500 dark:text-zinc-400">
+                        GSTIN
+                      </span>
                     </div>
                     {/* ✅ Close Button */}
                     <button
@@ -196,7 +200,11 @@ export function Header() {
               onClick={() => setOpen((v) => !v)}
               className="grid h-9 w-9 sm:h-10 sm:w-10 lg:h-11 lg:w-11 place-items-center rounded-full border border-border/60 dark:border-zinc-700 text-foreground/60 dark:text-zinc-400 transition-all duration-200 hover:border-foreground/30 dark:hover:border-zinc-500 hover:text-foreground dark:hover:text-white lg:hidden cursor-pointer"
             >
-              {open ? <X className="h-4 w-4 sm:h-4.5 sm:w-4.5 lg:h-5 lg:w-5" /> : <Menu className="h-4 w-4 sm:h-4.5 sm:w-4.5 lg:h-5 lg:w-5" />}
+              {open ? (
+                <X className="h-4 w-4 sm:h-4.5 sm:w-4.5 lg:h-5 lg:w-5" />
+              ) : (
+                <Menu className="h-4 w-4 sm:h-4.5 sm:w-4.5 lg:h-5 lg:w-5" />
+              )}
             </button>
           </div>
         </div>
@@ -213,8 +221,9 @@ export function Header() {
                 key={item.to}
                 to={item.to}
                 onClick={() => setOpen(false)}
-                activeProps={{ 
-                  className: "border-foreground/70 text-foreground dark:border-white dark:text-white" 
+                activeProps={{
+                  className:
+                    "border-foreground/70 text-foreground dark:border-white dark:text-white",
                 }}
                 className="w-full max-w-xs rounded-xl border border-border/30 dark:border-zinc-700 py-3.5 sm:py-4 lg:py-5 text-center text-[0.75rem] sm:text-[0.8rem] lg:text-[0.9rem] tracking-[0.2em] uppercase text-foreground/70 dark:text-zinc-400 transition-all duration-200 hover:border-border/60 dark:hover:border-zinc-500 hover:bg-foreground/5 dark:hover:bg-zinc-800 hover:text-foreground dark:hover:text-white cursor-pointer"
                 style={{

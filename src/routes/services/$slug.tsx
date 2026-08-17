@@ -1,14 +1,14 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { 
-  ArrowRight, 
-  Check, 
-  X, 
-  Play, 
-  Maximize2, 
-  Image as ImageIcon, 
-  Video, 
-  Clock, 
-  Users, 
+import {
+  ArrowRight,
+  Check,
+  X,
+  Play,
+  Maximize2,
+  Image as ImageIcon,
+  Video,
+  Clock,
+  Users,
   Award,
   Star,
   Quote,
@@ -35,12 +35,18 @@ import {
   Heart,
   Globe,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
 } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { Reveal } from "@/components/site/Reveal";
 import { VideoPlayer } from "@/components/site/VideoPlayer";
-import { PROJECTS, SERVICES, type Service, getServiceFolderImages, getProjectFolderImages } from "@/data/site"; // 🟢 Added getProjectFolderImages
+import {
+  PROJECTS,
+  SERVICES,
+  type Service,
+  getServiceFolderImages,
+  getProjectFolderImages,
+} from "@/data/site"; // 🟢 Added getProjectFolderImages
 
 export const Route = createFileRoute("/services/$slug")({
   loader: ({ params }) => {
@@ -69,20 +75,20 @@ export const Route = createFileRoute("/services/$slug")({
 });
 
 // ============== LIGHTBOX COMPONENT ==============
-function Lightbox({ 
-  items, 
-  initialIndex, 
-  onClose 
-}: { 
-  items: { type: 'image' | 'video'; src: string; title?: string }[]; 
-  initialIndex: number; 
+function Lightbox({
+  items,
+  initialIndex,
+  onClose,
+}: {
+  items: { type: "image" | "video"; src: string; title?: string }[];
+  initialIndex: number;
   onClose: () => void;
 }) {
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    if (items[currentIndex]?.type === 'video' && videoRef.current) {
+    if (items[currentIndex]?.type === "video" && videoRef.current) {
       videoRef.current.play();
     }
   }, [currentIndex, items]);
@@ -98,15 +104,17 @@ function Lightbox({
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Escape') onClose();
-    if (e.key === 'ArrowLeft') setCurrentIndex((prev) => (prev === 0 ? items.length - 1 : prev - 1));
-    if (e.key === 'ArrowRight') setCurrentIndex((prev) => (prev === items.length - 1 ? 0 : prev + 1));
+    if (e.key === "Escape") onClose();
+    if (e.key === "ArrowLeft")
+      setCurrentIndex((prev) => (prev === 0 ? items.length - 1 : prev - 1));
+    if (e.key === "ArrowRight")
+      setCurrentIndex((prev) => (prev === items.length - 1 ? 0 : prev + 1));
   };
 
   const currentItem = items[currentIndex];
 
   return (
-    <div 
+    <div
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/98"
       onClick={onClose}
       onKeyDown={handleKeyDown}
@@ -116,7 +124,7 @@ function Lightbox({
     >
       <div className="absolute top-0 left-0 right-0 flex items-center justify-between bg-gradient-to-b from-black/80 to-transparent p-4 sm:p-6">
         <span className="text-xs sm:text-sm text-white/60 font-light tracking-wider">
-          {String(currentIndex + 1).padStart(2, '0')} / {String(items.length).padStart(2, '0')}
+          {String(currentIndex + 1).padStart(2, "0")} / {String(items.length).padStart(2, "0")}
         </span>
         <button
           onClick={onClose}
@@ -144,7 +152,7 @@ function Lightbox({
       </button>
 
       <div className="relative max-h-[85vh] max-w-[92vw] sm:max-w-[90vw]">
-        {currentItem.type === 'video' ? (
+        {currentItem.type === "video" ? (
           <video
             ref={videoRef}
             src={currentItem.src}
@@ -166,20 +174,14 @@ function Lightbox({
 }
 
 // ============== HERO CAROUSEL (RANDOM 3 PHOTOS) ==============
-function HeroCarousel({ 
-  images, 
-  title 
-}: { 
-  images: string[]; 
-  title: string;
-}) {
+function HeroCarousel({ images, title }: { images: string[]; title: string }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
   const autoPlayRef = useRef<NodeJS.Timeout | null>(null);
-  
-  const validImages = images.filter(img => img && img.trim() !== "");
+
+  const validImages = images.filter((img) => img && img.trim() !== "");
   const hasMultipleImages = validImages.length > 1;
 
   useEffect(() => {
@@ -210,10 +212,10 @@ function HeroCarousel({
       setIsPaused(false);
       return;
     }
-    
+
     const diff = touchStart - touchEnd;
     const threshold = 50;
-    
+
     if (Math.abs(diff) > threshold) {
       if (diff > 0) {
         // Swipe left - next
@@ -223,7 +225,7 @@ function HeroCarousel({
         setCurrentIndex((prev) => (prev === 0 ? validImages.length - 1 : prev - 1));
       }
     }
-    
+
     setTouchStart(null);
     setTouchEnd(null);
     setIsPaused(false);
@@ -252,7 +254,7 @@ function HeroCarousel({
   }
 
   return (
-    <div 
+    <div
       className="relative overflow-hidden rounded-2xl border border-border shadow-2xl group"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -260,13 +262,10 @@ function HeroCarousel({
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
     >
-      <div 
-        className="relative"
-        style={{ height: 'clamp(250px, 50vw, 500px)', minHeight: '250px' }}
-      >
-        <img 
-          src={validImages[currentIndex]} 
-          alt={`${title} - ${currentIndex + 1}`} 
+      <div className="relative" style={{ height: "clamp(250px, 50vw, 500px)", minHeight: "250px" }}>
+        <img
+          src={validImages[currentIndex]}
+          alt={`${title} - ${currentIndex + 1}`}
           className="h-full w-full object-cover transition-all duration-700 ease-in-out"
           loading="lazy"
         />
@@ -275,15 +274,25 @@ function HeroCarousel({
 
       {hasMultipleImages && (
         <>
-          <button onClick={goToPrevious} className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 rounded-full bg-black/40 p-1.5 sm:p-2.5 text-white opacity-0 transition-all hover:bg-black/60 hover:scale-110 group-hover:opacity-100 focus:opacity-100">
+          <button
+            onClick={goToPrevious}
+            className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 rounded-full bg-black/40 p-1.5 sm:p-2.5 text-white opacity-0 transition-all hover:bg-black/60 hover:scale-110 group-hover:opacity-100 focus:opacity-100"
+          >
             <ChevronLeft className="h-4 w-4 sm:h-5 sm:w-5" />
           </button>
-          <button onClick={goToNext} className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 rounded-full bg-black/40 p-1.5 sm:p-2.5 text-white opacity-0 transition-all hover:bg-black/60 hover:scale-110 group-hover:opacity-100 focus:opacity-100">
+          <button
+            onClick={goToNext}
+            className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 rounded-full bg-black/40 p-1.5 sm:p-2.5 text-white opacity-0 transition-all hover:bg-black/60 hover:scale-110 group-hover:opacity-100 focus:opacity-100"
+          >
             <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5" />
           </button>
           <div className="absolute bottom-3 sm:bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 sm:gap-2">
             {validImages.map((_, index) => (
-              <button key={index} onClick={() => goToSlide(index)} className={`transition-all duration-300 rounded-full ${index === currentIndex ? 'w-6 sm:w-8 h-1.5 sm:h-2 bg-white' : 'w-1.5 sm:w-2 h-1.5 sm:h-2 bg-white/40 hover:bg-white/60'}`} />
+              <button
+                key={index}
+                onClick={() => goToSlide(index)}
+                className={`transition-all duration-300 rounded-full ${index === currentIndex ? "w-6 sm:w-8 h-1.5 sm:h-2 bg-white" : "w-1.5 sm:w-2 h-1.5 sm:h-2 bg-white/40 hover:bg-white/60"}`}
+              />
             ))}
           </div>
           <div className="absolute top-3 right-3 sm:top-4 sm:right-4 rounded-full bg-black/40 px-2 py-0.5 sm:px-3 sm:py-1 text-[8px] sm:text-xs text-white/80 backdrop-blur-sm">
@@ -300,7 +309,9 @@ function getYouTubeThumbnail(url: string): string {
   // Extract Video ID from YouTube URL
   const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
   const match = url.match(regExp);
-  return (match && match[2].length === 11) ? `https://img.youtube.com/vi/${match[2]}/hqdefault.jpg` : "";
+  return match && match[2].length === 11
+    ? `https://img.youtube.com/vi/${match[2]}/hqdefault.jpg`
+    : "";
 }
 
 function VideoGallery({ videos }: { videos: { src: string; title: string; poster?: string }[] }) {
@@ -310,12 +321,12 @@ function VideoGallery({ videos }: { videos: { src: string; title: string; poster
   return (
     <div className="space-y-6 sm:space-y-8">
       <div className="w-full overflow-hidden rounded-2xl bg-black shadow-2xl aspect-video">
-        <VideoPlayer 
-          src={videos[activeVideo].src} 
-          poster={videos[activeVideo].poster || getYouTubeThumbnail(videos[activeVideo].src)} 
-          title={videos[activeVideo].title} 
-          meta="Play Video" 
-          className="w-full h-full" 
+        <VideoPlayer
+          src={videos[activeVideo].src}
+          poster={videos[activeVideo].poster || getYouTubeThumbnail(videos[activeVideo].src)}
+          title={videos[activeVideo].title}
+          meta="Play Video"
+          className="w-full h-full"
         />
       </div>
       {videos.length > 1 && (
@@ -324,12 +335,12 @@ function VideoGallery({ videos }: { videos: { src: string; title: string; poster
             <button
               key={i}
               onClick={() => setActiveVideo(i)}
-              className={`group relative overflow-hidden rounded-xl ${i === activeVideo ? 'ring-2 ring-foreground' : ''}`}
+              className={`group relative overflow-hidden rounded-xl ${i === activeVideo ? "ring-2 ring-foreground" : ""}`}
             >
-              <img 
-                src={video.poster || getYouTubeThumbnail(video.src)} 
-                alt={video.title} 
-                className="h-full w-full object-cover aspect-video" 
+              <img
+                src={video.poster || getYouTubeThumbnail(video.src)}
+                alt={video.title}
+                className="h-full w-full object-cover aspect-video"
               />
               <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100">
                 <Play className="h-8 w-8 text-white" />
@@ -343,7 +354,13 @@ function VideoGallery({ videos }: { videos: { src: string; title: string; poster
 }
 
 // ============== PHOTO GALLERY WITH LOAD MORE (2 ROWS) ==============
-function PhotoGallery({ images, onImageClick }: { images: string[]; onImageClick: (index: number) => void }) {
+function PhotoGallery({
+  images,
+  onImageClick,
+}: {
+  images: string[];
+  onImageClick: (index: number) => void;
+}) {
   const [limit, setLimit] = useState(6); // Initially 6 images (2 rows)
   const ROW_IMAGES = 3; // 3 images per row in desktop
 
@@ -355,7 +372,7 @@ function PhotoGallery({ images, onImageClick }: { images: string[]; onImageClick
 
   const handleLoadMore = () => {
     // Add 2 more rows (6 images) each time
-    setLimit((prev) => Math.min(prev + (ROW_IMAGES * 2), totalImages));
+    setLimit((prev) => Math.min(prev + ROW_IMAGES * 2, totalImages));
   };
 
   const handleShowLess = () => {
@@ -372,9 +389,9 @@ function PhotoGallery({ images, onImageClick }: { images: string[]; onImageClick
             className="group relative overflow-hidden rounded-xl sm:rounded-2xl transition-all hover:scale-[1.02] hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-foreground/20"
           >
             <div className="aspect-[3/4] sm:aspect-[4/5] md:aspect-square lg:aspect-[4/5] w-full">
-              <img 
-                src={img} 
-                alt={`Gallery ${i + 1}`} 
+              <img
+                src={img}
+                alt={`Gallery ${i + 1}`}
                 className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                 loading="lazy"
               />
@@ -425,34 +442,38 @@ function ServicePage() {
   const cases = related.length ? related : PROJECTS.slice(0, 2);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
-  const [activeTab, setActiveTab] = useState<'photos' | 'videos'>('photos');
+  const [activeTab, setActiveTab] = useState<"photos" | "videos">("photos");
 
   // Load all images from the folder
-  const folderImages = getServiceFolderImages(service.slug); 
+  const folderImages = getServiceFolderImages(service.slug);
 
   // 🟢 GALLERY: Keep ALL photos
   const galleryImages = [...(service.gallery || []), ...folderImages];
 
-  const videos = service.videos || (service.video ? [{ src: service.video, title: `${service.title} Showreel`, poster: service.image }] : []);
+  const videos =
+    service.videos ||
+    (service.video
+      ? [{ src: service.video, title: `${service.title} Showreel`, poster: service.image }]
+      : []);
 
   // 🟢 CAROUSEL (Hero Slider): Random 3 photos from the folder!
   const shuffled = [...galleryImages].sort(() => 0.5 - Math.random());
   const carouselImages = shuffled.slice(0, 3);
 
   const allMedia = [
-    ...galleryImages.map(src => ({ type: 'image' as const, src, title: '' })),
-    ...videos.map(v => ({ type: 'video' as const, src: v.src, title: v.poster || v.title }))
+    ...galleryImages.map((src) => ({ type: "image" as const, src, title: "" })),
+    ...videos.map((v) => ({ type: "video" as const, src: v.src, title: v.poster || v.title })),
   ];
 
   const openLightbox = (index: number) => {
     setLightboxIndex(index);
     setLightboxOpen(true);
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = "hidden";
   };
 
   const closeLightbox = () => {
     setLightboxOpen(false);
-    document.body.style.overflow = 'unset';
+    document.body.style.overflow = "unset";
   };
 
   const platforms = [
@@ -481,7 +502,6 @@ function ServicePage() {
       <section className="relative pt-32 pb-16 bg-background dark:bg-zinc-950 border-b border-border/40 dark:border-zinc-800">
         <div className="mx-auto max-w-[1400px] px-6 sm:px-10 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            
             <Reveal>
               <div className="flex items-center gap-3 mb-6">
                 <div className="h-px w-8 bg-border/50 dark:bg-zinc-700"></div>
@@ -489,31 +509,40 @@ function ServicePage() {
                   {service.hero}
                 </p>
               </div>
-              
+
               <h1 className="text-[clamp(3rem,7.5vw,5.5rem)] leading-[0.95] tracking-tighter font-medium text-foreground dark:text-white max-w-4xl break-words">
-                {service.title.split(' ').slice(0, -2).join(' ')} <br />
+                {service.title.split(" ").slice(0, -2).join(" ")} <br />
                 <span className="italic text-muted-foreground/60 dark:text-zinc-400">
-                  {service.title.split(' ').slice(-2).join(' ')}
+                  {service.title.split(" ").slice(-2).join(" ")}
                 </span>
               </h1>
-              
+
               <p className="mt-6 max-w-xl text-base sm:text-lg leading-relaxed text-muted-foreground dark:text-zinc-400">
                 {service.overview}
               </p>
-              
+
               <div className="mt-10 flex flex-wrap items-center gap-6">
-                <Link to="/contact" className="group inline-flex items-center gap-2 border-b border-foreground/40 dark:border-zinc-500 pb-1 text-sm tracking-[0.15em] font-medium transition-all hover:gap-4 hover:border-foreground dark:hover:border-white">
+                <Link
+                  to="/contact"
+                  className="group inline-flex items-center gap-2 border-b border-foreground/40 dark:border-zinc-500 pb-1 text-sm tracking-[0.15em] font-medium transition-all hover:gap-4 hover:border-foreground dark:hover:border-white"
+                >
                   <Send className="h-4 w-4" />
                   Get a Quote
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Link>
-                <Link to="/work" className="group inline-flex items-center gap-2 text-sm text-muted-foreground dark:text-zinc-500 transition-colors hover:text-foreground dark:hover:text-white">
+                <Link
+                  to="/work"
+                  className="group inline-flex items-center gap-2 text-sm text-muted-foreground dark:text-zinc-500 transition-colors hover:text-foreground dark:hover:text-white"
+                >
                   <Eye className="h-4 w-4" />
                   View Portfolio
                 </Link>
               </div>
 
-              <Link to="/services" className="mt-10 inline-flex items-center gap-2 text-xs text-muted-foreground dark:text-zinc-500 transition-colors hover:text-foreground dark:hover:text-white group">
+              <Link
+                to="/services"
+                className="mt-10 inline-flex items-center gap-2 text-xs text-muted-foreground dark:text-zinc-500 transition-colors hover:text-foreground dark:hover:text-white group"
+              >
                 <ArrowRight className="h-4 w-4 rotate-180 transition-transform group-hover:-translate-x-1" />
                 Back to Services
               </Link>
@@ -531,7 +560,9 @@ function ServicePage() {
           <Reveal className="text-center max-w-3xl mx-auto">
             <div className="flex items-center justify-center gap-4 mb-4">
               <div className="h-px w-6 bg-border dark:bg-zinc-700"></div>
-              <p className="text-xs tracking-[0.2em] text-muted-foreground dark:text-zinc-400 uppercase">Why Choose Us</p>
+              <p className="text-xs tracking-[0.2em] text-muted-foreground dark:text-zinc-400 uppercase">
+                Why Choose Us
+              </p>
               <div className="h-px w-6 bg-border dark:bg-zinc-700"></div>
             </div>
             <h2 className="text-4xl md:text-5xl font-medium tracking-tight text-foreground dark:text-white">
@@ -539,7 +570,7 @@ function ServicePage() {
               <span className="italic text-muted-foreground/60 dark:text-zinc-400">Features.</span>
             </h2>
           </Reveal>
-          
+
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {features.map((feature, i) => (
               <Reveal key={i} delay={i * 0.06}>
@@ -547,8 +578,12 @@ function ServicePage() {
                   <div className="mx-auto rounded-full bg-foreground/5 p-3 w-fit">
                     <feature.icon className="h-6 w-6 text-foreground/60" />
                   </div>
-                  <h3 className="mt-4 font-medium text-base tracking-tight text-foreground dark:text-white">{feature.label}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground dark:text-zinc-400">{feature.desc}</p>
+                  <h3 className="mt-4 font-medium text-base tracking-tight text-foreground dark:text-white">
+                    {feature.label}
+                  </h3>
+                  <p className="mt-2 text-sm text-muted-foreground dark:text-zinc-400">
+                    {feature.desc}
+                  </p>
                 </div>
               </Reveal>
             ))}
@@ -561,7 +596,9 @@ function ServicePage() {
           <Reveal className="text-center max-w-3xl mx-auto">
             <div className="flex items-center justify-center gap-4 mb-4">
               <div className="h-px w-6 bg-border dark:bg-zinc-700"></div>
-              <p className="text-xs tracking-[0.2em] text-muted-foreground dark:text-zinc-400 uppercase">Delivery</p>
+              <p className="text-xs tracking-[0.2em] text-muted-foreground dark:text-zinc-400 uppercase">
+                Delivery
+              </p>
               <div className="h-px w-6 bg-border dark:bg-zinc-700"></div>
             </div>
             <h2 className="text-4xl md:text-5xl font-medium tracking-tight text-foreground dark:text-white">
@@ -569,14 +606,18 @@ function ServicePage() {
               <span className="italic text-muted-foreground/60 dark:text-zinc-400">Formats.</span>
             </h2>
           </Reveal>
-          
+
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {formats.map((format, i) => (
               <Reveal key={i} delay={i * 0.06}>
                 <div className="group rounded-xl border border-border/40 dark:border-zinc-800 bg-background dark:bg-zinc-950 p-6 text-center transition-all hover:border-border/60 dark:hover:border-zinc-600">
                   <format.icon className="mx-auto h-8 w-8 text-foreground/60 transition-transform group-hover:scale-110" />
-                  <h3 className="mt-3 font-medium text-base text-foreground dark:text-white">{format.label}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground dark:text-zinc-400">{format.desc}</p>
+                  <h3 className="mt-3 font-medium text-base text-foreground dark:text-white">
+                    {format.label}
+                  </h3>
+                  <p className="mt-2 text-sm text-muted-foreground dark:text-zinc-400">
+                    {format.desc}
+                  </p>
                 </div>
               </Reveal>
             ))}
@@ -587,7 +628,9 @@ function ServicePage() {
               <Reveal key={i} delay={i * 0.04}>
                 <div className="flex items-center gap-2 rounded-full border border-border/40 dark:border-zinc-800 bg-background/50 dark:bg-zinc-900/50 px-5 py-2 transition-all hover:border-border/60 dark:hover:border-zinc-600">
                   <platform.icon className={`h-4 w-4 ${platform.color}`} />
-                  <span className="text-xs font-medium text-foreground/80 dark:text-zinc-400">{platform.label}</span>
+                  <span className="text-xs font-medium text-foreground/80 dark:text-zinc-400">
+                    {platform.label}
+                  </span>
                 </div>
               </Reveal>
             ))}
@@ -602,7 +645,9 @@ function ServicePage() {
             <Reveal className="text-center max-w-3xl mx-auto">
               <div className="flex items-center justify-center gap-4 mb-4">
                 <div className="h-px w-6 bg-border dark:bg-zinc-700"></div>
-                <p className="text-xs tracking-[0.2em] text-muted-foreground dark:text-zinc-400 uppercase">Portfolio</p>
+                <p className="text-xs tracking-[0.2em] text-muted-foreground dark:text-zinc-400 uppercase">
+                  Portfolio
+                </p>
                 <div className="h-px w-6 bg-border dark:bg-zinc-700"></div>
               </div>
               <h2 className="text-4xl md:text-5xl font-medium tracking-tight text-foreground dark:text-white">
@@ -614,22 +659,22 @@ function ServicePage() {
             <div className="mt-10 flex justify-center">
               <div className="inline-flex rounded-full border border-border/40 dark:border-zinc-800 bg-surface/30 dark:bg-zinc-900/50 p-1">
                 <button
-                  onClick={() => setActiveTab('photos')}
+                  onClick={() => setActiveTab("photos")}
                   className={`flex items-center gap-2 rounded-full px-5 py-2 text-xs font-medium transition-all ${
-                    activeTab === 'photos' 
-                      ? 'bg-foreground text-background dark:bg-white dark:text-zinc-950 shadow-sm' 
-                      : 'text-muted-foreground dark:text-zinc-500 hover:text-foreground dark:hover:text-white'
+                    activeTab === "photos"
+                      ? "bg-foreground text-background dark:bg-white dark:text-zinc-950 shadow-sm"
+                      : "text-muted-foreground dark:text-zinc-500 hover:text-foreground dark:hover:text-white"
                   }`}
                 >
                   <ImageIcon className="h-3.5 w-3.5" />
                   Photos
                 </button>
                 <button
-                  onClick={() => setActiveTab('videos')}
+                  onClick={() => setActiveTab("videos")}
                   className={`flex items-center gap-2 rounded-full px-5 py-2 text-xs font-medium transition-all ${
-                    activeTab === 'videos' 
-                      ? 'bg-foreground text-background dark:bg-white dark:text-zinc-950 shadow-sm' 
-                      : 'text-muted-foreground dark:text-zinc-500 hover:text-foreground dark:hover:text-white'
+                    activeTab === "videos"
+                      ? "bg-foreground text-background dark:bg-white dark:text-zinc-950 shadow-sm"
+                      : "text-muted-foreground dark:text-zinc-500 hover:text-foreground dark:hover:text-white"
                   }`}
                 >
                   <Video className="h-3.5 w-3.5" />
@@ -639,13 +684,13 @@ function ServicePage() {
             </div>
 
             <div className="mt-10">
-              {activeTab === 'photos' ? (
+              {activeTab === "photos" ? (
                 galleryImages.length > 0 ? (
-                  <PhotoGallery 
-                    images={galleryImages} 
+                  <PhotoGallery
+                    images={galleryImages}
                     onImageClick={(index) => {
                       const mediaIndex = allMedia.findIndex(
-                        (m, i) => m.type === 'image' && i === index
+                        (m, i) => m.type === "image" && i === index,
                       );
                       openLightbox(mediaIndex);
                     }}
@@ -653,18 +698,20 @@ function ServicePage() {
                 ) : (
                   <div className="rounded-xl border border-border/40 dark:border-zinc-800 bg-surface/30 dark:bg-zinc-900/50 p-12 text-center">
                     <ImageIcon className="mx-auto h-8 w-8 text-muted-foreground dark:text-zinc-500" />
-                    <p className="mt-3 text-sm text-muted-foreground dark:text-zinc-500">No photos available</p>
+                    <p className="mt-3 text-sm text-muted-foreground dark:text-zinc-500">
+                      No photos available
+                    </p>
                   </div>
                 )
+              ) : videos.length > 0 ? (
+                <VideoGallery videos={videos} />
               ) : (
-                videos.length > 0 ? (
-                  <VideoGallery videos={videos} />
-                ) : (
-                  <div className="rounded-xl border border-border/40 dark:border-zinc-800 bg-surface/30 dark:bg-zinc-900/50 p-12 text-center">
-                    <Video className="mx-auto h-8 w-8 text-muted-foreground dark:text-zinc-500" />
-                    <p className="mt-3 text-sm text-muted-foreground dark:text-zinc-500">No videos available</p>
-                  </div>
-                )
+                <div className="rounded-xl border border-border/40 dark:border-zinc-800 bg-surface/30 dark:bg-zinc-900/50 p-12 text-center">
+                  <Video className="mx-auto h-8 w-8 text-muted-foreground dark:text-zinc-500" />
+                  <p className="mt-3 text-sm text-muted-foreground dark:text-zinc-500">
+                    No videos available
+                  </p>
+                </div>
               )}
             </div>
           </div>
@@ -677,46 +724,58 @@ function ServicePage() {
           <Reveal className="text-center max-w-3xl mx-auto">
             <div className="flex items-center justify-center gap-4 mb-4">
               <div className="h-px w-6 bg-border dark:bg-zinc-700"></div>
-              <p className="text-xs tracking-[0.2em] text-muted-foreground dark:text-zinc-400 uppercase">Case Studies</p>
+              <p className="text-xs tracking-[0.2em] text-muted-foreground dark:text-zinc-400 uppercase">
+                Case Studies
+              </p>
               <div className="h-px w-6 bg-border dark:bg-zinc-700"></div>
             </div>
             <h2 className="text-4xl md:text-5xl font-medium tracking-tight text-foreground dark:text-white">
               Brands We've <br />
-              <span className="italic text-muted-foreground/60 dark:text-zinc-400">Worked With.</span>
+              <span className="italic text-muted-foreground/60 dark:text-zinc-400">
+                Worked With.
+              </span>
             </h2>
           </Reveal>
-          
+
           <div className="mt-12 grid gap-6 sm:grid-cols-2">
             {cases.map((p, i) => {
               // 🟢 FETCH THUMBNAIL FROM PROJECT'S FOLDER
               const projectFolderImages = getProjectFolderImages(p.slug);
-              const thumbnailSrc = projectFolderImages.length > 0 ? projectFolderImages[0] : p.image;
+              const thumbnailSrc =
+                projectFolderImages.length > 0 ? projectFolderImages[0] : p.image;
 
               return (
                 <Reveal key={p.slug} delay={i * 0.06}>
-                  <Link 
-                    key={p.slug} 
-                    to="/work/$slug" 
-                    params={{ slug: p.slug }} 
+                  <Link
+                    key={p.slug}
+                    to="/work/$slug"
+                    params={{ slug: p.slug }}
                     className="group block overflow-hidden rounded-xl border border-border/40 dark:border-zinc-800 bg-background dark:bg-zinc-950 transition-all hover:border-border/60 dark:hover:border-zinc-600"
                   >
                     <div className="relative overflow-hidden aspect-[4/3]">
-                      <img 
+                      <img
                         src={thumbnailSrc} // 🟢 Folder image is used here now!
-                        alt={p.title} 
-                        loading="lazy" 
-                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 grayscale-[10%] group-hover:grayscale-0" 
+                        alt={p.title}
+                        loading="lazy"
+                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 grayscale-[10%] group-hover:grayscale-0"
                       />
                     </div>
                     <div className="p-6">
                       <div className="flex items-center gap-2">
-                        <span className="text-xs tracking-wider text-foreground/60 uppercase dark:text-zinc-400">{p.client}</span>
+                        <span className="text-xs tracking-wider text-foreground/60 uppercase dark:text-zinc-400">
+                          {p.client}
+                        </span>
                         <span className="h-1 w-1 rounded-full bg-muted-foreground/30 dark:bg-zinc-600" />
-                        <span className="text-xs text-muted-foreground dark:text-zinc-500">{p.year}</span>
+                        <span className="text-xs text-muted-foreground dark:text-zinc-500">
+                          {p.year}
+                        </span>
                       </div>
-                      <h3 className="mt-2 font-medium text-lg tracking-tight text-foreground dark:text-white">{p.title}</h3>
+                      <h3 className="mt-2 font-medium text-lg tracking-tight text-foreground dark:text-white">
+                        {p.title}
+                      </h3>
                       <span className="mt-4 inline-flex items-center gap-2 text-xs font-medium text-foreground/80 transition-all group-hover:gap-3">
-                        Read Case Study <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                        Read Case Study{" "}
+                        <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
                       </span>
                     </div>
                   </Link>
@@ -732,15 +791,19 @@ function ServicePage() {
           <Reveal className="text-center max-w-3xl mx-auto">
             <div className="flex items-center justify-center gap-4 mb-4">
               <div className="h-px w-6 bg-border dark:bg-zinc-700"></div>
-              <p className="text-xs tracking-[0.2em] text-muted-foreground dark:text-zinc-400 uppercase">Questions</p>
+              <p className="text-xs tracking-[0.2em] text-muted-foreground dark:text-zinc-400 uppercase">
+                Questions
+              </p>
               <div className="h-px w-6 bg-border dark:bg-zinc-700"></div>
             </div>
-            <h2 className="text-4xl md:text-5xl font-medium tracking-tight text-foreground dark:text-white">FAQs.</h2>
+            <h2 className="text-4xl md:text-5xl font-medium tracking-tight text-foreground dark:text-white">
+              FAQs.
+            </h2>
             <p className="mt-4 max-w-2xl mx-auto text-muted-foreground dark:text-zinc-400">
               Everything you need to know about our {service.title.toLowerCase()} services.
             </p>
           </Reveal>
-          
+
           <div className="mt-12 space-y-4">
             {service.faqs.map((f, i) => (
               <Reveal key={f.q} delay={i * 0.05}>
@@ -751,7 +814,9 @@ function ServicePage() {
                   </summary>
                   <div className="px-5 pb-5">
                     <div className="h-px w-full bg-border/40 dark:bg-zinc-700" />
-                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground dark:text-zinc-400">{f.a}</p>
+                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground dark:text-zinc-400">
+                      {f.a}
+                    </p>
                   </div>
                 </details>
               </Reveal>
@@ -769,13 +834,20 @@ function ServicePage() {
               <span className="italic font-normal text-zinc-400">{service.title}</span>?
             </h2>
             <p className="mx-auto mt-6 max-w-xl text-zinc-400 text-lg">
-              Let's bring your vision to life. Get in touch with our team and create something extraordinary.
+              Let's bring your vision to life. Get in touch with our team and create something
+              extraordinary.
             </p>
             <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6">
-              <Link to="/contact" className="inline-flex items-center gap-3 bg-foreground text-background dark:bg-white dark:text-zinc-950 px-10 py-4 rounded-full text-sm font-medium tracking-wide transition-all duration-300 hover:bg-foreground/90 dark:hover:bg-zinc-200 hover:scale-105 shadow-xl shadow-foreground/10 dark:shadow-white/10">
+              <Link
+                to="/contact"
+                className="inline-flex items-center gap-3 bg-foreground text-background dark:bg-white dark:text-zinc-950 px-10 py-4 rounded-full text-sm font-medium tracking-wide transition-all duration-300 hover:bg-foreground/90 dark:hover:bg-zinc-200 hover:scale-105 shadow-xl shadow-foreground/10 dark:shadow-white/10"
+              >
                 Start the Conversation <ArrowRight className="h-4 w-4" />
               </Link>
-              <Link to="/work" className="inline-flex items-center gap-2 text-sm text-zinc-500 hover:text-white transition-colors">
+              <Link
+                to="/work"
+                className="inline-flex items-center gap-2 text-sm text-zinc-500 hover:text-white transition-colors"
+              >
                 See Our Work
               </Link>
             </div>

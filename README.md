@@ -54,7 +54,7 @@ Design inspiration:
 
 - Film production houses
 
---------------------------------------------------
+---
 
 BRAND STYLE
 
@@ -92,7 +92,7 @@ Headings: Bebas Neue + Oswald
 
 Body: Inter
 
---------------------------------------------------
+---
 
 DESIGN SYSTEM
 
@@ -118,7 +118,7 @@ Use:
 
 Avoid clutter.
 
---------------------------------------------------
+---
 
 3D EXPERIENCE
 
@@ -150,7 +150,7 @@ Rules:
 
 - Lightweight and optimized
 
---------------------------------------------------
+---
 
 ANIMATIONS
 
@@ -178,7 +178,7 @@ Implement:
 
 Animations should feel premium.
 
---------------------------------------------------
+---
 
 HOME PAGE
 
@@ -214,7 +214,7 @@ Include:
 
 - Scroll indicator
 
---------------------------------------------------
+---
 
 SECTION 2
 
@@ -224,7 +224,7 @@ Animated logo wall.
 
 Infinite marquee effect.
 
---------------------------------------------------
+---
 
 SECTION 3
 
@@ -250,7 +250,7 @@ Brands
 
 Industries
 
---------------------------------------------------
+---
 
 SECTION 4
 
@@ -268,7 +268,7 @@ Each card:
 
 - 3D tilt effect
 
---------------------------------------------------
+---
 
 SECTION 5
 
@@ -280,7 +280,7 @@ Video thumbnails.
 
 Case studies.
 
---------------------------------------------------
+---
 
 SECTION 6
 
@@ -290,7 +290,7 @@ Modern slider.
 
 Client reviews.
 
---------------------------------------------------
+---
 
 SECTION 7
 
@@ -302,7 +302,7 @@ Button:
 
 Book Consultation
 
---------------------------------------------------
+---
 
 ABOUT PAGE
 
@@ -322,7 +322,7 @@ Why choose us.
 
 Production process.
 
---------------------------------------------------
+---
 
 SERVICES PAGE
 
@@ -368,7 +368,7 @@ Line Production
 
 Social Media Marketing
 
---------------------------------------------------
+---
 
 PORTFOLIO PAGE
 
@@ -390,7 +390,7 @@ Hover previews
 
 Project details
 
---------------------------------------------------
+---
 
 PROJECT DETAILS PAGE
 
@@ -408,7 +408,7 @@ Results
 
 Client feedback
 
---------------------------------------------------
+---
 
 CLIENTS PAGE
 
@@ -420,7 +420,7 @@ Success stories.
 
 Testimonials.
 
---------------------------------------------------
+---
 
 TEAM PAGE
 
@@ -432,7 +432,7 @@ Social links.
 
 Team culture.
 
---------------------------------------------------
+---
 
 CONTACT PAGE
 
@@ -462,7 +462,7 @@ WhatsApp CTA
 
 Office information
 
---------------------------------------------------
+---
 
 ADMIN PANEL
 
@@ -496,7 +496,7 @@ Manage team members
 
 Dashboard statistics
 
---------------------------------------------------
+---
 
 BACKEND
 
@@ -526,7 +526,7 @@ File upload
 
 Image optimization
 
---------------------------------------------------
+---
 
 FILE STORAGE
 
@@ -544,7 +544,7 @@ Compression
 
 Folder organization
 
---------------------------------------------------
+---
 
 CONTACT FORM
 
@@ -558,7 +558,7 @@ Email notifications
 
 Auto response email
 
---------------------------------------------------
+---
 
 EMAIL INTEGRATION
 
@@ -568,7 +568,7 @@ Admin notification
 
 Client confirmation mail
 
---------------------------------------------------
+---
 
 WHATSAPP INTEGRATION
 
@@ -576,7 +576,7 @@ Floating WhatsApp button.
 
 Direct inquiry.
 
---------------------------------------------------
+---
 
 SEO
 
@@ -604,7 +604,7 @@ FAQ Schema
 
 Breadcrumb Schema
 
---------------------------------------------------
+---
 
 PERFORMANCE
 
@@ -622,7 +622,7 @@ Route-based loading
 
 Caching
 
---------------------------------------------------
+---
 
 RESPONSIVE
 
@@ -634,7 +634,7 @@ Desktop
 
 Ultra-wide screens
 
---------------------------------------------------
+---
 
 TECH STACK
 
@@ -672,7 +672,7 @@ Cloudinary
 
 Nodemailer
 
---------------------------------------------------
+---
 
 FINAL GOAL
 
@@ -682,28 +682,28 @@ The design must be significantly more modern than traditional advertising compan
 
 my company name is happylabproduction
 
-us the best words for the website 
+us the best words for the website
 
-in team section team section add team member name 
+in team section team section add team member name
 
-dont be symmetrical and add the description fro the members according to there higher post decorate the team member each member have their whole photo and below their introduction 
+dont be symmetrical and add the description fro the members according to there higher post decorate the team member each member have their whole photo and below their introduction
 
-and above their is s a landscape pictuire area for the whoole team 
+and above their is s a landscape pictuire area for the whoole team
 
-and in the hime page tehre is teh section of videos available or that i am going to put further that was shoot byu the client  in the diffenet category 
+and in the hime page tehre is teh section of videos available or that i am going to put further that was shoot byu the client in the diffenet category
 
-in the home page tructed by brand section logo circulate instead of name in two rows make website more flexible and more attractigve 
+in the home page tructed by brand section logo circulate instead of name in two rows make website more flexible and more attractigve
 
-the home page should be white and attrative 
+the home page should be white and attrative
 
 the cline would love the website as in the front page there written creating advertisments there is black aur blue backgroud please make the background whiye make home page more attractive
 
 in the work section each whe i ckik on the each profession work there is the work videro and phots related to it make the home page more attractive in the home page there video availabke where i van play contro and beautiful grid make each page attrative
 
-jo photo me hai wohi speciality hai comopany ka haar ek specility pr jab clik kree to uska page oopen ho uske rekated sara work dikhe jis jis company ke liyye work kra hai 
-aur upr heading me happylambprodu tion ka logo bhi lagana hai to laga dena achhe se yaa ajagh dena baad me hum laga sake photo 
+jo photo me hai wohi speciality hai comopany ka haar ek specility pr jab clik kree to uska page oopen ho uske rekated sara work dikhe jis jis company ke liyye work kra hai
+aur upr heading me happylambprodu tion ka logo bhi lagana hai to laga dena achhe se yaa ajagh dena baad me hum laga sake photo
 
-us the best attratibve world make seo optimized words 
+us the best attratibve world make seo optimized words
 
 as you know there is the workld of ai us the word ai in the website adn make professionao use the aii
 
