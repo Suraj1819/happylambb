@@ -77,14 +77,46 @@ const LOGO_WALL_BRANDS = ALL_BRANDS;
 
 /* 🔥 FIXED ICONS */
 const WHY_US = [
-  { icon: Video, title: "Brand Strategy & Creative", copy: "We transform ideas into compelling campaigns that build brand value and audience engagement." },
-  { icon: Zap, title: "End-to-End Production", copy: "From concept development to final delivery, we manage every stage of the production process." },
-  { icon: Users, title: "Pan-India Execution", copy: "Professional production services, crew, and logistics available across India." },
-  { icon: Film, title: "Corporate & Commercial Films", copy: "High-quality corporate videos, ad films, testimonials, and branded content designed for impact." },
-  { icon: Drone, title: "Photography & Product Shoots", copy: "Catalogue, product, furniture, and brand photography crafted to showcase your business at its best." },
-  { icon: Brain, title: "Digital Marketing Solutions", copy: "Social media marketing, digital advertising, and content strategies that drive measurable growth." },
-  { icon: Layers, title: "Government Shooting Permissions", copy: "Complete assistance with permits, approvals, and production coordination for hassle-free shoots." },
-  { icon: MonitorPlay, title: "Multi-platform content", copy: "TV, OTT, vertical and paid-ready assets from one shoot." },
+  {
+    icon: Video,
+    title: "Brand Strategy & Creative",
+    copy: "We transform ideas into compelling campaigns that build brand value and audience engagement.",
+  },
+  {
+    icon: Zap,
+    title: "End-to-End Production",
+    copy: "From concept development to final delivery, we manage every stage of the production process.",
+  },
+  {
+    icon: Users,
+    title: "Pan-India Execution",
+    copy: "Professional production services, crew, and logistics available across India.",
+  },
+  {
+    icon: Film,
+    title: "Corporate & Commercial Films",
+    copy: "High-quality corporate videos, ad films, testimonials, and branded content designed for impact.",
+  },
+  {
+    icon: Drone,
+    title: "Photography & Product Shoots",
+    copy: "Catalogue, product, furniture, and brand photography crafted to showcase your business at its best.",
+  },
+  {
+    icon: Brain,
+    title: "Digital Marketing Solutions",
+    copy: "Social media marketing, digital advertising, and content strategies that drive measurable growth.",
+  },
+  {
+    icon: Layers,
+    title: "Government Shooting Permissions",
+    copy: "Complete assistance with permits, approvals, and production coordination for hassle-free shoots.",
+  },
+  {
+    icon: MonitorPlay,
+    title: "Multi-platform content",
+    copy: "TV, OTT, vertical and paid-ready assets from one shoot.",
+  },
 ];
 
 const RETENTION = [
@@ -103,21 +135,27 @@ function Clients() {
           <Reveal>
             <div className="flex items-center justify-center gap-3 mb-6">
               <div className="h-px w-8 bg-border/50"></div>
-              <p className="text-xs tracking-[0.3em] text-muted-foreground/80 uppercase font-medium">Clients</p>
+              <p className="text-xs tracking-[0.3em] text-muted-foreground/80 uppercase font-medium">
+                Clients
+              </p>
               <div className="h-px w-8 bg-border/50"></div>
             </div>
-            
+
             <h1 className="text-[clamp(3rem,7.5vw,5.5rem)] leading-[0.95] tracking-tighter font-medium text-foreground max-w-4xl mx-auto">
               Brands that <br />
               <span className="italic text-muted-foreground/60">trust us.</span>
             </h1>
-            
+
             <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground leading-relaxed">
-              We collaborate with ambitious brands across industries, delivering creative solutions that elevate their presence and create lasting impact.
+              We collaborate with ambitious brands across industries, delivering creative solutions
+              that elevate their presence and create lasting impact.
             </p>
           </Reveal>
 
-          <Reveal delay={0.15} className="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-4 max-w-4xl mx-auto border-t border-border/60 pt-8">
+          <Reveal
+            delay={0.15}
+            className="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-4 max-w-4xl mx-auto border-t border-border/60 pt-8"
+          >
             <Counter to={100} suffix="+" label="Projects Delivered" />
             <Counter to={50} suffix="+" label="Happy Clients" />
             <Counter to={5} suffix="+" label="Years Experience" />
@@ -136,36 +174,40 @@ function Clients() {
           {/* Row 1 - First 4 brands */}
           <div className="relative">
             <div className="flex w-max animate-[marquee_28s_linear_infinite] gap-8 px-4">
-              {[...ROW_1_BRANDS, ...ROW_1_BRANDS, ...ROW_1_BRANDS, ...ROW_1_BRANDS].map((brand, i) => (
-                <div
-                  key={`r1-${brand.name}-${i}`}
-                  className="flex h-16 w-36 shrink-0 items-center justify-center rounded-xl border border-border/40 bg-card/50 px-3"
-                >
-                  <img
-                    src={brand.logo}
-                    alt={brand.name}
-                    className="max-h-12 max-w-[140px] object-contain"
-                  />
-                </div>
-              ))}
+              {[...ROW_1_BRANDS, ...ROW_1_BRANDS, ...ROW_1_BRANDS, ...ROW_1_BRANDS].map(
+                (brand, i) => (
+                  <div
+                    key={`r1-${brand.name}-${i}`}
+                    className="flex h-16 w-36 shrink-0 items-center justify-center rounded-xl border border-border/40 bg-card/50 px-3"
+                  >
+                    <img
+                      src={brand.logo}
+                      alt={brand.name}
+                      className="max-h-12 max-w-[140px] object-contain"
+                    />
+                  </div>
+                ),
+              )}
             </div>
           </div>
 
           {/* Row 2 - Last 4 brands */}
           <div className="relative">
             <div className="flex w-max animate-[marquee-reverse_32s_linear_infinite] gap-8 px-4">
-              {[...ROW_2_BRANDS, ...ROW_2_BRANDS, ...ROW_2_BRANDS, ...ROW_2_BRANDS].map((brand, i) => (
-                <div
-                  key={`r2-${brand.name}-${i}`}
-                  className="flex h-16 w-36 shrink-0 items-center justify-center rounded-xl border border-border/40 bg-card/50 px-3"
-                >
-                  <img
-                    src={brand.logo}
-                    alt={brand.name}
-                    className="max-h-12 max-w-[140px] object-contain"
-                  />
-                </div>
-              ))}
+              {[...ROW_2_BRANDS, ...ROW_2_BRANDS, ...ROW_2_BRANDS, ...ROW_2_BRANDS].map(
+                (brand, i) => (
+                  <div
+                    key={`r2-${brand.name}-${i}`}
+                    className="flex h-16 w-36 shrink-0 items-center justify-center rounded-xl border border-border/40 bg-card/50 px-3"
+                  >
+                    <img
+                      src={brand.logo}
+                      alt={brand.name}
+                      className="max-h-12 max-w-[140px] object-contain"
+                    />
+                  </div>
+                ),
+              )}
             </div>
           </div>
         </div>
@@ -188,7 +230,9 @@ function Clients() {
           <Reveal className="text-center">
             <div className="flex items-center justify-center gap-4 mb-4">
               <div className="h-px w-6 bg-border"></div>
-              <p className="text-xs tracking-[0.2em] text-muted-foreground uppercase italic">Client Roster</p>
+              <p className="text-xs tracking-[0.2em] text-muted-foreground uppercase italic">
+                Client Roster
+              </p>
               <div className="h-px w-6 bg-border"></div>
             </div>
             <h2 className="text-4xl md:text-5xl font-medium tracking-tight">
@@ -220,14 +264,19 @@ function Clients() {
             <div>
               <div className="flex items-center gap-4 mb-4">
                 <div className="h-px w-6 bg-border"></div>
-                <p className="text-xs tracking-[0.2em] text-muted-foreground uppercase italic">Success Stories</p>
+                <p className="text-xs tracking-[0.2em] text-muted-foreground uppercase italic">
+                  Success Stories
+                </p>
               </div>
               <h2 className="text-4xl md:text-5xl font-medium tracking-tight">
                 Results <br />
                 <span className="italic text-muted-foreground/60">you can trust.</span>
               </h2>
             </div>
-            <Link to="/work" className="inline-flex items-center gap-2 text-sm font-medium hover:gap-4 transition-all duration-300">
+            <Link
+              to="/work"
+              className="inline-flex items-center gap-2 text-sm font-medium hover:gap-4 transition-all duration-300"
+            >
               View all work <ArrowRight className="h-4 w-4" />
             </Link>
           </Reveal>
@@ -249,7 +298,6 @@ function Clients() {
                   >
                     {/* 🟢 CARD - MATCHES WORK PAGE STYLE */}
                     <div className="overflow-hidden rounded-2xl border border-border/40 bg-background transition-colors hover:border-border/60">
-                      
                       {/* Image + Video Container */}
                       <div className="relative aspect-[4/3] overflow-hidden bg-muted/20">
                         <img
@@ -271,7 +319,9 @@ function Clients() {
                         </p>
                         {p.results[0] && (
                           <p className="mt-2 text-sm text-muted-foreground">
-                            <span className="font-medium text-foreground">{p.results[0].value}</span>{" "}
+                            <span className="font-medium text-foreground">
+                              {p.results[0].value}
+                            </span>{" "}
                             {p.results[0].label.toLowerCase()}
                           </p>
                         )}
@@ -298,7 +348,9 @@ function Clients() {
           <Reveal>
             <div className="flex items-center gap-4 mb-4">
               <div className="h-px w-6 bg-border"></div>
-              <p className="text-xs tracking-[0.2em] text-muted-foreground uppercase italic">INDUSTRIES</p>
+              <p className="text-xs tracking-[0.2em] text-muted-foreground uppercase italic">
+                INDUSTRIES
+              </p>
             </div>
             <h2 className="text-4xl md:text-5xl font-medium tracking-tight mb-4">
               Twelve categories, <br />
@@ -326,7 +378,9 @@ function Clients() {
           <Reveal>
             <div className="flex items-center gap-4 mb-4">
               <div className="h-px w-6 bg-border"></div>
-              <p className="text-xs tracking-[0.2em] text-muted-foreground uppercase italic">WHY US</p>
+              <p className="text-xs tracking-[0.2em] text-muted-foreground uppercase italic">
+                WHY US
+              </p>
             </div>
             <h2 className="text-4xl md:text-5xl font-medium tracking-tight mb-4">
               Why brands <br />
@@ -340,9 +394,7 @@ function Clients() {
                 <div className="h-full rounded-xl border border-border/40 bg-card p-6 transition-all duration-300 hover:border-border/60">
                   <item.icon className="h-5 w-5 text-muted-foreground/60" />
                   <h3 className="mt-4 font-medium text-base">{item.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                    {item.copy}
-                  </p>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.copy}</p>
                 </div>
               </Reveal>
             ))}
@@ -356,7 +408,9 @@ function Clients() {
           <Reveal className="text-center">
             <div className="flex items-center justify-center gap-4 mb-4">
               <div className="h-px w-6 bg-border"></div>
-              <p className="text-xs tracking-[0.2em] text-muted-foreground uppercase italic">Retention</p>
+              <p className="text-xs tracking-[0.2em] text-muted-foreground uppercase italic">
+                Retention
+              </p>
               <div className="h-px w-6 bg-border"></div>
             </div>
             <h2 className="text-4xl md:text-5xl font-medium tracking-tight mb-4">
@@ -389,9 +443,13 @@ function Clients() {
           <Reveal>
             <div className="flex items-center justify-center gap-4 mb-4">
               <div className="h-px w-6 bg-border"></div>
-              <p className="text-xs tracking-[0.2em] text-muted-foreground uppercase italic">Testimonials</p>
+              <p className="text-xs tracking-[0.2em] text-muted-foreground uppercase italic">
+                Testimonials
+              </p>
             </div>
-            <h2 className="text-4xl md:text-5xl font-medium tracking-tight mb-4">In their words.</h2>
+            <h2 className="text-4xl md:text-5xl font-medium tracking-tight mb-4">
+              In their words.
+            </h2>
           </Reveal>
 
           <div className="mt-12 grid gap-6 md:grid-cols-2">
@@ -400,12 +458,13 @@ function Clients() {
                 <blockquote className="flex h-full flex-col rounded-xl border border-border/40 bg-card p-7">
                   <div className="mb-4 flex gap-1">
                     {[...Array(5)].map((_, j) => (
-                      <Star key={`${t.author}-star-${j}`} className="h-4 w-4 fill-foreground text-foreground/20" />
+                      <Star
+                        key={`${t.author}-star-${j}`}
+                        className="h-4 w-4 fill-foreground text-foreground/20"
+                      />
                     ))}
                   </div>
-                  <p className="flex-1 text-base leading-relaxed text-foreground/80">
-                    “{t.quote}”
-                  </p>
+                  <p className="flex-1 text-base leading-relaxed text-foreground/80">“{t.quote}”</p>
                   <footer className="mt-6 border-t border-border/30 pt-4 text-sm">
                     <span className="font-medium text-foreground">{t.author}</span>
                     <span className="mx-1.5 text-muted-foreground">·</span>
@@ -417,12 +476,11 @@ function Clients() {
           </div>
         </div>
       </section>
-      
 
       {/* ─── 10. FINAL CTA (BLACK BUTTON - NO ORANGE) ─── */}
       <section className="bg-ink py-32 text-ink-foreground relative overflow-hidden text-center border-t border-ink-foreground/10">
         <div className="absolute inset-0 bg-gradient-to-r from-white/5 via-transparent to-white/5 pointer-events-none"></div>
-        
+
         <div className="relative mx-auto max-w-4xl px-6">
           <Reveal>
             <h2 className="text-5xl md:text-6xl font-medium tracking-tight leading-tight">
@@ -430,7 +488,8 @@ function Clients() {
               <span className="italic font-normal text-ink-foreground/40">worth watching</span>?
             </h2>
             <p className="mx-auto mt-6 max-w-xl text-ink-foreground/60 text-lg">
-              Let's create something extraordinary together. We'll map the right production approach.
+              Let's create something extraordinary together. We'll map the right production
+              approach.
             </p>
             <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6">
               <Link

@@ -41,8 +41,7 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "HappyLamb Production — Premium Film Studio" },
       {
         property: "og:description",
-        content:
-          "Ad films, product reels, corporate films and brand campaigns. Craft that works.",
+        content: "Ad films, product reels, corporate films and brand campaigns. Craft that works.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -55,32 +54,32 @@ export const Route = createFileRoute("/")({
 // ═══ Carousel Component ═══
 function StudioCarousel() {
   const [current, setCurrent] = useState(0);
-  
+
   const visuals = [
-    { 
-      type: 'image', 
-      src: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=2070&auto=format&fit=crop', 
-      alt: 'Studio 1 - Production Floor' 
+    {
+      type: "image",
+      src: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=2070&auto=format&fit=crop",
+      alt: "Studio 1 - Production Floor",
     },
-    { 
-      type: 'image', 
-      src: 'https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?q=80&w=2070&auto=format&fit=crop', 
-      alt: 'Studio 2 - Filming Setup' 
+    {
+      type: "image",
+      src: "https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?q=80&w=2070&auto=format&fit=crop",
+      alt: "Studio 2 - Filming Setup",
     },
-    { 
-      type: 'image', 
-      src: 'https://plus.unsplash.com/premium_photo-1682125311959-a000535c0b19?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8bW92aWUlMjBwb3N0ZXJ8ZW58MHx8MHx8fDA%3D', 
-      alt: 'Studio 3 - Post Production' 
+    {
+      type: "image",
+      src: "https://plus.unsplash.com/premium_photo-1682125311959-a000535c0b19?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8bW92aWUlMjBwb3N0ZXJ8ZW58MHx8MHx8fDA%3D",
+      alt: "Studio 3 - Post Production",
     },
-    { 
-      type: 'image', 
-      src: 'https://images.unsplash.com/photo-1778372670061-e84b57764aec?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzZ8fGZpbG0lMjBwb3N0ZXJ8ZW58MHx8MHx8fDA%3D', 
-      alt: 'Studio 4 - Creative Space' 
+    {
+      type: "image",
+      src: "https://images.unsplash.com/photo-1778372670061-e84b57764aec?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzZ8fGZpbG0lMjBwb3N0ZXJ8ZW58MHx8MHx8fDA%3D",
+      alt: "Studio 4 - Creative Space",
     },
-    { 
-      type: 'image', 
-      src: 'https://images.unsplash.com/photo-1641549058491-8a3442385da0?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fG1vdmllJTIwcG9zdGVyfGVufDB8fDB8fHww', 
-      alt: 'Studio 4 - Creative Space' 
+    {
+      type: "image",
+      src: "https://images.unsplash.com/photo-1641549058491-8a3442385da0?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fG1vdmllJTIwcG9zdGVyfGVufDB8fDB8fHww",
+      alt: "Studio 4 - Creative Space",
     },
   ];
 
@@ -118,7 +117,7 @@ function StudioCarousel() {
             key={i}
             onClick={() => setCurrent(i)}
             className={`h-1.5 rounded-full transition-all duration-500 ${
-              i === current ? 'w-8 bg-white' : 'w-2 bg-white/40'
+              i === current ? "w-8 bg-white" : "w-2 bg-white/40"
             }`}
             aria-label={`Go to slide ${i + 1}`}
           />
@@ -176,24 +175,27 @@ function Index() {
       <section className="relative overflow-hidden min-h-[85vh] flex items-center pt-28 pb-16 bg-background dark:bg-zinc-950 border-b border-border/40 dark:border-zinc-800">
         <div className="mx-auto max-w-[1400px] px-6 sm:px-10 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            
             {/* Left: Text Content */}
             <Reveal>
               <div className="flex items-center gap-3 mb-6">
                 <div className="h-px w-8 bg-border/50 dark:bg-zinc-700"></div>
-                <p className="text-xs tracking-[0.3em] text-muted-foreground dark:text-zinc-400 uppercase font-medium">Craft-Driven Studio</p>
+                <p className="text-xs tracking-[0.3em] text-muted-foreground dark:text-zinc-400 uppercase font-medium">
+                  Craft-Driven Studio
+                </p>
               </div>
-              
+
               <h1 className="text-[clamp(3rem,7.5vw,5.5rem)] leading-[0.95] tracking-tight font-medium text-foreground dark:text-white max-w-4xl">
                 We build stories <br />
-                <span className="italic font-normal text-muted-foreground dark:text-zinc-400">that inspires.</span>
+                <span className="italic font-normal text-muted-foreground dark:text-zinc-400">
+                  that inspires.
+                </span>
               </h1>
-              
+
               <p className="mt-6 max-w-xl text-lg text-muted-foreground dark:text-zinc-400 leading-relaxed">
-                Ad films, product reels, and brand campaigns — crafted with precision, backed by data. 
-                Every frame serves a purpose.
+                Ad films, product reels, and brand campaigns — crafted with precision, backed by
+                data. Every frame serves a purpose.
               </p>
-              
+
               <div className="mt-8 flex flex-wrap items-center gap-6">
                 <Link
                   to="/work"
@@ -208,8 +210,11 @@ function Index() {
                   Book a Call
                 </Link>
               </div>
-              
-              <Reveal delay={0.15} className="mt-10 grid max-w-xs grid-cols-3 gap-8 border-t border-border/60 dark:border-zinc-700 pt-8">
+
+              <Reveal
+                delay={0.15}
+                className="mt-10 grid max-w-xs grid-cols-3 gap-8 border-t border-border/60 dark:border-zinc-700 pt-8"
+              >
                 <Counter to={100} suffix="+" label="Projects" />
                 <Counter to={50} suffix="+" label="Brands" />
                 <Counter to={10} suffix="+" label="Industries" />
@@ -227,7 +232,9 @@ function Index() {
       {/* ═══════════════ 2. TRUSTED BRANDS (SYMMETRIC) ═══════════════ */}
       <section className="border-y border-border/30 dark:border-zinc-800 bg-surface/50 dark:bg-zinc-900/50 py-12">
         <div className="mx-auto max-w-[1400px] px-6 sm:px-10">
-          <p className="text-center text-xs tracking-[0.2em] text-muted-foreground dark:text-zinc-400 uppercase italic mb-8">Trusted by brands across 10+ industries</p>
+          <p className="text-center text-xs tracking-[0.2em] text-muted-foreground dark:text-zinc-400 uppercase italic mb-8">
+            Trusted by brands across 10+ industries
+          </p>
           <BrandMarquee />
         </div>
       </section>
@@ -238,16 +245,20 @@ function Index() {
           <Reveal>
             <div className="flex items-center justify-center gap-4 mb-4">
               <div className="h-px w-6 bg-border dark:bg-zinc-700"></div>
-              <p className="text-xs tracking-[0.2em] text-muted-foreground dark:text-zinc-400 uppercase italic">Who We Are</p>
+              <p className="text-xs tracking-[0.2em] text-muted-foreground dark:text-zinc-400 uppercase italic">
+                Who We Are
+              </p>
               <div className="h-px w-6 bg-border dark:bg-zinc-700"></div>
             </div>
             <h2 className="text-4xl md:text-5xl font-medium tracking-tight text-foreground dark:text-white">
               A studio built on <br />
-              <span className="italic font-normal text-muted-foreground/60 dark:text-zinc-400">craft, contracts & credibility.</span>
+              <span className="italic font-normal text-muted-foreground/60 dark:text-zinc-400">
+                craft, contracts & credibility.
+              </span>
             </h2>
             <p className="mx-auto mt-6 max-w-2xl text-base text-muted-foreground dark:text-zinc-400 leading-relaxed">
-              Strategy, scripting, direction, cinematography, and post — all under one roof. 
-              Fewer hand-offs. Tighter timelines. Broadcast quality at digital speed.
+              Strategy, scripting, direction, cinematography, and post — all under one roof. Fewer
+              hand-offs. Tighter timelines. Broadcast quality at digital speed.
             </p>
           </Reveal>
 
@@ -259,7 +270,9 @@ function Index() {
               { k: "Turnaround", v: "3 weeks" },
             ].map((s) => (
               <div key={s.k} className="border-b border-border/40 dark:border-zinc-800 py-4">
-                <p className="font-medium text-3xl tracking-tight text-foreground dark:text-white">{s.v}</p>
+                <p className="font-medium text-3xl tracking-tight text-foreground dark:text-white">
+                  {s.v}
+                </p>
                 <p className="text-xs text-muted-foreground dark:text-zinc-500 mt-1">{s.k}</p>
               </div>
             ))}
@@ -274,11 +287,15 @@ function Index() {
             <div>
               <div className="flex items-center gap-4 mb-4">
                 <div className="h-px w-6 bg-border dark:bg-zinc-700"></div>
-                <p className="text-xs tracking-[0.2em] text-muted-foreground dark:text-zinc-400 uppercase italic">Selected Work</p>
+                <p className="text-xs tracking-[0.2em] text-muted-foreground dark:text-zinc-400 uppercase italic">
+                  Selected Work
+                </p>
               </div>
               <h2 className="text-4xl md:text-5xl font-medium tracking-tight text-foreground dark:text-white">
                 Featured <br />
-                <span className="italic font-normal text-muted-foreground/60 dark:text-zinc-400">Films.</span>
+                <span className="italic font-normal text-muted-foreground/60 dark:text-zinc-400">
+                  Films.
+                </span>
               </h2>
             </div>
             <Link
@@ -329,12 +346,17 @@ function Index() {
           <Reveal className="text-center max-w-3xl mx-auto">
             <div className="flex items-center justify-center gap-4 mb-4">
               <div className="h-px w-6 bg-border dark:bg-zinc-700"></div>
-              <p className="text-xs tracking-[0.2em] text-muted-foreground dark:text-zinc-400 uppercase italic">Why Us</p>
+              <p className="text-xs tracking-[0.2em] text-muted-foreground dark:text-zinc-400 uppercase italic">
+                Why Us
+              </p>
               <div className="h-px w-6 bg-border dark:bg-zinc-700"></div>
             </div>
             <h2 className="text-4xl md:text-5xl font-medium tracking-tight text-foreground dark:text-white">
-              We don't just make videos.<br />
-              <span className="italic font-normal text-muted-foreground/60 dark:text-zinc-400">We make them unforgettable.</span>
+              We don't just make videos.
+              <br />
+              <span className="italic font-normal text-muted-foreground/60 dark:text-zinc-400">
+                We make them unforgettable.
+              </span>
             </h2>
           </Reveal>
 
@@ -346,7 +368,9 @@ function Index() {
                   <span className="relative grid h-10 w-10 place-items-center rounded-full bg-muted/20 dark:bg-zinc-800 text-muted-foreground dark:text-zinc-400">
                     <item.icon className="h-5 w-5" />
                   </span>
-                  <h3 className="relative mt-5 font-medium text-lg tracking-tight text-foreground dark:text-white">{item.title}</h3>
+                  <h3 className="relative mt-5 font-medium text-lg tracking-tight text-foreground dark:text-white">
+                    {item.title}
+                  </h3>
                   <p className="relative mt-2 text-sm text-muted-foreground dark:text-zinc-400 leading-relaxed">
                     {item.desc}
                   </p>
@@ -363,11 +387,15 @@ function Index() {
           <Reveal>
             <div className="flex items-center gap-4 mb-4">
               <div className="h-px w-6 bg-border dark:bg-zinc-700"></div>
-              <p className="text-xs tracking-[0.2em] text-muted-foreground dark:text-zinc-400 uppercase italic">Process</p>
+              <p className="text-xs tracking-[0.2em] text-muted-foreground dark:text-zinc-400 uppercase italic">
+                Process
+              </p>
             </div>
             <h2 className="text-4xl md:text-5xl font-medium tracking-tight text-foreground dark:text-white mb-4">
               Brief to <br />
-              <span className="italic font-normal text-muted-foreground/60 dark:text-zinc-400">broadcast.</span>
+              <span className="italic font-normal text-muted-foreground/60 dark:text-zinc-400">
+                broadcast.
+              </span>
             </h2>
           </Reveal>
 
@@ -379,10 +407,20 @@ function Index() {
               { step: "Edit", copy: "Grade, sound design and voice-over in one suite." },
               { step: "Delivery", copy: "Every aspect ratio and platform master, on schedule." },
             ].map((p, i) => (
-              <Reveal key={p.step} delay={i * 0.06} className="relative flex flex-col border-t-2 border-foreground/10 dark:border-zinc-700 pt-6">
-                <span className="text-4xl font-light tracking-tighter text-foreground/10 dark:text-zinc-600 mb-2">0{i + 1}</span>
-                <p className="text-xs uppercase tracking-wider text-muted-foreground dark:text-zinc-500 italic">{p.step}</p>
-                <p className="mt-2 text-sm text-muted-foreground dark:text-zinc-400 leading-relaxed">{p.copy}</p>
+              <Reveal
+                key={p.step}
+                delay={i * 0.06}
+                className="relative flex flex-col border-t-2 border-foreground/10 dark:border-zinc-700 pt-6"
+              >
+                <span className="text-4xl font-light tracking-tighter text-foreground/10 dark:text-zinc-600 mb-2">
+                  0{i + 1}
+                </span>
+                <p className="text-xs uppercase tracking-wider text-muted-foreground dark:text-zinc-500 italic">
+                  {p.step}
+                </p>
+                <p className="mt-2 text-sm text-muted-foreground dark:text-zinc-400 leading-relaxed">
+                  {p.copy}
+                </p>
               </Reveal>
             ))}
           </div>
@@ -395,12 +433,16 @@ function Index() {
           <Reveal className="text-center max-w-3xl mx-auto">
             <div className="flex items-center justify-center gap-4 mb-4">
               <div className="h-px w-6 bg-border dark:bg-zinc-700"></div>
-              <p className="text-xs tracking-[0.2em] text-muted-foreground dark:text-zinc-400 uppercase italic">Client Love</p>
+              <p className="text-xs tracking-[0.2em] text-muted-foreground dark:text-zinc-400 uppercase italic">
+                Client Love
+              </p>
               <div className="h-px w-6 bg-border dark:bg-zinc-700"></div>
             </div>
             <h2 className="text-4xl md:text-5xl font-medium tracking-tight text-foreground dark:text-white">
               What brand teams <br />
-              <span className="italic font-normal text-muted-foreground/60 dark:text-zinc-400">say.</span>
+              <span className="italic font-normal text-muted-foreground/60 dark:text-zinc-400">
+                say.
+              </span>
             </h2>
           </Reveal>
           <Reveal delay={0.1} className="mt-14">

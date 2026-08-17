@@ -6,19 +6,18 @@ import skywayLogo from "@/assets/brands/skyway.jpg";
 import tataHitachiLogo from "@/assets/brands/TataHitachii.jpeg";
 import godrejLogo from "@/assets/brands/godrej.png";
 // 🟢 FIX: 'H' Capital rakho, kyunki file name Hailstone.jpeg hai
-import hailstoneLogo from "@/assets/brands/Hailstone.jpeg"; 
+import hailstoneLogo from "@/assets/brands/Hailstone.jpeg";
 import jcbLogo from "@/assets/brands/Jcb.jpeg";
 import iciciLogo from "@/assets/brands/icici.jpg";
 import tatamotors from "@/assets/brands/tatamotors.jpg";
 import upstox from "@/assets/brands/upstox.jpeg";
-
 
 /* 🟢 FIX: clients.tsx wala ALL_BRANDS array yahan copy kiya */
 const ALL_BRANDS = [
   { name: "Cofsils", logo: cofsilsLogo },
   { name: "Godrej", logo: godrejLogo },
   // 🟢 FIX: Yahan 'hailstoneLogo' use karo (imported name)
-  { name: "Hailstone", logo: hailstoneLogo }, 
+  { name: "Hailstone", logo: hailstoneLogo },
   { name: "Aurea", logo: aureaLogo },
   { name: "JCB", logo: jcbLogo },
   { name: "Prompt", logo: promptLogo },
@@ -52,16 +51,20 @@ export function BrandMarquee() {
     <div className="space-y-6 overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_6%,black_94%,transparent)]">
       {/* Row 1 - Left to Right (5 baar repeat taaki gap na aaye) */}
       <div className="flex w-max gap-4 animate-[marquee_40s_linear_infinite]">
-        {[...ROW_1_BRANDS, ...ROW_1_BRANDS, ...ROW_1_BRANDS, ...ROW_1_BRANDS, ...ROW_1_BRANDS].map((brand, i) => (
-          <Logo key={`r1-${brand.name}-${i}`} brand={brand} />
-        ))}
+        {[...ROW_1_BRANDS, ...ROW_1_BRANDS, ...ROW_1_BRANDS, ...ROW_1_BRANDS, ...ROW_1_BRANDS].map(
+          (brand, i) => (
+            <Logo key={`r1-${brand.name}-${i}`} brand={brand} />
+          ),
+        )}
       </div>
 
       {/* Row 2 - Right to Left (5 baar repeat taaki gap na aaye) */}
       <div className="flex w-max gap-4 animate-[marquee-reverse_40s_linear_infinite]">
-        {[...ROW_2_BRANDS, ...ROW_2_BRANDS, ...ROW_2_BRANDS, ...ROW_2_BRANDS, ...ROW_2_BRANDS].map((brand, i) => (
-          <Logo key={`r2-${brand.name}-${i}`} brand={brand} />
-        ))}
+        {[...ROW_2_BRANDS, ...ROW_2_BRANDS, ...ROW_2_BRANDS, ...ROW_2_BRANDS, ...ROW_2_BRANDS].map(
+          (brand, i) => (
+            <Logo key={`r2-${brand.name}-${i}`} brand={brand} />
+          ),
+        )}
       </div>
 
       <style>{`

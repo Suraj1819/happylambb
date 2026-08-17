@@ -29,7 +29,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import heroStudio from "@/assets/hero-studio.jpg";
 import teamGroup from "@/assets/team.jpeg";
-import m1 from "@/assets/Dilip Cofounder.jpeg"; 
+import m1 from "@/assets/Dilip Cofounder.jpeg";
 import { Reveal } from "@/components/site/Reveal";
 
 // ✅ FIX: Lowercase images for Vercel
@@ -49,10 +49,15 @@ export const Route = createFileRoute("/about")({
       { title: "About HappyLamb Production — Premium Creative Studio" },
       {
         name: "description",
-        content: "A full-service production, film & branding studio in India. Built on craft, contracts, and credibility since 2022.",
+        content:
+          "A full-service production, film & branding studio in India. Built on craft, contracts, and credibility since 2022.",
       },
       { property: "og:title", content: "About HappyLamb Production" },
-      { property: "og:description", content: "From strategy to screen. Discover our story, process, and the people behind the work." },
+      {
+        property: "og:description",
+        content:
+          "From strategy to screen. Discover our story, process, and the people behind the work.",
+      },
     ],
     links: [{ rel: "canonical", href: "/about" }],
   }),
@@ -149,32 +154,36 @@ const CAPABILITIES = [
 const STUDIOS = [
   {
     city: "Mumbai",
-    address: "Happy Lamb Production OPC PVT.LTD, 505, 5th Floor, Bhoomi Building, Sanjay Nagar Co.Op. Society, Cama Estate, Behind Future Studio, Goregoan (E.), Mumbai - 400063",
+    address:
+      "Happy Lamb Production OPC PVT.LTD, 505, 5th Floor, Bhoomi Building, Sanjay Nagar Co.Op. Society, Cama Estate, Behind Future Studio, Goregoan (E.), Mumbai - 400063",
     phone: "+91 9820778491",
     email: "dilip@happylamb.co.in",
     image: mumbaiStudioImg,
     headName: "Dilip Gupta",
     headRole: "Founder & CEO",
     headImage: mumbaiHeadImg,
-    headQuote: "Mumbai is our creative powerhouse. From here, we oversee the largest productions, ensuring every frame meets the highest standards of cinematic excellence.",
+    headQuote:
+      "Mumbai is our creative powerhouse. From here, we oversee the largest productions, ensuring every frame meets the highest standards of cinematic excellence.",
   },
   {
     city: "Patna",
-    address: "WorkSpace - Co-Working Space in Patna, 2nd Floor, Kanti Factory Rd, above Drug Point, near Bank of Baroda, New Colony, Mahatma Gandhi Nagar, Kankarbagh, Patna, Bihar 800020",
+    address:
+      "WorkSpace - Co-Working Space in Patna, 2nd Floor, Kanti Factory Rd, above Drug Point, near Bank of Baroda, New Colony, Mahatma Gandhi Nagar, Kankarbagh, Patna, Bihar 800020",
     phone: "+91 6207462473",
     email: "ankit@happylamb.co.in",
     image: patnaStudioImg,
     headName: "Ankit Kumar",
     headRole: "Studio Head - Patna",
     headImage: patnaHeadImg,
-    headQuote: "Patna represents our commitment to pan-India reach. We bring world-class production values to the heart of Bihar, empowering local brands and stories.",
+    headQuote:
+      "Patna represents our commitment to pan-India reach. We bring world-class production values to the heart of Bihar, empowering local brands and stories.",
   },
 ];
 
 // ═══ 2 STUDIO CAROUSEL COMPONENT ═══
 function StudioCarousel() {
   const [current, setCurrent] = useState(0);
-  
+
   const visuals = [
     { src: mumbaiStudioImg, alt: "Mumbai Studio" },
     { src: patnaStudioImg, alt: "Patna Studio" },
@@ -217,7 +226,7 @@ function StudioCarousel() {
             key={i}
             onClick={() => setCurrent(i)}
             className={`h-1.5 rounded-full transition-all duration-500 ${
-              i === current ? 'w-6 bg-white' : 'w-1.5 bg-white/40'
+              i === current ? "w-6 bg-white" : "w-1.5 bg-white/40"
             }`}
             aria-label={`Go to slide ${i + 1}`}
           />
@@ -236,7 +245,6 @@ function About() {
       <section className="relative overflow-hidden min-h-[60vh] flex items-center pt-28 pb-16 bg-background border-b border-border/40">
         <div className="mx-auto max-w-[1400px] px-6 sm:px-10 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            
             {/* LEFT: Text Content */}
             <Reveal>
               <div className="flex items-center gap-3 mb-4">
@@ -245,15 +253,19 @@ function About() {
                   Est. 2022
                 </p>
               </div>
-              
+
               <h1 className="text-[clamp(3.5rem,9vw,6rem)] leading-[0.95] tracking-tighter font-medium text-foreground max-w-4xl">
                 Craft, contracts <br />
                 <span className="italic text-muted-foreground/60">& credibility.</span>
               </h1>
-              
+
               <p className="mt-8 max-w-xl text-base sm:text-lg text-muted-foreground leading-relaxed">
-                We are mumbai based company, we specialize in collaborating with new and not so new companies across many industries to amplify thier marketing performance.
-                Happy lamb production works with feel good brands including food and drink, health and lifestyle, sports and technology, pharmaceutical and leisure. we help brands to tell their stories in the most creative way using mix of creativity , technology, ideas and passion.
+                We are mumbai based company, we specialize in collaborating with new and not so new
+                companies across many industries to amplify thier marketing performance. Happy lamb
+                production works with feel good brands including food and drink, health and
+                lifestyle, sports and technology, pharmaceutical and leisure. we help brands to tell
+                their stories in the most creative way using mix of creativity , technology, ideas
+                and passion.
               </p>
             </Reveal>
 
@@ -278,19 +290,20 @@ function About() {
       {/* ═══════════════ 2. FOUNDER NOTE ═══════════════ */}
       <section className="bg-ink py-28 text-ink-foreground relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-foreground/5 rounded-full blur-[120px] pointer-events-none"></div>
-        
+
         <div className="relative mx-auto max-w-[1400px] px-6 sm:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-            
             {/* Left: Founder Profile */}
             <Reveal className="lg:col-span-4 flex flex-col">
               <div className="relative pl-6 border-l-2 border-ink-foreground/30 mb-4">
                 <div className="flex items-center gap-2">
                   <Users className="h-5 w-5 text-ink-foreground/50" />
-                  <span className="text-xs tracking-[0.2em] text-ink-foreground/40 uppercase">From the founder</span>
+                  <span className="text-xs tracking-[0.2em] text-ink-foreground/40 uppercase">
+                    From the founder
+                  </span>
                 </div>
               </div>
-              
+
               <div className="flex items-center gap-4 pl-6">
                 <img
                   src={m1}
@@ -309,8 +322,18 @@ function About() {
             {/* Right: Quote */}
             <Reveal delay={0.1} className="lg:col-span-8">
               <blockquote className="text-2xl sm:text-3xl md:text-4xl leading-tight font-light text-ink-foreground/90">
-                "Now a days entrepreneurs coming with new Idea of product and we Make it look better with stunning packaging .we design your product we give a feeling to it that customer relate them self to buy it ..not only this ,The age of the typical brand-consumer relationship is over. 
-                <span className="font-bold text-white italic">  In its place is an audience of human beings looking for real relationships with human-centered.</span> It's no longer sufficient to simply make the sale and move on. Showing you truly understand the human behind the purchase, their hopes and fears, will forge a relationship that endures."
+                "Now a days entrepreneurs coming with new Idea of product and we Make it look better
+                with stunning packaging .we design your product we give a feeling to it that
+                customer relate them self to buy it ..not only this ,The age of the typical
+                brand-consumer relationship is over.
+                <span className="font-bold text-white italic">
+                  {" "}
+                  In its place is an audience of human beings looking for real relationships with
+                  human-centered.
+                </span>{" "}
+                It's no longer sufficient to simply make the sale and move on. Showing you truly
+                understand the human behind the purchase, their hopes and fears, will forge a
+                relationship that endures."
               </blockquote>
               <div className="mt-8 flex items-center gap-6">
                 <div className="w-px h-8 bg-ink-foreground/20"></div>
@@ -324,15 +347,17 @@ function About() {
       {/* ═══════════════ 3. VALUES & TIMELINE ═══════════════ */}
       <section className="py-28 bg-background">
         <div className="mx-auto max-w-[1400px] px-6 sm:px-10">
-          
           {/* Values Grid */}
           <Reveal className="mb-24">
             <div className="flex items-center gap-4 mb-6">
               <div className="h-px w-6 bg-border"></div>
               <p className="text-xs tracking-[0.2em] text-muted-foreground uppercase">Our Core</p>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-12">Principles we don't <span className="italic font-normal text-muted-foreground/60">compromise</span> on.</h2>
-            
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-12">
+              Principles we don't{" "}
+              <span className="italic font-normal text-muted-foreground/60">compromise</span> on.
+            </h2>
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
               {VALUES.map((v, i) => (
                 <Reveal key={v.title} delay={i * 0.1} className="group">
@@ -352,12 +377,14 @@ function About() {
           <Reveal>
             <div className="flex items-center gap-4 mb-8">
               <div className="h-px w-6 bg-border"></div>
-              <p className="text-xs tracking-[0.2em] text-muted-foreground uppercase">OUR JOURNEY</p>
+              <p className="text-xs tracking-[0.2em] text-muted-foreground uppercase">
+                OUR JOURNEY
+              </p>
             </div>
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
               How we <span className="italic font-normal text-muted-foreground/60">got here</span>.
             </h2>
-            
+
             <div className="flex items-center gap-2 mb-8 text-muted-foreground/50">
               <span className="h-px w-12 bg-border"></span>
               <ArrowRight className="h-4 w-4 animate-pulse" />
@@ -368,8 +395,12 @@ function About() {
               {TIMELINE.map((t, i) => (
                 <Reveal key={t.year} delay={i * 0.05}>
                   <div className="flex flex-col border-t-2 border-foreground/10 pt-4 hover:border-foreground transition-all duration-300">
-                    <span className="text-base font-bold text-foreground/70 tracking-wide">{t.year}</span>
-                    <h4 className="font-bold text-base text-foreground tracking-tight mt-1">{t.title}</h4>
+                    <span className="text-base font-bold text-foreground/70 tracking-wide">
+                      {t.year}
+                    </span>
+                    <h4 className="font-bold text-base text-foreground tracking-tight mt-1">
+                      {t.title}
+                    </h4>
                     <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{t.text}</p>
                   </div>
                 </Reveal>
@@ -384,12 +415,17 @@ function About() {
         <div className="mx-auto max-w-[1400px] px-6 sm:px-10">
           <Reveal className="flex flex-col md:flex-row justify-between items-end mb-16 pb-8 border-b border-border/40">
             <div>
-              <p className="text-xs tracking-[0.2em] text-muted-foreground uppercase mb-2">WORKFLOW</p>
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tight">Six steps. <span className="italic font-normal text-muted-foreground/60">Zero surprises.</span></h2>
+              <p className="text-xs tracking-[0.2em] text-muted-foreground uppercase mb-2">
+                WORKFLOW
+              </p>
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
+                Six steps.{" "}
+                <span className="italic font-normal text-muted-foreground/60">Zero surprises.</span>
+              </h2>
             </div>
             <p className="max-w-md text-sm text-muted-foreground mt-4 md:mt-0">
-              Every project follows this exact process. No shortcuts, no skipped stages. 
-              This rigour is why our deadlines hold.
+              Every project follows this exact process. No shortcuts, no skipped stages. This rigour
+              is why our deadlines hold.
             </p>
           </Reveal>
 
@@ -398,7 +434,9 @@ function About() {
               <Reveal key={p.step} delay={i * 0.06}>
                 <div className="flex flex-col">
                   <div className="flex items-center gap-4 mb-4">
-                    <span className="text-6xl font-light tracking-tighter text-muted-foreground/30">{p.step}</span>
+                    <span className="text-6xl font-light tracking-tighter text-muted-foreground/30">
+                      {p.step}
+                    </span>
                     <div className="h-px flex-1 bg-border/30"></div>
                   </div>
                   <h4 className="font-bold text-lg tracking-tight mb-2">{p.title}</h4>
@@ -418,7 +456,10 @@ function About() {
               <div className="h-px w-6 bg-border"></div>
               <p className="text-xs tracking-[0.2em] text-muted-foreground uppercase">Services</p>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight">Full-service <span className="italic font-normal text-muted-foreground/60">capabilities.</span></h2>
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
+              Full-service{" "}
+              <span className="italic font-normal text-muted-foreground/60">capabilities.</span>
+            </h2>
           </Reveal>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -426,7 +467,9 @@ function About() {
               <Reveal key={c.label} delay={i * 0.04}>
                 <div className="group flex items-center gap-4 border-b border-border/50 py-5 transition-all duration-300 hover:border-foreground/30 hover:pl-2">
                   <c.icon className="h-5 w-5 shrink-0 text-foreground/40" />
-                  <span className="text-sm font-medium leading-snug text-foreground/80 group-hover:text-foreground transition-colors">{c.label}</span>
+                  <span className="text-sm font-medium leading-snug text-foreground/80 group-hover:text-foreground transition-colors">
+                    {c.label}
+                  </span>
                 </div>
               </Reveal>
             ))}
@@ -440,14 +483,17 @@ function About() {
           <Reveal className="text-center max-w-3xl mx-auto mb-16">
             <div className="flex items-center justify-center gap-4 mb-4">
               <div className="h-px w-6 bg-border"></div>
-              <p className="text-xs tracking-[0.2em] text-muted-foreground uppercase">Our Studios</p>
+              <p className="text-xs tracking-[0.2em] text-muted-foreground uppercase">
+                Our Studios
+              </p>
               <div className="h-px w-6 bg-border"></div>
             </div>
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
               Mumbai <span className="text-muted-foreground/40">·</span> Patna
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-              Two production hubs. Pan-India crew and permissions capability. World-class craft, delivered locally.
+              Two production hubs. Pan-India crew and permissions capability. World-class craft,
+              delivered locally.
             </p>
           </Reveal>
 
@@ -482,7 +528,9 @@ function About() {
                       <div className="flex items-center gap-3 pt-3 mt-2 border-t border-border/40">
                         <div className="flex items-center gap-2 px-3 py-1.5 bg-gray-50 dark:bg-zinc-800/50 rounded-lg border border-gray-200 dark:border-zinc-700">
                           <FileText className="h-3.5 w-3.5 text-gray-500 dark:text-zinc-400" />
-                          <span className="text-[10px] font-medium text-gray-500 dark:text-zinc-400 uppercase tracking-wider">GSTIN</span>
+                          <span className="text-[10px] font-medium text-gray-500 dark:text-zinc-400 uppercase tracking-wider">
+                            GSTIN
+                          </span>
                           <span className="w-px h-4 bg-gray-300 dark:bg-zinc-600" />
                           <span className="font-mono text-xs font-bold text-black dark:text-white tracking-wider">
                             {GSTIN}
@@ -520,7 +568,6 @@ function About() {
       <section className="py-28 bg-background border-b border-border/40">
         <div className="mx-auto max-w-[1400px] px-6 sm:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            
             <Reveal className="flex flex-col">
               <div className="flex items-center gap-4 mb-4">
                 <div className="h-px w-6 bg-border"></div>
@@ -531,10 +578,10 @@ function About() {
                 <span className="italic font-normal text-foreground/60">the work.</span>
               </h2>
               <p className="text-base text-muted-foreground leading-relaxed max-w-lg mb-10">
-                Directors, DOPs, editors, designers, producers, and strategists — 35+ full-time specialists 
-                united by an unreasonable standard of craft.
+                Directors, DOPs, editors, designers, producers, and strategists — 35+ full-time
+                specialists united by an unreasonable standard of craft.
               </p>
-              
+
               <Link
                 to="/team"
                 className="inline-flex w-fit items-center gap-3 bg-ink text-ink-foreground px-8 py-3.5 rounded-full text-sm font-medium tracking-wide hover:bg-ink/80 hover:text-ink-foreground transition-all duration-300"
@@ -570,7 +617,8 @@ function About() {
               <span className="italic font-normal text-ink-foreground/40">worth watching</span>?
             </h2>
             <p className="mx-auto mt-6 max-w-xl text-ink-foreground/60 text-lg">
-              Whether it's a single product shoot or a full brand launch — let's talk about what you need.
+              Whether it's a single product shoot or a full brand launch — let's talk about what you
+              need.
             </p>
             <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6">
               <Link

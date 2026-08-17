@@ -11,7 +11,14 @@ export type StudioVideo = {
   id: string;
   title: string;
   client: string;
-  category: "Ad Films" | "Product Reels" | "Corporate Films" | "Brand Campaigns" | "Social Media" | "Film" | "Brands Films";
+  category:
+    | "Ad Films"
+    | "Product Reels"
+    | "Corporate Films"
+    | "Brand Campaigns"
+    | "Social Media"
+    | "Film"
+    | "Brands Films";
   meta: string;
   src: string;
   poster: string;

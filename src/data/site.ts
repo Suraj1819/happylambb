@@ -11,7 +11,7 @@ export const COMPANY = {
   whatsapp: "916207462473",
   email: "ankit@happylamp.co.in",
   address: "Studio 04, Creative Quarter, New Delhi, India",
-  
+
   youtube: "https://youtube.com/@happylambproduction",
   facebook: "https://facebook.com/happylambproduction",
   twitter: "https://twitter.com/happylambprod",
@@ -23,38 +23,44 @@ export const COMPANY = {
 // Auto Import Folder Photos (For Services)
 // ============================================
 export function getServiceFolderImages(slug: string): string[] {
-  const modules = import.meta.glob<{ default: string }>('/src/services/*/*.{jpg,jpeg,png,webp,gif}', {
-    eager: true,
-    import: 'default'
-  });
+  const modules = import.meta.glob<{ default: string }>(
+    "/src/services/*/*.{jpg,jpeg,png,webp,gif}",
+    {
+      eager: true,
+      import: "default",
+    },
+  );
 
-  const keys = Object.keys(modules).filter(key => key.includes(`/services/${slug}/`));
-  return keys.map(key => modules[key]);
+  const keys = Object.keys(modules).filter((key) => key.includes(`/services/${slug}/`));
+  return keys.map((key) => modules[key]);
 }
 
 // ============================================
 // Auto Import Folder Photos (For Work/Projects)
 // ============================================
 export function getProjectFolderImages(slug: string): string[] {
-  const modules = import.meta.glob<{ default: string }>('/src/work/*/*.{jpg,jpeg,png,webp,gif}', {
+  const modules = import.meta.glob<{ default: string }>("/src/work/*/*.{jpg,jpeg,png,webp,gif}", {
     eager: true,
-    import: 'default'
+    import: "default",
   });
 
-  const keys = Object.keys(modules).filter(key => key.includes(`/work/${slug}/`));
-  return keys.map(key => modules[key]);
+  const keys = Object.keys(modules).filter((key) => key.includes(`/work/${slug}/`));
+  return keys.map((key) => modules[key]);
 }
 
 // Cover Image for Services Index Page
 
 export function getServiceCoverImage(slug: string, fallback: string): string {
-  const modules = import.meta.glob<{ default: string }>('/src/services/*/*.{jpg,jpeg,png,webp,gif}', {
-    eager: true,
-    import: 'default'
-  });
+  const modules = import.meta.glob<{ default: string }>(
+    "/src/services/*/*.{jpg,jpeg,png,webp,gif}",
+    {
+      eager: true,
+      import: "default",
+    },
+  );
 
-  const keys = Object.keys(modules).filter(key => key.includes(`/services/${slug}/`));
-  
+  const keys = Object.keys(modules).filter((key) => key.includes(`/services/${slug}/`));
+
   // Return the first image found, or fallback
   return keys.length > 0 ? modules[keys[0]] : fallback;
 }
@@ -76,7 +82,8 @@ export const VIDEOS = {
 };
 
 export const MP4_VIDEOS = {
-  sample1: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
+  sample1:
+    "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
   sample2: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
   sample3: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
 };
@@ -110,7 +117,8 @@ export const SERVICES: Service[] = [
     title: "Commercial Ad Film Production",
     short: "Story-first TV and digital commercials engineered for recall.",
     hero: "Ad films that make the nation remember your brand.",
-    overview: "We write, direct and deliver commercial ad films for television, OTT and digital-first campaigns. From a single insight to a broadcast-ready master, every frame is built around one job: making your brand impossible to ignore.",
+    overview:
+      "We write, direct and deliver commercial ad films for television, OTT and digital-first campaigns. From a single insight to a broadcast-ready master, every frame is built around one job: making your brand impossible to ignore.",
     benefits: [
       "Concept, script and storyboard in-house",
       "Broadcast, OTT and vertical-first masters",
@@ -131,9 +139,18 @@ export const SERVICES: Service[] = [
     ),
     gallery: [],
     faqs: [
-      { q: "How long does an ad film take?", a: "A focused digital commercial runs 2–3 weeks end to end. Full TVC campaigns typically take 4–6 weeks." },
-      { q: "Do you handle casting and permissions?", a: "Yes. Casting, locations, government shooting permissions and line production are all handled in-house." },
-      { q: "What's your pricing model?", a: "We offer custom quotes based on project scope, crew requirements, and post-production needs." },
+      {
+        q: "How long does an ad film take?",
+        a: "A focused digital commercial runs 2–3 weeks end to end. Full TVC campaigns typically take 4–6 weeks.",
+      },
+      {
+        q: "Do you handle casting and permissions?",
+        a: "Yes. Casting, locations, government shooting permissions and line production are all handled in-house.",
+      },
+      {
+        q: "What's your pricing model?",
+        a: "We offer custom quotes based on project scope, crew requirements, and post-production needs.",
+      },
     ],
     image: brandImg,
     video: VIDEOS.commercialReel,
@@ -148,7 +165,8 @@ export const SERVICES: Service[] = [
     title: "Mixed Media Campaigns",
     short: "Integrated marketing solutions that drive engagement.",
     hero: "Campaigns that blend traditional and digital media.",
-    overview: "We create integrated marketing campaigns that combine traditional and digital media to reach your audience where they are. From concept to execution, we ensure your message resonates across all channels.",
+    overview:
+      "We create integrated marketing campaigns that combine traditional and digital media to reach your audience where they are. From concept to execution, we ensure your message resonates across all channels.",
     benefits: [
       "Concept, script and storyboard in-house",
       "Broadcast, OTT and vertical-first masters",
@@ -169,9 +187,18 @@ export const SERVICES: Service[] = [
     ),
     gallery: [],
     faqs: [
-      { q: "How long does an ad film take?", a: "A focused digital commercial runs 2–3 weeks end to end. Full TVC campaigns typically take 4–6 weeks." },
-      { q: "Do you handle casting and permissions?", a: "Yes. Casting, locations, government shooting permissions and line production are all handled in-house." },
-      { q: "What's your pricing model?", a: "We offer custom quotes based on project scope, crew requirements, and post-production needs." },
+      {
+        q: "How long does an ad film take?",
+        a: "A focused digital commercial runs 2–3 weeks end to end. Full TVC campaigns typically take 4–6 weeks.",
+      },
+      {
+        q: "Do you handle casting and permissions?",
+        a: "Yes. Casting, locations, government shooting permissions and line production are all handled in-house.",
+      },
+      {
+        q: "What's your pricing model?",
+        a: "We offer custom quotes based on project scope, crew requirements, and post-production needs.",
+      },
     ],
     image: brandImg,
     video: VIDEOS.commercialReel,
@@ -187,7 +214,8 @@ export const SERVICES: Service[] = [
     title: "Documentary Film Production",
     short: "Authentic stories that connect with audiences.",
     hero: "Documentary films that tell your story.",
-    overview: "We create compelling documentary films that showcase real people, places and events. From concept to screen, we bring authenticity and artistry to every frame.",
+    overview:
+      "We create compelling documentary films that showcase real people, places and events. From concept to screen, we bring authenticity and artistry to every frame.",
     benefits: [
       "Concept, script and storyboard in-house",
       "Broadcast, OTT and vertical-first masters",
@@ -208,9 +236,18 @@ export const SERVICES: Service[] = [
     ),
     gallery: [],
     faqs: [
-      { q: "How long does a documentary take?", a: "A focused documentary runs 2–3 weeks end to end. Full-length films typically take 4–6 weeks." },
-      { q: "Do you handle casting and permissions?", a: "Yes. Casting, locations, government shooting permissions and line production are all handled in-house." },
-      { q: "What's your pricing model?", a: "We offer custom quotes based on project scope, crew requirements, and post-production needs." },
+      {
+        q: "How long does a documentary take?",
+        a: "A focused documentary runs 2–3 weeks end to end. Full-length films typically take 4–6 weeks.",
+      },
+      {
+        q: "Do you handle casting and permissions?",
+        a: "Yes. Casting, locations, government shooting permissions and line production are all handled in-house.",
+      },
+      {
+        q: "What's your pricing model?",
+        a: "We offer custom quotes based on project scope, crew requirements, and post-production needs.",
+      },
     ],
     image: brandImg,
     video: VIDEOS.commercialReel,
@@ -220,13 +257,14 @@ export const SERVICES: Service[] = [
       { src: "#", title: "BTS - Making Of" },
     ],
   },
-  
+
   {
     slug: "corporate-video-production",
     title: "Corporate Video Production",
     short: "Films that make companies look as serious as they are.",
     hero: "Corporate films with the polish of cinema.",
-    overview: "Brand films, founder stories, plant walkthroughs, CSR documentaries, investor and induction films — produced with editorial restraint and cinematic craft.",
+    overview:
+      "Brand films, founder stories, plant walkthroughs, CSR documentaries, investor and induction films — produced with editorial restraint and cinematic craft.",
     benefits: [
       "Interview direction that gets usable soundbites",
       "Multi-cam, gimbal, drone and plant-safe coverage",
@@ -247,8 +285,14 @@ export const SERVICES: Service[] = [
     ),
     gallery: [],
     faqs: [
-      { q: "Can you shoot inside factories?", a: "Yes — we run safety-compliant, low-footprint units used to live industrial sites." },
-      { q: "How long is a typical corporate film?", a: "Most corporate films run 2-5 minutes, but we deliver in any length you need." },
+      {
+        q: "Can you shoot inside factories?",
+        a: "Yes — we run safety-compliant, low-footprint units used to live industrial sites.",
+      },
+      {
+        q: "How long is a typical corporate film?",
+        a: "Most corporate films run 2-5 minutes, but we deliver in any length you need.",
+      },
     ],
     image: corporateImg,
     video: VIDEOS.corporateFilm1,
@@ -262,7 +306,8 @@ export const SERVICES: Service[] = [
     title: "Product Photography",
     short: "Studio-grade stills that sell on every screen.",
     hero: "Every product deserves its best light.",
-    overview: "E-commerce, packshot, hero and lifestyle product photography lit to make texture, finish and detail feel premium — optimised for marketplaces, ads and print.",
+    overview:
+      "E-commerce, packshot, hero and lifestyle product photography lit to make texture, finish and detail feel premium — optimised for marketplaces, ads and print.",
     benefits: [
       "Marketplace-compliant white background sets",
       "Hero, macro, splash and set-styled lifestyle frames",
@@ -283,20 +328,25 @@ export const SERVICES: Service[] = [
     ),
     gallery: [],
     faqs: [
-      { q: "What is your per-SKU turnaround?", a: "Typical volume shoots deliver 60–120 finished SKUs per shoot day." },
-      { q: "Do you provide retouching?", a: "Yes, all images come with professional retouching included." },
+      {
+        q: "What is your per-SKU turnaround?",
+        a: "Typical volume shoots deliver 60–120 finished SKUs per shoot day.",
+      },
+      {
+        q: "Do you provide retouching?",
+        a: "Yes, all images come with professional retouching included.",
+      },
     ],
     image: productImg,
-    videos: [
-      { src: "#", title: "Product Showreel" },
-    ],
+    videos: [{ src: "#", title: "Product Showreel" }],
   },
   {
     slug: "catalogue-shoot",
     title: "Catalogue Shoot",
     short: "High-volume catalogue production without losing craft.",
     hero: "Catalogues that look designed, not documented.",
-    overview: "Season catalogues, price lists and dealer books shot, styled and delivered as press-ready layouts with consistent light across thousands of frames.",
+    overview:
+      "Season catalogues, price lists and dealer books shot, styled and delivered as press-ready layouts with consistent light across thousands of frames.",
     benefits: [
       "Consistent lighting across the full range",
       "Model, flat-lay and mannequin options",
@@ -317,20 +367,25 @@ export const SERVICES: Service[] = [
     ),
     gallery: [],
     faqs: [
-      { q: "Do you also design the catalogue?", a: "Yes — brochure and catalogue design is an in-house specialism." },
-      { q: "How many pages can you handle?", a: "We've handled catalogues from 8 pages to 200+ pages." },
+      {
+        q: "Do you also design the catalogue?",
+        a: "Yes — brochure and catalogue design is an in-house specialism.",
+      },
+      {
+        q: "How many pages can you handle?",
+        a: "We've handled catalogues from 8 pages to 200+ pages.",
+      },
     ],
     image: catalogueImg,
-    videos: [
-      { src: "#", title: "Catalogue Showreel" },
-    ],
+    videos: [{ src: "#", title: "Catalogue Showreel" }],
   },
   {
     slug: "furniture-photography",
     title: "Furniture Photography",
     short: "Scale, material and craft, captured honestly.",
     hero: "Furniture shot the way architects photograph rooms.",
-    overview: "Studio and in-situ furniture photography with set builds that place your pieces in aspirational, believable interiors.",
+    overview:
+      "Studio and in-situ furniture photography with set builds that place your pieces in aspirational, believable interiors.",
     benefits: [
       "Set-built room vignettes and cyclorama sets",
       "Detail frames for joinery, fabric and finish",
@@ -351,20 +406,22 @@ export const SERVICES: Service[] = [
     ),
     gallery: [],
     faqs: [
-      { q: "Can you shoot at our showroom?", a: "Yes, we run full location units with portable studio lighting." },
+      {
+        q: "Can you shoot at our showroom?",
+        a: "Yes, we run full location units with portable studio lighting.",
+      },
       { q: "Do you handle styling?", a: "Yes, we have professional stylists on our team." },
     ],
     image: furnitureImg,
-    videos: [
-      { src: "#", title: "Furniture Showreel" },
-    ],
+    videos: [{ src: "#", title: "Furniture Showreel" }],
   },
   {
     slug: "brand-films-and-photography",
     title: "Brand films and Photography",
     short: "A visual language your whole team can use.",
     hero: "One look. Every touchpoint.",
-    overview: "Campaign, editorial, founder and culture photography that gives your brand one consistent, ownable look across every channel.",
+    overview:
+      "Campaign, editorial, founder and culture photography that gives your brand one consistent, ownable look across every channel.",
     benefits: [
       "Art-directed campaign shoots",
       "Reusable image libraries and usage guidelines",
@@ -385,7 +442,10 @@ export const SERVICES: Service[] = [
     ),
     gallery: [],
     faqs: [
-      { q: "Do you shoot stills and video together?", a: "Yes — combined stills and motion days are our most requested format." },
+      {
+        q: "Do you shoot stills and video together?",
+        a: "Yes — combined stills and motion days are our most requested format.",
+      },
       { q: "How many images do you deliver?", a: "Typically 50-100+ final images per shoot day." },
     ],
     image: brandImg,
@@ -402,7 +462,8 @@ export const SERVICES: Service[] = [
     title: "Social Media Marketing",
     short: "Always-on content engineered for the algorithm.",
     hero: "Content calendars that behave like campaigns.",
-    overview: "Monthly content systems: strategy, shoot days, reels, statics, copy, community and reporting — run by people who actually produce the content they plan.",
+    overview:
+      "Monthly content systems: strategy, shoot days, reels, statics, copy, community and reporting — run by people who actually produce the content they plan.",
     benefits: [
       "One shoot day, a full month of assets",
       "AI-assisted hook, caption and hashtag testing",
@@ -423,21 +484,23 @@ export const SERVICES: Service[] = [
     ),
     gallery: [],
     faqs: [
-      { q: "Is there a minimum engagement?", a: "Retainers start at three months so results have room to compound." },
+      {
+        q: "Is there a minimum engagement?",
+        a: "Retainers start at three months so results have room to compound.",
+      },
       { q: "Do you create copy too?", a: "Yes, we provide full copywriting and caption support." },
     ],
     image: brandImg,
     video: VIDEOS.socialReel,
-    videos: [
-      { src: "#", title: "Social Media Reel" },
-    ],
+    videos: [{ src: "#", title: "Social Media Reel" }],
   },
   {
     slug: "digital-advertising",
     title: "Digital Advertising",
     short: "Performance creative plus the media to match.",
     hero: "Creative that performs, media that compounds.",
-    overview: "Meta, Google, YouTube and programmatic campaigns where the creative and the media plan are built by the same team — so learnings feed straight back into production.",
+    overview:
+      "Meta, Google, YouTube and programmatic campaigns where the creative and the media plan are built by the same team — so learnings feed straight back into production.",
     benefits: [
       "Creative testing frameworks with 10+ variants",
       "AI-driven audience and budget optimisation",
@@ -458,20 +521,22 @@ export const SERVICES: Service[] = [
     ),
     gallery: [],
     faqs: [
-      { q: "Do you manage ad spend?", a: "Yes — we can run media directly or work alongside your existing agency." },
+      {
+        q: "Do you manage ad spend?",
+        a: "Yes — we can run media directly or work alongside your existing agency.",
+      },
       { q: "What platforms do you handle?", a: "Meta, Google, YouTube, and programmatic display." },
     ],
     image: productImg,
-    videos: [
-      { src: "#", title: "Digital Showreel" },
-    ],
+    videos: [{ src: "#", title: "Digital Showreel" }],
   },
   {
     slug: "av-production",
     title: "AV Production",
     short: "Audio-visual storytelling for stage and screen.",
     hero: "Big rooms. Bigger reveals.",
-    overview: "Event AVs, launch films, conference openers, product reveals and digital AV shoots produced with sound design and motion built in from the first frame.",
+    overview:
+      "Event AVs, launch films, conference openers, product reveals and digital AV shoots produced with sound design and motion built in from the first frame.",
     benefits: [
       "Launch films and stage-ready AV formats",
       "3D, motion graphics and VFX",
@@ -492,21 +557,26 @@ export const SERVICES: Service[] = [
     ),
     gallery: [],
     faqs: [
-      { q: "Can you deliver for LED walls?", a: "Yes — we deliver custom-ratio masters mapped to your screen spec." },
-      { q: "Do you provide on-site support?", a: "Yes, we provide technical supervision and playback support." },
+      {
+        q: "Can you deliver for LED walls?",
+        a: "Yes — we deliver custom-ratio masters mapped to your screen spec.",
+      },
+      {
+        q: "Do you provide on-site support?",
+        a: "Yes, we provide technical supervision and playback support.",
+      },
     ],
     image: corporateImg,
     video: VIDEOS.avShowreel,
-    videos: [
-      { src: "#", title: "AV Showreel" },
-    ],
+    videos: [{ src: "#", title: "AV Showreel" }],
   },
   {
     slug: "line-production",
     title: "Line Production",
     short: "Your India unit, fully handled.",
     hero: "Land in India. We handle the rest.",
-    overview: "Full-service line production for domestic and international clients: budgets, crew, kit, cast, locations, logistics and all government shooting permissions, 360° across India.",
+    overview:
+      "Full-service line production for domestic and international clients: budgets, crew, kit, cast, locations, logistics and all government shooting permissions, 360° across India.",
     benefits: [
       "All government shooting permissions",
       "Vetted crew and equipment across India",
@@ -527,13 +597,17 @@ export const SERVICES: Service[] = [
     ),
     gallery: [],
     faqs: [
-      { q: "How early should we brief you?", a: "Three to four weeks gives permissions and locations comfortable room." },
-      { q: "Do you handle international crews?", a: "Yes, we've handled production for clients from UK, Germany, and USA." },
+      {
+        q: "How early should we brief you?",
+        a: "Three to four weeks gives permissions and locations comfortable room.",
+      },
+      {
+        q: "Do you handle international crews?",
+        a: "Yes, we've handled production for clients from UK, Germany, and USA.",
+      },
     ],
     image: furnitureImg,
-    videos: [
-      { src: "#", title: "Line Production Reel" },
-    ],
+    videos: [{ src: "#", title: "Line Production Reel" }],
   },
   // 🟢 NEW SERVICE ADDED HERE
   {
@@ -541,7 +615,8 @@ export const SERVICES: Service[] = [
     title: "Car Interior Photography",
     short: "Luxury automotive interiors captured with cinematic precision.",
     hero: "Where automotive design meets cinematic craft.",
-    overview: "We specialize in shooting car interiors for luxury brands, automotive magazines, and showroom promotions. Every curve, material, and dashboard detail is lit to perfection.",
+    overview:
+      "We specialize in shooting car interiors for luxury brands, automotive magazines, and showroom promotions. Every curve, material, and dashboard detail is lit to perfection.",
     benefits: [
       "Interior light painting and high-dynamic-range (HDR) techniques",
       "Detail shots for leather, stitching, wood trim, and tech interfaces",
@@ -558,17 +633,21 @@ export const SERVICES: Service[] = [
       "Vehicle handover and shot list planning",
       "Set design, props, and lighting placement",
       "Careful handling with on-set styling",
-      "Colour-graded and retouched final delivery"
+      "Colour-graded and retouched final delivery",
     ),
     gallery: [],
     faqs: [
-      { q: "Can you shoot at our showroom?", a: "Yes, we run full location units with portable studio lighting." },
-      { q: "Do you handle styling and props?", a: "Yes, we have professional stylists on our team." },
+      {
+        q: "Can you shoot at our showroom?",
+        a: "Yes, we run full location units with portable studio lighting.",
+      },
+      {
+        q: "Do you handle styling and props?",
+        a: "Yes, we have professional stylists on our team.",
+      },
     ],
     image: "",
-    videos: [
-      { src: "#", title: "Car Interior Showreel" },
-    ],
+    videos: [{ src: "#", title: "Car Interior Showreel" }],
   },
 ];
 
@@ -603,19 +682,26 @@ export const PROJECTS: Project[] = [
     image: brandImg,
     video: VIDEOS.commercialReel,
     videos: [
-      { src: "https://www.youtube.com/watch?v=bmXPE2fv9VA", title: "Main Commercial", },
+      { src: "https://www.youtube.com/watch?v=bmXPE2fv9VA", title: "Main Commercial" },
       { src: VIDEOS.commercialReel2, title: "BTS - Making Of", poster: brandImg },
       { src: MP4_VIDEOS.sample1, title: "Behind The Scenes", poster: corporateImg },
     ],
-    objective: "Launch a premium fragrance line to a young, digital-first audience without diluting its luxury positioning.",
-    challenge: "A tight 12-day window from brief to first media flight, with three language versions required at launch.",
-    approach: "A single-set macro film shot at high frame rate, cut into one hero film and eleven vertical variants for paid testing.",
+    objective:
+      "Launch a premium fragrance line to a young, digital-first audience without diluting its luxury positioning.",
+    challenge:
+      "A tight 12-day window from brief to first media flight, with three language versions required at launch.",
+    approach:
+      "A single-set macro film shot at high frame rate, cut into one hero film and eleven vertical variants for paid testing.",
     results: [
       { label: "Views in week one", value: "4.2M" },
       { label: "Lift in add-to-cart", value: "+38%" },
       { label: "Cost per view", value: "-27%" },
     ],
-    feedback: { quote: "They turned a packshot brief into a brand moment. The film still carries our entire campaign.", author: "Head of Marketing, JCB" },
+    feedback: {
+      quote:
+        "They turned a packshot brief into a brand moment. The film still carries our entire campaign.",
+      author: "Head of Marketing, JCB",
+    },
     gallery: [],
   },
   {
@@ -626,15 +712,21 @@ export const PROJECTS: Project[] = [
     service: "Furniture Photography",
     year: "2025",
     image: furnitureImg,
-    objective: "Photograph 240 furniture SKUs with a single consistent visual language for print and web.",
-    challenge: "Four material families with wildly different reflectance had to feel like one collection.",
-    approach: "Built three modular room sets and locked one lighting recipe per family, with tethered live approval.",
+    objective:
+      "Photograph 240 furniture SKUs with a single consistent visual language for print and web.",
+    challenge:
+      "Four material families with wildly different reflectance had to feel like one collection.",
+    approach:
+      "Built three modular room sets and locked one lighting recipe per family, with tethered live approval.",
     results: [
       { label: "SKUs delivered", value: "240" },
       { label: "Shoot days", value: "6" },
       { label: "Return rate drop", value: "-19%" },
     ],
-    feedback: { quote: "The most organised shoot we have ever run. Every frame looked like the same brand.", author: "Category Head, Novo Living" },
+    feedback: {
+      quote: "The most organised shoot we have ever run. Every frame looked like the same brand.",
+      author: "Category Head, Novo Living",
+    },
     gallery: [],
   },
   {
@@ -650,15 +742,20 @@ export const PROJECTS: Project[] = [
       { src: VIDEOS.corporateFilm1, title: "Corporate Brand Film", poster: corporateImg },
       { src: MP4_VIDEOS.sample2, title: "Behind The Scenes", poster: brandImg },
     ],
-    objective: "Tell a 40-year manufacturing story to investors without sounding like an annual report.",
+    objective:
+      "Tell a 40-year manufacturing story to investors without sounding like an annual report.",
     challenge: "Nine plants across five states, shot inside live production lines.",
-    approach: "Documentary-led interviews cut against precision plant photography and an original score.",
+    approach:
+      "Documentary-led interviews cut against precision plant photography and an original score.",
     results: [
       { label: "Plants covered", value: "9" },
       { label: "Investor deck usage", value: "100%" },
       { label: "Completion rate", value: "72%" },
     ],
-    feedback: { quote: "Our chairman watched it twice without a single note. That has never happened.", author: "VP Communications, Meridian Group" },
+    feedback: {
+      quote: "Our chairman watched it twice without a single note. That has never happened.",
+      author: "VP Communications, Meridian Group",
+    },
     gallery: [],
   },
   {
@@ -669,15 +766,20 @@ export const PROJECTS: Project[] = [
     service: "Social Media Marketing",
     year: "2026",
     image: brandImg,
-    objective: "Build a repeatable content engine that could feed paid and organic from one shoot day a month.",
+    objective:
+      "Build a repeatable content engine that could feed paid and organic from one shoot day a month.",
     challenge: "A small internal team with no in-house production capability.",
-    approach: "Monthly bulk shoot days, AI-assisted hook testing, and a creative matrix rebuilt from live performance data.",
+    approach:
+      "Monthly bulk shoot days, AI-assisted hook testing, and a creative matrix rebuilt from live performance data.",
     results: [
       { label: "Monthly assets", value: "60+" },
       { label: "Follower growth", value: "+214%" },
       { label: "Blended ROAS", value: "4.1x" },
     ],
-    feedback: { quote: "One shoot day now covers a whole month of marketing. It changed how we plan.", author: "Founder, Lumen Wellness" },
+    feedback: {
+      quote: "One shoot day now covers a whole month of marketing. It changed how we plan.",
+      author: "Founder, Lumen Wellness",
+    },
     gallery: [],
   },
   {
@@ -688,15 +790,21 @@ export const PROJECTS: Project[] = [
     service: "Line Production",
     year: "2025",
     image: corporateImg,
-    objective: "Deliver a European crew a shoot-ready India unit across three cities in eleven days.",
+    objective:
+      "Deliver a European crew a shoot-ready India unit across three cities in eleven days.",
     challenge: "Highway closures, monsoon contingency and multi-state permissions.",
-    approach: "Parallel permission tracks, two recce teams and a fully costed contingency schedule.",
+    approach:
+      "Parallel permission tracks, two recce teams and a fully costed contingency schedule.",
     results: [
       { label: "Cities", value: "3" },
       { label: "Permissions cleared", value: "17" },
       { label: "Budget variance", value: "0%" },
     ],
-    feedback: { quote: "Nothing surprised us on the ground. That is the highest compliment for a line producer.", author: "Executive Producer, Atlas Motors" },
+    feedback: {
+      quote:
+        "Nothing surprised us on the ground. That is the highest compliment for a line producer.",
+      author: "Executive Producer, Atlas Motors",
+    },
     gallery: [],
   },
   {
@@ -709,33 +817,79 @@ export const PROJECTS: Project[] = [
     image: brandImg,
     objective: "Reset a heritage label's visual identity for a younger buyer.",
     challenge: "One shoot had to serve retail, e-commerce, OOH and social.",
-    approach: "A combined stills and motion day on cyclorama, with a documented visual guideline delivered alongside the library.",
+    approach:
+      "A combined stills and motion day on cyclorama, with a documented visual guideline delivered alongside the library.",
     results: [
       { label: "Assets delivered", value: "420" },
       { label: "Channels served", value: "6" },
       { label: "Store footfall", value: "+23%" },
     ],
-    feedback: { quote: "They gave us a look we can actually keep using. That is rare.", author: "Brand Director, Kaya Apparel" },
+    feedback: {
+      quote: "They gave us a look we can actually keep using. That is rare.",
+      author: "Brand Director, Kaya Apparel",
+    },
     gallery: [],
   },
 ];
 
 export const BRANDS = [
-  "Aurea", "Meridian", "Novo", "Lumen", "Kaya", "Atlas", "Vireo", "Orbit",
-  "Nordis", "Saffron", "Tessa", "Halcyon", "Verve", "Kite", "Solace", "Mantle",
+  "Aurea",
+  "Meridian",
+  "Novo",
+  "Lumen",
+  "Kaya",
+  "Atlas",
+  "Vireo",
+  "Orbit",
+  "Nordis",
+  "Saffron",
+  "Tessa",
+  "Halcyon",
+  "Verve",
+  "Kite",
+  "Solace",
+  "Mantle",
 ];
 
 export const TESTIMONIALS = [
-  { quote: "They think like a brand team and execute like a film unit. That combination is very hard to find in India.", author: "Ritika Malhotra", role: "CMO, Aurea Beauty" },
-  { quote: "Every deadline held. Every frame was on brand. We have moved all our production to them.", author: "Sandeep Rao", role: "VP Communications, Meridian Group" },
-  { quote: "Our catalogue conversion rate jumped the month the new photography went live.", author: "Aisha Kapoor", role: "Category Head, Novo Living" },
-  { quote: "As an international producer, I judge line production by how few calls I have to make. I made none.", author: "Lukas Berger", role: "Executive Producer, Atlas Motors" },
+  {
+    quote:
+      "They think like a brand team and execute like a film unit. That combination is very hard to find in India.",
+    author: "Ritika Malhotra",
+    role: "CMO, Aurea Beauty",
+  },
+  {
+    quote:
+      "Every deadline held. Every frame was on brand. We have moved all our production to them.",
+    author: "Sandeep Rao",
+    role: "VP Communications, Meridian Group",
+  },
+  {
+    quote: "Our catalogue conversion rate jumped the month the new photography went live.",
+    author: "Aisha Kapoor",
+    role: "Category Head, Novo Living",
+  },
+  {
+    quote:
+      "As an international producer, I judge line production by how few calls I have to make. I made none.",
+    author: "Lukas Berger",
+    role: "Executive Producer, Atlas Motors",
+  },
 ];
 
 export const INDUSTRIES = [
-  "FMCG", "Fashion & Apparel", "Furniture & Interiors", "Beauty & Personal Care",
-  "Real Estate", "Automotive", "Healthcare", "Manufacturing", "Hospitality",
-  "Education", "Jewellery", "Technology",
+  "FMCG",
+  "Fashion & Apparel",
+  "Furniture & Interiors",
+  "Beauty & Personal Care",
+  "Real Estate",
+  "Automotive",
+  "Healthcare",
+  "Manufacturing",
+  "Hospitality",
+  "Education",
+  "Jewellery",
+  "Technology",
 ];
 
 export type Member = {
@@ -768,22 +922,23 @@ export const TEAM: Member[] = [
     linkedin: "https://linkedin.com/in/kapilrawat",
     instagram: "https://instagram.com/kapilrawat",
   },
- {
-  name: "Ankit Kumar",
-  role: "Creative Director - Patna Branch (HEAD)",
-  rank: 1,
-  bio: "Director, Navrang Drama Club | Founder, Ankith Studios | Patna Branch Head. A multifaceted Creative Director, Filmmaker, and Artist with expertise in story writing, acting, singing, and visual storytelling. Proven leader in driving creative vision, managing cross-functional teams, and executing high-impact artistic projects. Core Expertise: Creative Direction, Story Writing, Acting, Singing, Filmmaking, Leadership, and Team Management.",
-  prompt: "portrait of Indian cinematographer",
-  linkedin: "https://www.linkedin.com/in/ankit-kumar-1b9666313?utm_source=share_via&utm_content=profile&utm_medium=member_android",
-  instagram: "https://www.instagram.com/ankith_studios?igsh=MTUwcjR3MWo4Y3l2eA==",
-  youtube: "https://youtube.com/@ankith_studio?si=Xn3MqWPhcWe2VDMC",
+  {
+    name: "Ankit Kumar",
+    role: "Creative Director - Patna Branch (HEAD)",
+    rank: 1,
+    bio: "Director, Navrang Drama Club | Founder, Ankith Studios | Patna Branch Head. A multifaceted Creative Director, Filmmaker, and Artist with expertise in story writing, acting, singing, and visual storytelling. Proven leader in driving creative vision, managing cross-functional teams, and executing high-impact artistic projects. Core Expertise: Creative Direction, Story Writing, Acting, Singing, Filmmaking, Leadership, and Team Management.",
+    prompt: "portrait of Indian cinematographer",
+    linkedin:
+      "https://www.linkedin.com/in/ankit-kumar-1b9666313?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+    instagram: "https://www.instagram.com/ankith_studios?igsh=MTUwcjR3MWo4Y3l2eA==",
+    youtube: "https://youtube.com/@ankith_studio?si=Xn3MqWPhcWe2VDMC",
   },
   {
-  name: "Ankit Kumar",
-  role: "Director",
-  rank: 2,
-  bio: "Ankit Kumar is a filmmaker and engineering student with a passion for visual storytelling and cinema. He works as a Director, Actor, Writer, and Cinematographer, with experience in theatre, short films, and creative production. He has directed and acted in college theatre productions and served as the Story Writer & Director of the short film Surya. As Co-Founder of Ankith Studio and Director of its Patna Branch, he leads creative direction, production, and team coordination.",
-  prompt: "portrait of Indian brand strategist",
+    name: "Ankit Kumar",
+    role: "Director",
+    rank: 2,
+    bio: "Ankit Kumar is a filmmaker and engineering student with a passion for visual storytelling and cinema. He works as a Director, Actor, Writer, and Cinematographer, with experience in theatre, short films, and creative production. He has directed and acted in college theatre productions and served as the Story Writer & Director of the short film Surya. As Co-Founder of Ankith Studio and Director of its Patna Branch, he leads creative direction, production, and team coordination.",
+    prompt: "portrait of Indian brand strategist",
   },
   {
     name: "Deepak Gupta",
@@ -825,7 +980,8 @@ export const INTERNS: Intern[] = [
     bio: "A dedicated creator with five years of hands-on video editing experience, Shashank is the talented mind powering the Yuvansh Yadav YouTube channel. His technical skill, consistency, and passion for visual storytelling truly set him apart in the digital content space",
     duration: "6 months",
     mentor: "Ankit Kumar",
-    linkedin: "https://www.linkedin.com/in/shashank-kumar-44bb91263?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+    linkedin:
+      "https://www.linkedin.com/in/shashank-kumar-44bb91263?utm_source=share_via&utm_content=profile&utm_medium=member_android",
   },
   {
     name: "Madhu Kumari",
