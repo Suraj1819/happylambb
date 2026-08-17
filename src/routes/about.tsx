@@ -478,13 +478,16 @@ function About() {
                         <Mail className="h-4 w-4 shrink-0 text-foreground/60" />
                         <span>{studio.email}</span>
                       </div>
-                      {/* ✅ GSTIN - Added Here */}
-                      <div className="flex items-center gap-3 pt-1 border-t border-border/30 mt-2">
-                        <FileText className="h-4 w-4 shrink-0 text-foreground/60" />
-                        <span className="text-xs text-muted-foreground dark:text-zinc-400">GSTIN:</span>
-                        <span className="font-mono text-xs font-bold text-foreground dark:text-white tracking-wider">
-                          {GSTIN}
-                        </span>
+                      {/* ✅ Professional GSTIN Display */}
+                      <div className="flex items-center gap-3 pt-3 mt-2 border-t border-border/40">
+                        <div className="flex items-center gap-2 px-3 py-1.5 bg-gray-50 dark:bg-zinc-800/50 rounded-lg border border-gray-200 dark:border-zinc-700">
+                          <FileText className="h-3.5 w-3.5 text-gray-500 dark:text-zinc-400" />
+                          <span className="text-[10px] font-medium text-gray-500 dark:text-zinc-400 uppercase tracking-wider">GSTIN</span>
+                          <span className="w-px h-4 bg-gray-300 dark:bg-zinc-600" />
+                          <span className="font-mono text-xs font-bold text-black dark:text-white tracking-wider">
+                            {GSTIN}
+                          </span>
+                        </div>
                       </div>
                     </div>
 
